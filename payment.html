@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>RMS_Payment</title>
+    </head>
+
+    <body>
+        <table>
+            <tr>
+                <td><b>Payment method:<b></td>
+                <td><select name="paymentMethod">
+                    <option value="e-wallet">e-wallet</option>
+                    <option value="card">Credit/debit Card</option>
+                    <option value="counterPay">Counter Pay</option>
+                </td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+        <input type="hidden" name="submitted" value="true">
+
+        <table>
+            <tr>
+                <td><b>Payment method:<b></td>
+            </tr>
+
+        <!-- Using if else to bring user to the different payment type (php) -->
+        
+        <!-- This is e-wallet pay -->
+            <tr>
+                <td>Touch 'N Go</td>
+                <td>BOOST</td>
+                <td>Big Pay</td>
+                <td>Grab Pay</td>
+            </tr>
+
+        <!-- This is card pay -->
+            <tr>
+                <td><select name="paymentMethod">
+                    <option value="visa">Visa</option>
+                    <option value="master">Master</option>
+                    <option value="americanExpress">American Express</option>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Card no:<b></td>
+                <td><input type="text" name="cardNo"></td>
+            </tr>
+            <tr>
+                <td><b>Expire date:</b></td>
+                <td><input type="text" name="expireDate"></td>
+            </tr>
+            <tr>
+                <td><b>CVV/Security code:</b></td>
+                <td><input type="text" name="cvv"></td>
+            </tr>
+        </table>
+
+        <!-- This is counter pay -->
+        <h3>Please pay before exit the store.</h3>
+    </body>
+</html>
