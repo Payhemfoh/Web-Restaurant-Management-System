@@ -1,10 +1,10 @@
-This respitory is created for the restaurant management system for capstone project
+This respitory is created for the restaurant management system for capstone project<br><br>
 
-The features of the system：
-Menu Management System
-Stock Management System
-Ordering System
-Payment System
-Delivery System
-Sales Analyse System
-Mini Game System
+The features of the system：<br>
+Menu Management System<br>
+Stock Management System<br>
+Ordering System<br>
+Payment System<br>
+Delivery System<br>
+Sales Analyse System<br>
+Mini Game System<br>
