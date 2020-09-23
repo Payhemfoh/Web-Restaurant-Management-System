@@ -1,0 +1,18 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.noaction {
+  pointer-events: none;
+}
+
+.bg-selfprimary {
+  background-color: #6b8dfd;
+}
+
+.btn-primary {
+  background-color: #6b8dfd;
+  border-color: #6b8dfd;
+}
+
+/*# sourceMappingURL=general.css.map */

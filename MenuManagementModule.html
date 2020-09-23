@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>RMS | Menu Management Module</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="general.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+        crossorigin="anonymous">
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+        crossorigin="anonymous"></script>
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
+        crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" type="text/css" href="general.css">
+    </head>
+
+    <body class="bg-light">
+        <header class="border rounded-bottom sticky-top bg-selfprimary">
+            <nav class="clearfix">
+                <div class="btn-group btn-group-lg float-left">
+                    <a href="homepage.html" class="btn btn-primary py-3">Icon</a>
+                    <a href="homepage.html" class="btn btn-primary py-3">RMS</a>
+                    <a href="#" class="btn btn-primary py-3">contact us</a>
+                    <a href="#" class="btn btn-primary py-3">about us</a>
+                </div>
+
+                <div class="btn-group btn-group-lg float-right">
+                    <button id="btnGroupDrop1" class="btn btn-primary dropdown-toggle py-3" data-toggle="dropdown">
+                        Modules
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a href="MenuManagementModule.html" class="dropdown-item">Menu Management Module</a>
+                        <a href="StockManagementModule.html" class="dropdown-item">Stock Management Module</a>
+                    </div>
+                    <a href="orderCart.html" class="btn btn-primary py-3">Your Order List</a>
+                    <a href="login.html" class="btn btn-primary py-3">Login/Register</a>
+                </div>
+            </nav>
+        </header> 
+
+        <br/>
+        <div id="content" class="container-fluid py-5 bg-light rounded">
+            <div class="h2 text-center">Menu Management Module</div>
+            <br><br>
+            <a href="addNewMenu.html" class="btn btn-block btn-primary">Add New Menu</a><br>
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Menu Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Ingredients</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td scope="row"><img src="MenuManagement/chickenrice.jpg" class="img-thumbnail"></th>
+                        <td>M0001</td>
+                        <td>Chicken Rice</td>
+                        <td>Delicious chicken rice</td>
+                        <td>Chicken,Rice,Cucumber,Soy Sauce,Cooking Oil, Chili Sauce</td>
+                        <td>RM7.00</td>
+                        <td><a href="modifyMenu.html" class="btn btn-warning">Edit</a></td>
+                        <td><a href="deleteMenu.html" class="btn btn-danger">Delete</a></td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row"><img src="MenuManagement/laksa.jpg" class="img-thumbnail"></th>
+                        <td>M0002</td>
+                        <td>Laksa</td>
+                        <td>Delicious Penang Laksa</td>
+                        <td>Noodles,Shrimp Paste, Fish, Vegetables, Chili, Onion, Ginger</td>
+                        <td>RM7.00</td>
+                        <td><a href="modifyMenu.html" class="btn btn-warning">Edit</a></td>
+                        <td><a href="deleteMenu.html" class="btn btn-danger">Delete</a></td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row"><img src="MenuManagement/eggsandwich.jpg" class="img-thumbnail"></th>
+                        <td>M0003</td>
+                        <td>Egg Sandwich</td>
+                        <td>Delicious sandwich</td>
+                        <td>Egg, Bread, Butter, Mayonese, Vegetables</td>
+                        <td>RM5.00</td>
+                        <td><a href="modifyMenu.html" class="btn btn-warning">Edit</a></td>
+                        <td><a href="deleteMenu.html" class="btn btn-danger">Delete</a></td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row"><img src="MenuManagement/duckrice.jpg" class="img-thumbnail"></th>
+                        <td>M0004</td>
+                        <td>Duck Rice</td>
+                        <td>Delicious duck rice</td>
+                        <td>Duck, Rice, Soy Sauce, Vegetables, Cooking Oil</td>
+                        <td>RM7.00</td>
+                        <td><a href="modifyMenu.html" class="btn btn-warning">Edit</a></td>
+                        <td><a href="deleteMenu.html" class="btn btn-danger">Delete</a></td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row"><img src="MenuManagement/chickenchop.jpg" class="img-thumbnail"></th>
+                        <td>M0005</td>
+                        <td>BBQ Chicken Chop</td>
+                        <td>Delicious chicken chop with sweet bbq sauces</td>
+                        <td>Chicken, Fries, Salad, BBQ Sauce</td>
+                        <td>RM12.00</td>
+                        <td><a href="modifyMenu.html" class="btn btn-warning">Edit</a></td>
+                        <td><a href="deleteMenu.html" class="btn btn-danger">Delete</a></td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row"><img src="MenuManagement/fishchips.jpg" class="img-thumbnail"></th>
+                        <td>M0006</td>
+                        <td>Fish &amp; Chips</td>
+                        <td>Delicious fried fish with tatar sauce</td>
+                        <td>Fish, Fries, Salad, Tatar Sauce</td>
+                        <td>RM12.00</td>
+                        <td><a href="modifyMenu.html" class="btn btn-warning">Edit</a></td>
+                        <td><a href="deleteMenu.html" class="btn btn-danger">Delete</a></td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row"><img src="MenuManagement/grillchicken.jpg" class="img-thumbnail"></th>
+                        <td>M0007</td>
+                        <td>Grill Chicken Chop</td>
+                        <td>Delicious chicken chop which is grilled and mix with the special made black pepper sauce.</td>
+                        <td>Grill Chicken, Fries, Salad, Black Pepper Sauce</td>
+                        <td>RM14.00</td>
+                        <td><a href="modifyMenu.html" class="btn btn-warning">Edit</a></td>
+                        <td><a href="deleteMenu.html" class="btn btn-danger">Delete</a></td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row"><img src="MenuManagement/lambchop.jpg" class="img-thumbnail"></th>
+                        <td>M0008</td>
+                        <td>Lamb Chop</td>
+                        <td>Delicious grill lamb chop served with black pepper sauce.</td>
+                        <td>Lamb, Fries, Salad, Black Pepper Sauce</td>
+                        <td>RM16.00</td>
+                        <td><a href="modifyMenu.html" class="btn btn-warning">Edit</a></td>
+                        <td><a href="deleteMenu.html" class="btn btn-danger">Delete</a></td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row"><img src="MenuManagement/nasilemak.jpg" class="img-thumbnail"></th>
+                        <td>M0009</td>
+                        <td>Nasi Lemak</td>
+                        <td>Localize nasi lemak, the best choice for those who want to enjoy the Malaysia local style dishes.</td>
+                        <td>Coconut Milk, Rice, Egg, Anchovies, Cucumber, Sambal, Chicken, Peanuts</td>
+                        <td>RM8.00</td>
+                        <td><a href="modifyMenu.html" class="btn btn-warning">Edit</a></td>
+                        <td><a href="deleteMenu.html" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>    
+        </div>
+        <br/>
+
+        <footer class="container-fluid pt-3 fix-bottom border rounded-top bg-selfprimary">
+            <span class="row">
+                <div id="footer_link" class="col">
+                    <h1 class="text-light">Links</h1>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Contact Us</a></li>
+                        <li><a href="#" class="text-light">About Us</a></li>
+                        <li><a href="#" class="text-light">Terms &amp; Conditions</a></li>
+                    <ul>
+                </div>
+
+                <div id="footer_contact" class="col">
+                    <h1 class="text-light">Contact Us</h1>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Facebook</a></li>
+                        <li><a href="#" class="text-light">Twitter</a></li>
+                        <li><a href="#" class="text-light">Email</a></li>
+                    </ul>
+                </div>
+            </span>
+            <p class="text-light">This website is owned and under the maintenance of the RMS<sup>&copy;</sup> <i>2020 - current</i></p>
+        </footer>
+    </body>
+</html>

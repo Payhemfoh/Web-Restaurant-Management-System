@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>RMS | Payment</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+        crossorigin="anonymous">
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+        crossorigin="anonymous"></script>
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
+        crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" type="text/css" href="general.css">
+    </head>
+
+    <body class="bg-secondary">
+        <header class="border border-warning rounded-bottom sticky-top">
+            <nav class="clearfix bg-warning">
+                <div class="btn-group btn-group-lg float-left">
+                    <a href="homepage.html" class="btn btn-primary">icon</a>
+                    <a href="homepage.html" class="btn btn-primary">RMS</a>
+                    <a href="#" class="btn btn-primary">contact us</a>
+                    <a href="#" class="btn btn-primary">about us</a>
+                </div>
+
+                <div class="btn-group btn-group-lg float-right">
+                    <button id="btnGroupDrop1" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Modules
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a href="MenuManagementModule.html" class="dropdown-item">Menu Management Module</a>
+                        <a href="StockManagementModule.html" class="dropdown-item">Stock Management Module</a>
+                    </div>
+                    <a href="orderCart.html" class="btn btn-primary">Your Order List</a>
+                    <a href="login.html" class="btn btn-primary">Login/Register</a>
+                </div>
+            </nav>
+        </header>
+
+        <br/>
+        <div id="content" class="container bg-light col-md-6 rounded">
+            <br><h3>Payment</h3><br>
+
+            <label for="paymentMethod">Select Payment Method:</label><br>
+            <div class="btn-group">
+                <button class="btn btn-primary">e-wallet</button>
+                <button class="btn btn-primary">Credit/debit Card</button>
+                <button class="btn btn-primary">Counter Pay/Pay when arrived</button>
+            </div>
+            
+            <br><br>
+            <label for="eWalletpaymentMethod">Select E-Wallet:</label><br>
+            <div class="btn-group">
+                <button class="btn btn-primary">Touch 'N Go E-Wallet</button>
+                <button class="btn btn-primary">Boost Pay</button>
+                <button class="btn btn-primary">Grab Pay</button>
+                <button class="btn btn-primary">Maybank2u Pay</button>
+                <button class="btn btn-primary">PayPal</button>
+            </div>
+            
+            <br><br>
+            <label for="creditCardpaymentMethod">Select Credit Card:</label><br>
+            <div class="btn-group">
+                <button class="btn btn-primary">Visa</button>
+                <button class="btn btn-primary">Master</button>
+                <button class="btn btn-primary">American Express</button>
+            </div>
+
+            <form method="post" action="#">
+                <div class="form-group">
+                    <lable for = "cardNo"><b>Card No:</b></label>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <input type = "text" class="form-control col-md-2" id = "cardNo1" name = "cardNo1" placeholder="xxxx" maxlength="4">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">-</div>
+                        </div>
+                        <input type = "text" class="form-control col-md-2" id = "cardNo2" name = "cardNo2" placeholder="xxxx" maxlength="4">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">-</div>
+                        </div>
+                        <input type = "text" class="form-control col-md-2" id = "cardNo3" name = "cardNo3" placeholder="xxxx" maxlength="4">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">-</div>
+                        </div>
+                        <input type = "text" class="form-control col-md-2" id = "cardNo4" name = "cardNo4" placeholder="xxxx" maxlength="4">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <lable for = "expireDate"><b>Expire date:</b></label>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <input type = "text" class="form-control col-md-2" id = "expireDate" name = "expireDate" placeholder="month(xx)">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">/</div>
+                        </div>
+                        <input type = "text" class="form-control col-md-3" id = "expireDate" name = "expireDate" placeholder="year(xxxx)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <lable for = "cvv"><b>CVV/Security code:</b></label>
+                    <input type = "text" class="form-control" id = "cvv" name = "cvv">
+                </div>
+            </form>
+
+            <!-- This is counter pay -->
+            <br><br><h3>Your order id is XXXX.<br>Please pay before exit the store.<br>Thank you</h3><br><br>
+            
+        </div>
+        <br/>
+
+        <footer class="container-fluid pt-3 fix-bottom border rounded-top bg-selfprimary">
+            <span class="row">
+                <div id="footer_link" class="col">
+                    <h1 class="text-light">Links</h1>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Contact Us</a></li>
+                        <li><a href="#" class="text-light">About Us</a></li>
+                        <li><a href="#" class="text-light">Terms &amp; Conditions</a></li>
+                    <ul>
+                </div>
+
+                <div id="footer_contact" class="col">
+                    <h1 class="text-light">Contact Us</h1>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Facebook</a></li>
+                        <li><a href="#" class="text-light">Twitter</a></li>
+                        <li><a href="#" class="text-light">Email</a></li>
+                    </ul>
+                </div>
+            </span>
+            <p class="text-light">This website is owned and under the maintenance of the RMS<sup>&copy;</sup> <i>2020 - current</i></p>
+        </footer>
+    </body>
+</html>
