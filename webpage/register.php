@@ -83,7 +83,7 @@
                     <input type = "submit" class="btn btn-block btn-primaryLight btn-primary" value = "REGISTER" id="btn_register">
                     <input type = "reset" class="btn btn-block btn-primaryLight btn-primary" value = "CLEAR">
                     <br><br>
-                    <p>Already have an account? <a href="login.html">Click here to Login.</a></p><br>
+                    <p>Already have an account? <a href="login.php">Click here to Login.</a></p><br>
                 </fieldset>
             </form>
         </div>
