@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <icon src="../images/logo.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+        crossorigin="anonymous">
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+        crossorigin="anonymous"></script>
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
+        crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" type="text/css" href="general.css">
+    </head>
+
+    <body class="bg-light">
+        <header class="border rounded-bottom sticky-top bg-selfprimary">
+            <nav class="clearfix">
+                <div class="btn-group btn-group-lg float-left">
+                    <a href="homepage.html" class="btn btn-primary py-3">Icon</a>
+                    <a href="homepage.html" class="btn btn-primary py-3">RMS</a>
+                    <a href="#" class="btn btn-primary py-3">contact us</a>
+                    <a href="#" class="btn btn-primary py-3">about us</a>
+                </div>
+
+                <div class="btn-group btn-group-lg float-right">
+                    <button id="btnGroupDrop1" class="btn btn-primary dropdown-toggle py-3" data-toggle="dropdown">
+                        Modules
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a href="MenuManagementModule.html" class="dropdown-item">Menu Management Module</a>
+                        <a href="StockManagementModule.html" class="dropdown-item">Stock Management Module</a>
+                    </div>
+                    <a href="orderCart.html" class="btn btn-primary py-3">Your Order List</a>
+                    <a href="login.html" class="btn btn-primary py-3">Login/Register</a>
+                </div>
+            </nav>
+        </header> 
+
+        <br/>
+        <div id="content" class="container bg-light col-md-9 rounded">
+            <form action="deliveryStatus.html" method="post">
+                <br><h3 class="text-center">Delivery</h3><br>
+                <div class="form-group">
+                    <label for="location">Your Location</label>
+                    <input type="text" class="form-control" name="location">
+                </div>
+                
+                <div id="gps" class="alert alert-info">
+                    <p class="h1 text-center">GPS API</p>
+                </div>
+
+                <input type="submit" class="btn btn-block btn-primary" value="Proceed">
+                <br>
+            </form>
+        </div>
+        <br/>
+
+        <footer class="container-fluid pt-3 fix-bottom border rounded-top bg-selfprimary">
+            <span class="row">
+                <div id="footer_link" class="col">
+                    <h1 class="text-light">Links</h1>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Contact Us</a></li>
+                        <li><a href="#" class="text-light">About Us</a></li>
+                        <li><a href="#" class="text-light">Terms &amp; Conditions</a></li>
+                    <ul>
+                </div>
+
+                <div id="footer_contact" class="col">
+                    <h1 class="text-light">Contact Us</h1>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Facebook</a></li>
+                        <li><a href="#" class="text-light">Twitter</a></li>
+                        <li><a href="#" class="text-light">Email</a></li>
+                    </ul>
+                </div>
+            </span>
+            <p class="text-light">This website is owned and under the maintenance of the RMS<sup>&copy;</sup> <i>2020 - current</i></p>
+        </footer>
+    </body>
+</html>
