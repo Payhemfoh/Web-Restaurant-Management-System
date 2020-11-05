@@ -31,7 +31,7 @@
 
                 <tbody>
                     <tr>
-                        <td scope="row"><img src="StockManagement/egg.jpg" class="img-thumbnail"></td>
+                        <td scope="row"><img src="../images/StockManagement/egg.jpg" class="img-thumbnail"></td>
                         <td>Egg</td>
                         <td>fresh egg</td>
                         <td>100</td>
@@ -40,7 +40,7 @@
                     </tr>
 
                     <tr>
-                        <td scope="row"><img src="StockManagement/onion.jpg" class="img-thumbnail"></td>
+                        <td scope="row"><img src="../images/StockManagement/onion.jpg" class="img-thumbnail"></td>
                         <td>Onion</td>
                         <td>purple onion</td>
                         <td>200</td>
@@ -49,7 +49,7 @@
                     </tr>
 
                     <tr>
-                        <td scope="row"><img src="StockManagement/ginger.jpg" class="img-thumbnail"></td>
+                        <td scope="row"><img src="../images/StockManagement/ginger.jpg" class="img-thumbnail"></td>
                         <td>Ginger</td>
                         <td>big ginger</td>
                         <td>20</td>
@@ -58,7 +58,7 @@
                     </tr>
 
                     <tr>
-                        <td scope="row"><img src="StockManagement/rice.jpg" class="img-thumbnail"></td>
+                        <td scope="row"><img src="../images/StockManagement/rice.jpg" class="img-thumbnail"></td>
                         <td>Rice</td>
                         <td>10kg package of the rice</td>
                         <td>20</td>
@@ -67,7 +67,7 @@
                     </tr>
 
                     <tr>
-                        <td scope="row"><img src="StockManagement/oil.jpg" class="img-thumbnail"></td>
+                        <td scope="row"><img src="../images/StockManagement/oil.jpg" class="img-thumbnail"></td>
                         <td>Cooking Oil</td>
                         <td>2 Litre of cooking oil</td>
                         <td>10</td>
@@ -76,7 +76,7 @@
                     </tr>
 
                     <tr>
-                        <td scope="row"><img src="StockManagement/soysauce.jpg" class="img-thumbnail"></td>
+                        <td scope="row"><img src="../images/StockManagement/soysauce.jpg" class="img-thumbnail"></td>
                         <td>Soy Sauce</td>
                         <td>200ml package of soy sauce</td>
                         <td>30</td>
@@ -85,7 +85,7 @@
                     </tr>
 
                     <tr>
-                        <td scope="row"><img src="StockManagement/chicken.jpg" class="img-thumbnail"></td>
+                        <td scope="row"><img src="../images/StockManagement/chicken.jpg" class="img-thumbnail"></td>
                         <td>Chicken</td>
                         <td>the whole chicken</td>
                         <td>80</td>
@@ -94,7 +94,7 @@
                     </tr>
 
                     <tr>
-                        <td scope="row"><img src="StockManagement/tomato.jpg" class="img-thumbnail"></td>
+                        <td scope="row"><img src="../images/StockManagement/tomato.jpg" class="img-thumbnail"></td>
                         <td>Tomato</td>
                         <td>big tomato</td>
                         <td>20</td>
@@ -103,7 +103,7 @@
                     </tr>
 
                     <tr>
-                        <td scope="row"><img src="StockManagement/potato.jpg" class="img-thumbnail"></td>
+                        <td scope="row"><img src="../images/StockManagement/potato.jpg" class="img-thumbnail"></td>
                         <td>Potato</td>
                         <td>fresh potato</td>
                         <td>50</td>
