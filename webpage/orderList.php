@@ -17,7 +17,7 @@
                 <br>
                 <div class="card col-md-3 m-4">
                     <br>
-                    <img class="card-img-top card-img-height" src="MenuManagement/chickenrice.jpg">
+                    <img class="card-img-top card-img-height" src="../images/MenuManagement/chickenrice.jpg">
                     <div class="card-body">
                         <div class="card-description-height">
                             <p class="h4 card-title">Chicken Rice</p>
@@ -30,7 +30,7 @@
 
                 <div class="card col-md-3 m-4">
                     <br>
-                    <img class="card-img-top card-img-height" src="MenuManagement/laksa.jpg">
+                    <img class="card-img-top card-img-height" src="../images/MenuManagement/laksa.jpg">
                     <div class="card-body">
                         <div class="card-description-height">
                             <p class="h4 card-title">Laksa</p>
@@ -43,7 +43,7 @@
 
                 <div class="card col-md-3 m-4">
                     <br>
-                    <img class="card-img-top card-img-height" src="MenuManagement/eggsandwich.jpg">
+                    <img class="card-img-top card-img-height" src="../images/MenuManagement/eggsandwich.jpg">
                     <div class="card-body">
                         <div class="card-description-height">
                             <p class="h4 card-title">Egg Sandwich</p>
@@ -56,7 +56,7 @@
 
                 <div class="card col-md-3 m-4">
                     <br>
-                    <img class="card-img-top card-img-height" src="MenuManagement/duckrice.jpg">
+                    <img class="card-img-top card-img-height" src="../images/MenuManagement/duckrice.jpg">
                     <div class="card-body">
                         <div class="card-description-height">
                             <p class="h4 card-title">Duck Rice</p>
@@ -69,7 +69,7 @@
 
                 <div class="card col-md-3 m-4">
                     <br>
-                    <img class="card-img-top card-img-height" src="MenuManagement/chickenchop.jpg">
+                    <img class="card-img-top card-img-height" src="../images/MenuManagement/chickenchop.jpg">
                     <div class="card-body">
                         <div class="card-description-height">
                             <p class="h4 card-title">BBQ Chicken Chop</p>
@@ -82,7 +82,7 @@
 
                 <div class="card col-md-3 m-4">
                     <br>
-                    <img class="card-img-top card-img-height" src="MenuManagement/fishchips.jpg">
+                    <img class="card-img-top card-img-height" src="../images/MenuManagement/fishchips.jpg">
                     <div class="card-body">
                         <div class="card-description-height">
                             <p class="h4 card-title">Fish &amp; Chips</p>
@@ -95,7 +95,7 @@
 
                 <div class="card col-md-3 m-4">
                     <br>
-                    <img class="card-img-top card-img-height" src="MenuManagement/grillchicken.jpg">
+                    <img class="card-img-top card-img-height" src="../images/MenuManagement/grillchicken.jpg">
                     <div class="card-body">
                         <div class="card-description-height">
                             <p class="h4 card-title">Grill Chicken Chop</p>
@@ -108,7 +108,7 @@
 
                 <div class="card col-md-3 m-4">
                     <br>
-                    <img class="card-img-top card-img-height" src="MenuManagement/lambchop.jpg">
+                    <img class="card-img-top card-img-height" src="../images/MenuManagement/lambchop.jpg">
                     <div class="card-body">
                         <div class="card-description-height">
                             <p class="h4 card-title">Lamb Chop</p>
@@ -121,7 +121,7 @@
 
                 <div class="card col-md-3 m-4">
                     <br>
-                    <img class="card-img-top card-img-height" src="MenuManagement/nasilemak.jpg">
+                    <img class="card-img-top card-img-height" src="../images/MenuManagement/nasilemak.jpg">
                     <div class="card-body">
                         <div class="card-description-height">
                             <p class="h4 card-title">Nasi Lemak</p>
