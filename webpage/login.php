@@ -34,7 +34,7 @@
                         <input type = "reset" class="btn btn-block btn-primaryLight btn-primary" value = "CLEAR">
                         <br>
                         
-                        <p>Do not have an account? <a href="../webpage/register.html">Click here to Register.</a></p><br>
+                        <p>Do not have an account? <a href="../webpage/register.php">Click here to Register.</a></p><br>
                 </fieldset>
             </form>
         </div>
