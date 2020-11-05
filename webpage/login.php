@@ -19,7 +19,7 @@
                     <h3 class="text-center">Log In</h3><br>
                         <div class="form-group">
                             <lable for = "username"><b>Username:</b></label>
-                            <input type = "text" class="form-control" id = "username" name = "email">
+                            <input type = "text" class="form-control" id = "username" name = "username">
                             <div id="username-feedback"></div>
                         </div>
 
