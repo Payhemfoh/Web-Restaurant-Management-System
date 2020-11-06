@@ -24,7 +24,7 @@ Current progress of the system:<br>
     <td>Menu Management Module</td>
     <td>Done</td>
     <td>Done</td>
-    <td></td>
+    <td>Done</td>
     <td></td>
     <td></td>
   </tr>
@@ -33,16 +33,16 @@ Current progress of the system:<br>
     <td>Stock Management Module</td>
     <td>Done</td>
     <td>Done</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Done</td>
+    <td>Done</td>
+    <td>Done</td>
   </tr>
   
   <tr>
     <td>Ordering Module</td>
     <td>Done</td>
     <td>Done</td>
-    <td></td>
+    <td>Done</td>
     <td></td>
     <td></td>
   </tr>
@@ -51,7 +51,7 @@ Current progress of the system:<br>
     <td>Payment Module</td>
     <td>Done</td>
     <td>Done</td>
-    <td></td>
+    <td>Done</td>
     <td></td>
     <td></td>
   </tr>
@@ -60,7 +60,7 @@ Current progress of the system:<br>
     <td>Delivery Module</td>
     <td>Done</td>
     <td>Done</td>
-    <td></td>
+    <td>Done</td>
     <td></td>
     <td></td>
   </tr>
