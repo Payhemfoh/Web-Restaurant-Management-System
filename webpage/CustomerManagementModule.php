@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>RMS | Menu Management Module</title>
+        <title>RMS | Customer Management Module</title>
         <?php 
             require("../php/pageFragment.php");
             printHeadInclude();
