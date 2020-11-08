@@ -1,4 +1,4 @@
-import { errorModal } from "./errorFunction";
+import { errorModal } from "./errorFunction.js";
 $(function () {
     $(".btn-detail").on("click", function () {
         var id = this.getAttribute("value");

@@ -1,4 +1,4 @@
-import { errorModal } from "./errorFunction";
+import { errorModal } from "./errorFunction.js";
 $(function () {
     $(".category_row").on("click", function (e) {
         var id = parseInt(e.target.getAttribute("value"));
