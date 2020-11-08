@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <br>
     <?php
-        $category = $_POST['id'];
+        $category = $_GET['id'];
 
         //database connection
         $connect = new mysqli("localhost","root","","rms_database");
