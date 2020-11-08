@@ -1,4 +1,4 @@
-import { errorModal } from "./errorFunction";
+import { errorModal } from "./errorFunction.js";
 
 $(()=>{
     

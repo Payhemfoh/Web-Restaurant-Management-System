@@ -1,5 +1,5 @@
-import { errorModal } from "./errorFunction";
-import { inValidInput, validInput } from "./form_handle";
+import { errorModal } from "./errorFunction.js";
+import { inValidInput, validInput } from "./form_handle.js";
 
 $(()=>{
     $("#send-mail").on("click",(e)=>{
