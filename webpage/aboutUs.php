@@ -29,7 +29,7 @@
             <br>
             <hr></hr>
             <center>
-            <p>Furthermore, other than dine in services, RMS also provides <b>delivery</b> and <b>take away services</B>.</p>
+            <p>Furthermore, other than dine in services, RMS also provides <b>delivery</b> and <b>take away services</b>.</p>
             </center>
             <br><br>
             <p><img src="../images/AboutUs/delivery.jpg" width = "555" height = "350" style="margin:0px 20px 0px 0px"><img src="../images/AboutUs/takeAway.jpg" width = "400" height = "450"></p>
