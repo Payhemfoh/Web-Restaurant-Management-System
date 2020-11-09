@@ -1,12 +1,17 @@
+"use strict";
 $(function () {
     var chat = new Chat();
+    chat.getState();
     chat.update();
+    $("msg").on("keydown", function (e) {
+        var key = e.which;
+    });
 });
 var Chat = /** @class */ (function () {
     function Chat() {
         this.instance = false;
-        this.status = "";
-        this.file = "";
+        this.status = 0;
+        this.file = "chat.txt";
     }
     Chat.prototype.update = function () {
         var _this = this;
@@ -33,9 +38,7 @@ var Chat = /** @class */ (function () {
                 }
             });
         }
-        else {
-            setTimeout(this.update, 1000);
-        }
+        setTimeout(this.update, 1000);
     };
     Chat.prototype.getState = function () {
         var _this = this;

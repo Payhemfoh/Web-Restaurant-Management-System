@@ -1,19 +1,23 @@
-import { data } from "jquery";
 
 $(()=>{
     let chat = new Chat();
+    chat.getState();
     chat.update();
+
+    $("msg").on("keydown",(e)=>{
+        let key = e.which;
+    });
 });
 
 class Chat{
     private instance : boolean;
-    private status : string;
+    private status : number;
     private file : string;
 
     constructor(){
         this.instance = false;
-        this.status = "";
-        this.file = "";
+        this.status = 0;
+        this.file = "chat.txt";
     }
 
     public update() : void{
@@ -38,9 +42,9 @@ class Chat{
                     this.status = data.state;
                 }}
             });
-        }else{
-            setTimeout(this.update,1000);
         }
+
+        setTimeout(this.update,1000);
     }
 
     public getState() : void{
