@@ -18,10 +18,12 @@
 
         <br/>
         <div id="content" class="container bg-light col-md-9 rounded">
-            <br><h2 class="text-center">Contact Us</h2><br><br>
-
+            <br><h2 class="text-center">Contact Us</h2><br>
+            <hr>
             <div id='contact_buttons'>
-                <p id='text'>For more informations about the website please follow us on our social media:</p>
+	        <center>
+                <p id='text'>For more information, please do follow us on our following social media:</p>
+		    </center>
                 <div class="row">
                     <div class="col p-4">
                         <a class='media' href='https://www.facebook.com' target='_blank'><i class='fab fa-facebook-f'></i></a>
@@ -35,9 +37,16 @@
                 </div>
             </div>
 
+	    <hr>
+		
             <div id='contact_form'>
                 
-                <p>If you have any questions, you may send email to our staffs by the form below:
+                <p>RMS would like to hear from you as your feedback is valuable to us for further improvement and to provide you a better service. Kindly fill up the details below and 
+                    we will answer you queries as soon as possible.</p>
+		<center>
+                    <p>Thank you for dining at <b>Restaurant Management System (RMS).</b></p>
+                </center>
+		    
                 <form method='post' action='ContactUs.php'>
                 
                     <div class='form-group'>
