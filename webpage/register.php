@@ -81,10 +81,11 @@
                         <input type="checkbox" id="showconfirmpassword"> Show Password<br>
                         <div id="confirmPassword-feedback"></div>
                     </div>
+                    <br><br>
 
+                    <p>By register to RMS, you are agree with our <a href="../webpage/TermsCondition.php" target="_blank">Terms &amp; Conditions</a></p>
                     <input type = "submit" class="btn btn-block btn-primaryLight btn-primary" value = "REGISTER" id="btn_register">
                     <input type = "reset" class="btn btn-block btn-primaryLight btn-primary" value = "CLEAR">
-                    <br><br>
                     <p>Already have an account? <a href="../webpage/login.php">Click here to Login.</a></p><br>
                 </fieldset>
             </form>

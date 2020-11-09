@@ -67,7 +67,7 @@ function printFooter(){
                 <ul class="list-unstyled">
                     <li><a href="../webpage/contactUs.php" class="text-light">Contact Us</a></li>
                     <li><a href="../webpage/aboutUs.php" class="text-light">About Us</a></li>
-                    <li><a href="#" class="text-light">Terms &amp; Conditions</a></li>
+                    <li><a href="../webpage/TermsCondition.php" class="text-light">Terms &amp; Conditions</a></li>
                 <ul>
             </div>
 

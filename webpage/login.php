@@ -31,12 +31,13 @@
                             <div id="password-feedback"></div>
                         </div>
 
-                        <br>
+                        <br><br>
+                        <p>By login to RMS, you are agree with our <a href="../webpage/TermsCondition.php" target="_blank">Terms &amp; Conditions</a></p>
                         <input type = "submit" class="btn btn-block btn-primaryLight btn-primary" value = "LOGIN">
                         <input type = "reset" class="btn btn-block btn-primaryLight btn-primary" value = "CLEAR">
+                        <p>Do not have an account? <a href="../webpage/register.php">Click here to Register.</a></p>
                         <br>
                         
-                        <p>Do not have an account? <a href="../webpage/register.php">Click here to Register.</a></p><br>
                 </fieldset>
             </form>
         </div>
