@@ -74,7 +74,12 @@
             </div>
 
             <div id="chatbox" class="alert alert-info">
-                <p class="h1 text-center">Chatbox</p>
+                <p class="h1 text-center">Chat Room</p>
+                <div id="chat-area"></div>
+                <form id="message">
+                    <p>Your message : </p>
+                    <textarea id="msg" maxlength="100"></textarea>
+                </form>
             </div>
             <br>
             
@@ -83,5 +88,6 @@
 
         <?php printFooter(); ?>
         <script type="module" src="../javascript/gps_handle.js"></script>
+        <script type="module" src="../javascript/chatroom.js"></script>
     </body>
 </html>

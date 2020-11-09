@@ -15,7 +15,7 @@
 
         <br/>
         <div id="content" class="container bg-light col-md-9 rounded">
-            <form action="../webpage/deliveryStatus.php" method="post">
+            <form>
                 <br><h3 class="text-center">Delivery</h3><br>
                 <div class="form-group">
                     <label for="location">Your Location</label><br>
@@ -24,19 +24,20 @@
                             <button id="btn_setLocation" class="btn btn-outline-info">O</button>
                         </div>
                     
-                        <input type="text" class="form-control" name="location">
+                        <input type="text" class="form-control" name="location" id="location">
                     </div>
                 </div>
                 
                 <div id="map" class="alert alert-info" style="height:500px;">
                 </div>
 
-                <button class="btn btn-block btn-primary">Proceed</button>
+                <button id="submit-address" class="btn btn-block btn-primary">Proceed</button>
                 <br>
             </form>
         </div>
         <br/>
 
+        <?php printModal(); ?>
         <?php printFooter();?>
 
         <script type="module" src="../javascript/searchLocation_script.js"></script>
