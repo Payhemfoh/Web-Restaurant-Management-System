@@ -89,7 +89,12 @@ $(function () {
             valid = false;
         }
         else {
-            validInput($("#password"), $("#password-feedback"));
+            if(/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$/.test(password)){
+                validInput($("#password"), $("#password-feedback"));
+            }else{
+                inValidInput($("#password"), $("#password-feedback"), "Password must contain atleas one upper case, one lower case, one special character, one digit and more than 7 character!");
+                valid = false;
+            }
         }
         if (confirmPassword === "") {
             inValidInput($("#confirm_password"), $("#confirmPassword-feedback"), "Confirm Password should not be empty!");
