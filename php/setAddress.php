@@ -4,8 +4,13 @@
     $location_address = $_POST['location_address'];
     $valid = true;
 
+    if($valid){
+        setcookie("location_id",$location_id);
+        setcookie("location_address",$location_address);
+    }
     //validate
 
+    /*
     if($valid){
         //database connection
         $connect = new mysqli("localhost","root","","rms_database");
@@ -25,4 +30,5 @@
         }
         $connect->close();
     }
+    */
 ?>

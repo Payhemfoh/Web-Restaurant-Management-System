@@ -1,23 +1,14 @@
-
-$(()=>{
-    let chat = new Chat();
-    chat.getState();
-    chat.update();
-
-    $("msg").on("keydown",(e)=>{
-        let key = e.which;
-    });
-});
+import { errorModal } from "./errorFunction.js";
 
 class Chat{
     private instance : boolean;
     private status : number;
     private file : string;
 
-    constructor(){
+    constructor(filename : string){
         this.instance = false;
         this.status = 0;
-        this.file = "chat.txt";
+        this.file = filename;
     }
 
     public update() : void{
@@ -31,20 +22,20 @@ class Chat{
                     state:this.status,
                     file:this.file
                 },
-                success:(data)=>{if(data.text){
-                    for(let i =0;i<data.text.length;++i){
-                        $("#chat-area").append($(""+data.text[i]+""))
+                success:(data)=>{
+                    if(data.text){
+                        for(let i =0;i<data.text.length;++i){
+                            $("#chat-area").append(""+data.text[i]+"<br>");
+                        }
+                        document.getElementById("chat-area")!.scrollTop = document.getElementById("chat-area")!.scrollHeight;
+        
+                        this.status = data.state;
                     }
-                    document.getElementById("chat-area")!.scrollTop = 
-                    document.getElementById("chat-area")!.scrollHeight;
-    
                     this.instance = false;
-                    this.status = data.state;
-                }}
+                },
+                error:errorModal
             });
         }
-
-        setTimeout(this.update,1000);
     }
 
     public getState() : void{
@@ -58,10 +49,16 @@ class Chat{
                     file:this.file
                 },
                 success:(data)=>{
+                    if(data.text){
+                    for(let i =0;i<data.text.length;++i){
+                        $("#chat-area").append(""+data.text[i]+"<br>");
+                    }
+                    document.getElementById('chat-area')!.scrollTop = document.getElementById('chat-area')!.scrollHeight;
                     this.status = data.state;
                     this.instance = false;
+                    }
                 }
-            });
+            }); 
         }
     }
 
@@ -80,3 +77,32 @@ class Chat{
         });
     }
 }
+
+$(()=>{
+    let username = $("#username-box").text() as string;
+    let chat = new Chat(username+".txt");
+    chat.getState();
+
+    $("#msg").on("keyup",(e)=>{
+        if(e.key == "Enter"){   
+            let text = $("#msg").val() as string;
+            let max = parseInt($("#msg").attr("maxlength") as string);
+            let length = text.length;
+
+            if(length <= max + 1){
+                chat.sendMsg(text,username);
+                $("#msg").val("");
+            }else{
+                $("#msg").val(text.substring(0,max));
+            }
+        }
+    });
+
+    Updating();
+
+    function Updating(){
+        chat.update();
+        setTimeout(Updating,1000);
+    }
+});
+

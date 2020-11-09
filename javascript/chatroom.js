@@ -1,17 +1,9 @@
-"use strict";
-$(function () {
-    var chat = new Chat();
-    chat.getState();
-    chat.update();
-    $("msg").on("keydown", function (e) {
-        var key = e.which;
-    });
-});
+import { errorModal } from "./errorFunction.js";
 var Chat = /** @class */ (function () {
-    function Chat() {
+    function Chat(filename) {
         this.instance = false;
         this.status = 0;
-        this.file = "chat.txt";
+        this.file = filename;
     }
     Chat.prototype.update = function () {
         var _this = this;
@@ -28,17 +20,16 @@ var Chat = /** @class */ (function () {
                 success: function (data) {
                     if (data.text) {
                         for (var i = 0; i < data.text.length; ++i) {
-                            $("#chat-area").append($("" + data.text[i] + ""));
+                            $("#chat-area").append("" + data.text[i] + "<br>");
                         }
-                        document.getElementById("chat-area").scrollTop =
-                            document.getElementById("chat-area").scrollHeight;
-                        _this.instance = false;
+                        document.getElementById("chat-area").scrollTop = document.getElementById("chat-area").scrollHeight;
                         _this.status = data.state;
                     }
-                }
+                    _this.instance = false;
+                },
+                error: errorModal
             });
         }
-        setTimeout(this.update, 1000);
     };
     Chat.prototype.getState = function () {
         var _this = this;
@@ -52,8 +43,14 @@ var Chat = /** @class */ (function () {
                     file: this.file
                 },
                 success: function (data) {
-                    _this.status = data.state;
-                    _this.instance = false;
+                    if (data.text) {
+                        for (var i = 0; i < data.text.length; ++i) {
+                            $("#chat-area").append("" + data.text[i] + "<br>");
+                        }
+                        document.getElementById('chat-area').scrollTop = document.getElementById('chat-area').scrollHeight;
+                        _this.status = data.state;
+                        _this.instance = false;
+                    }
                 }
             });
         }
@@ -75,3 +72,27 @@ var Chat = /** @class */ (function () {
     };
     return Chat;
 }());
+$(function () {
+    var username = $("#username-box").text();
+    var chat = new Chat(username + ".txt");
+    chat.getState();
+    $("#msg").on("keyup", function (e) {
+        if (e.key == "Enter") {
+            var text = $("#msg").val();
+            var max = parseInt($("#msg").attr("maxlength"));
+            var length_1 = text.length;
+            if (length_1 <= max + 1) {
+                chat.sendMsg(text, username);
+                $("#msg").val("");
+            }
+            else {
+                $("#msg").val(text.substring(0, max));
+            }
+        }
+    });
+    Updating();
+    function Updating() {
+        chat.update();
+        setTimeout(Updating, 1000);
+    }
+});

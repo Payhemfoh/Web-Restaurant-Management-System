@@ -31,8 +31,10 @@ $(function(){
             success:()=>{
                 let content = $("body").html();
                 content += `<form id='form' action='../webpage/deliveryStatus.php'></form>`;
+                
                 $("body").html(content);
                 $("#form").trigger("submit");
+                
             },
             error:errorModal
         })

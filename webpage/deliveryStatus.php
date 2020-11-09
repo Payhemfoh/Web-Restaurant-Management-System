@@ -68,17 +68,20 @@
             <br>
 
             <div id="gps" class="alert alert-info">
-                <p class="h1 text-center">Location</p>
-                <p id="location"></p>
+                <p class="h1 text-center">Your Location</p>
+                <p id="location"><?php print_r($_COOKIE);?></p>
                 <div id="map" style="height:500px;"></div>
             </div>
 
             <div id="chatbox" class="alert alert-info">
                 <p class="h1 text-center">Chat Room</p>
-                <div id="chat-area"></div>
+                <div id="chat-area" style="height:500px;background:white;overflow:scroll;overflow-x:hidden"></div>
                 <form id="message">
-                    <p>Your message : </p>
-                    <textarea id="msg" maxlength="100"></textarea>
+                    <div class="form-group">
+                        <p id="username-box">Guest</p>
+                        <textarea id="msg" maxlength="100" class="form-control"></textarea><br> 
+                        <button id="btn_sendMsg" class="btn btn-block btn-primaryLight btn-primary">Send</button>
+                    </div>
                 </form>
             </div>
             <br>
