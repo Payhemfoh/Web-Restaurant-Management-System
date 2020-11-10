@@ -7,6 +7,10 @@
 		$sess_username = $_SESSION['sess_username'];
 		$sess_date = $_SESSION['sess_date'];
 		$sess_position = $_SESSION['sess_position'];
+
+		if($sess_position!== "customer"){
+			$sess_permission = json_decode($_SESSION['sess_permission']);
+		}
 		
 		if(!empty($_SESSION['sess_timestamp'])){
 			//user login will stand 2 hour long

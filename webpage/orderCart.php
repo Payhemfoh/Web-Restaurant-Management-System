@@ -63,9 +63,12 @@
                         
                         echo '</tbody>
                         </table>
-                        <button class="btn btn-block btn-primaryLight btn-primary">Place Order</button>
-                        <a href="payment.html" class="btn btn-block btn-primaryLight btn-primary">Make Payment</a><br><br>';
+                        <button class="btn btn-block btn-primaryLight btn-primary">Place Order</button>';
                         
+                        if(!empty($_COOKIE['order_id'])){
+                            echo
+                            '<a href="payment.html" class="btn btn-block btn-primaryLight btn-primary">Make Payment</a><br><br>';
+                        }
                         $connect->close();
                     }else{
                         echo "<p class='center'>No order found in the cart. Click the button below to start your order.<p>";
