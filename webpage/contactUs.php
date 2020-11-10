@@ -73,6 +73,6 @@
         <br/>
         <?php printModal(); ?>
         <?php printFooter(); ?>
-        <script src="../javascript/contact_script.js" ></script>
+        <script type="module" src="../javascript/contact_script.js" ></script>
     </body>
 </html>

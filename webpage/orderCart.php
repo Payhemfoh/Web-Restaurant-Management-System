@@ -17,8 +17,10 @@
                 
                 <?php
                     //get cart from cookies
-                    if(isset($_COOKIE['orderList']) && !empty($_COOKIE['orderList'])){
+                    if(!empty(($_COOKIE['orderList']))){
                         $orderList = json_decode($_COOKIE['orderList']);
+
+                        
                         //database connection
                         $connect = new mysqli("localhost","root","","rms_database");
 
@@ -38,9 +40,9 @@
                                 </tr>
                             </thead>
                             <tbody>';
-                        foreach($orderList as $id => $qty){
-                            if($statement = $connect->prepare("SELECT * FROM menu m WHERE menu_id = ? LIMIT 1;")){
-                                $statement->bind_param($id);
+                        foreach($orderList->item as $item){
+                            if($statement = $connect->prepare("SELECT * FROM menu WHERE menu_id = ? LIMIT 1;")){
+                                $statement->bind_param("i",$item->id);
                                 $statement->execute();
                                 $result = $statement->get_result();
 
@@ -48,7 +50,7 @@
                                     echo "<tr>
                                         <td scope=\"row\"><img src=\"".$row['menu_picture']."\" class=\"img-thumbnail\"></td>
                                         <td>".$row['menu_name']."</td>
-                                        <td>".qty."</td>
+                                        <td>".$item->qty."</td>
                                         <td><button class=\"btn btn-info btn-detail\" value=\"".$row['menu_id']."\">Details</button></td>
                                     </tr>";
                                 }

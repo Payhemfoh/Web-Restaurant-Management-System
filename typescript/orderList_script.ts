@@ -1,11 +1,5 @@
 import { errorModal } from "./errorFunction.js";
 
-interface CookieSetting{
-    start:number,
-    end:number,
-    fragment:string
-}
-
 interface order{
     id:number,
     qty:number
@@ -60,16 +54,17 @@ function setupMenu() : void{
                     $("#modal-submit").on("click",function(){
                         let quantity = $("#orderQty").val() as number;
                         let key = "orderList";
-                        let setting = getCookie(key);
+                        let fragment = getCookie(key);
                         let orderListObject : orderList;
 
-                        if(setting!=null && setting.fragment!==""){
-                            orderListObject = JSON.parse(setting.fragment);
+                        if(fragment!=null && fragment!==""){
+                            console.log(fragment);
+                            orderListObject = JSON.parse(fragment);
                             orderListObject.item.push({id:id,qty:quantity});
                         }else{
                             orderListObject = {item:[{id:id,qty:quantity}]};
                         }
-                        setCookie(setting,key+"="+JSON.stringify(orderListObject));
+                        setCookie(key+"="+JSON.stringify(orderListObject)+";path=/;");
 
                         $(".modal-body").html("Order Placed.");
                         $(".modal-footer").html(
@@ -85,7 +80,7 @@ function setupMenu() : void{
 }
 
 function getCookie(key:string)
-    :CookieSetting|null
+    :string|null
 {
     let cookie = document.cookie;
     //get the beginning string of key in cookie 
@@ -103,9 +98,10 @@ function getCookie(key:string)
         end = cookie.length;
     }
     let fragment = decodeURI(cookie.substring(cookie.indexOf("=",begin)+1,end));
-    return {start:begin,end:end,fragment:fragment};
+    return fragment;
 }
 
-function setCookie(setting:CookieSetting|null,update:string):void{
+function setCookie(update:string):void{
+    console.log(update);
     document.cookie=update;
 }

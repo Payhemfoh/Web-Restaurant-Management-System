@@ -36,16 +36,17 @@ function setupMenu() {
                     $("#modal-submit").on("click", function () {
                         var quantity = $("#orderQty").val();
                         var key = "orderList";
-                        var setting = getCookie(key);
+                        var fragment = getCookie(key);
                         var orderListObject;
-                        if (setting != null && setting.fragment !== "") {
-                            orderListObject = JSON.parse(setting.fragment);
+                        if (fragment != null && fragment !== "") {
+                            console.log(fragment);
+                            orderListObject = JSON.parse(fragment);
                             orderListObject.item.push({ id: id, qty: quantity });
                         }
                         else {
                             orderListObject = { item: [{ id: id, qty: quantity }] };
                         }
-                        setCookie(setting, key + "=" + JSON.stringify(orderListObject));
+                        setCookie(key + "=" + JSON.stringify(orderListObject) + ";path=/;");
                         $(".modal-body").html("Order Placed.");
                         $(".modal-footer").html('<button id="modal-cancel" class="btn btn-primary btn-primaryLight btn-block" ' +
                             'data-dismiss="modal">Return to menu list</button>');
@@ -75,8 +76,9 @@ function getCookie(key) {
         end = cookie.length;
     }
     var fragment = decodeURI(cookie.substring(cookie.indexOf("=", begin) + 1, end));
-    return { start: begin, end: end, fragment: fragment };
+    return fragment;
 }
-function setCookie(setting, update) {
+function setCookie(update) {
+    console.log(update);
     document.cookie = update;
 }
