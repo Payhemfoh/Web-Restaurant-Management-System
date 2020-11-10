@@ -1,40 +1,26 @@
 var map;
-var marker;
+var customerMarker;
 var geocoder;
 $(function () {
     initMap();
+    setStaffPosition();
 });
 function initMap() {
+    geocoder = new google.maps.Geocoder();
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 0, lng: 0 },
-        zoom: 15,
+        zoom: 16,
         streetViewControl: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-    getLocation(showPosition);
-    getLocation(markCurrentPosition);
+    var location = $("#location").text();
+    geocoder.geocode({ address: location }, markCustomerPosition);
 }
-function getLocation(func) {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(func);
-    }
-    else {
-        console.log("Geolocation is not supported by this browser");
-    }
-}
-function showPosition(position) {
-    var point = { lat: position.coords.latitude,
-        lng: position.coords.longitude };
-    map.setCenter(point);
-}
-function markCurrentPosition(position) {
-    var location = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-    };
+function markCustomerPosition(result, status) {
+    var location = result[0].geometry.location;
     map.setCenter(location);
-    if (marker == null) {
-        marker = new google.maps.Marker({
+    if (customerMarker == null) {
+        customerMarker = new google.maps.Marker({
             position: location,
             map: map,
             title: "Your Location",
@@ -42,8 +28,15 @@ function markCurrentPosition(position) {
         });
     }
     else {
-        marker.setPosition(location);
-        marker.setAnimation(google.maps.Animation.BOUNCE);
+        customerMarker.setPosition(location);
+        customerMarker.setAnimation(google.maps.Animation.BOUNCE);
     }
-    setTimeout(function () { return marker.setAnimation(null); }, 500);
+    setTimeout(function () { return customerMarker.setAnimation(null); }, 500);
+}
+function setStaffPosition() {
+    $.ajax("../php/deliveryStatus_process.php", {
+        method: "post",
+        data: {},
+        success: function (data) { }
+    });
 }

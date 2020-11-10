@@ -1,12 +1,26 @@
 import { errorModal } from "./errorFunction.js";
 
+interface CookieSetting{
+    start:number,
+    end:number,
+    fragment:string
+}
+
+interface order{
+    id:number,
+    qty:number
+}
+
+interface orderList{
+    item:order[]
+}
+
 $(()=>{
     
     $(".category_row").on("click",(e)=>{
         let id = parseInt(e.target.getAttribute("value")!);
         displayMenu(id);
-    })
-    
+    });
 
 });
 
@@ -19,20 +33,14 @@ function displayMenu(id : number):void{
             $("#content").html(data);
             setupMenu();
         },
-        error:(xhr,status,error)=>{
-            if(xhr && xhr.status!=200){
-                $("#content").html("Failed to send request to server: <br> "+xhr.responseText+"<br>Please try again.<br>");
-            }else{
-                alert("Failed to send request to server! Please try again!");
-            }
-        }
+        error:errorModal
     })
 }
 
 function setupMenu() : void{
     
     $(".btnOrder").on("click",function(){
-        let id = this.getAttribute("value");
+        let id = parseInt(this.getAttribute("value")!);
         
         if(id!=null){
             $.ajax("../webpage/makeOrder.php",{
@@ -50,25 +58,23 @@ function setupMenu() : void{
                         '<button id="modal-submit" class="btn btn-primary btn-primaryLight btn-block">Place Order</button>'
                     );
                     $("#modal-submit").on("click",function(){
-                        let quantity = $("#orderQty").val();
+                        let quantity = $("#orderQty").val() as number;
+                        let key = "orderList";
+                        let setting = getCookie(key);
+                        let orderListObject : orderList;
 
-                        $.ajax("../php/placeOrder.php",{
-                            method:"post",
-                            dataType:"HTML",
-                            data:{
-                                id:id,
-                                qty:quantity
-                            },
-                            success:function(data,status,xhr){
-                                $("#modal-title").text("Order Placed");
-                                $(".modal-body").html(data);
-                                $(".modal-footer").html(
-                                    '<button id="modal-cancel" class="btn btn-primary btn-primaryLight btn-block" '+
-                                    'data-dismiss="modal">Return to Menu</button>'
-                                );
-                            },
-                            error:errorModal
-                        });
+                        if(setting!=null && setting.fragment!==""){
+                            orderListObject = JSON.parse(setting.fragment);
+                            orderListObject.item.push({id:id,qty:quantity});
+                        }else{
+                            orderListObject = {item:[{id:id,qty:quantity}]};
+                        }
+                        setCookie(setting,key+"="+JSON.stringify(orderListObject));
+
+                        $(".modal-body").html("Order Placed.");
+                        $(".modal-footer").html(
+                            '<button id="modal-cancel" class="btn btn-primary btn-primaryLight btn-block" '+
+                            'data-dismiss="modal">Return to menu list</button>'); 
                     });
                     ($("#modal") as any).modal();
                 },
@@ -76,4 +82,30 @@ function setupMenu() : void{
             });
         }
     });
+}
+
+function getCookie(key:string)
+    :CookieSetting|null
+{
+    let cookie = document.cookie;
+    //get the beginning string of key in cookie 
+    let begin = cookie.indexOf("; "+key+"=");
+    //search the key in cookie
+    if(begin === -1){
+        //if the key is first cookie
+        begin = cookie.indexOf(key+"=");
+        //if the key is not found
+        if(begin != 0 ) return null;
+    }
+    //search the end of the key
+    let end = cookie.indexOf(";",begin+1);
+    if(end === -1){
+        end = cookie.length;
+    }
+    let fragment = decodeURI(cookie.substring(cookie.indexOf("=",begin)+1,end));
+    return {start:begin,end:end,fragment:fragment};
+}
+
+function setCookie(setting:CookieSetting|null,update:string):void{
+    document.cookie=update;
 }

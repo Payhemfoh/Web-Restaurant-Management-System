@@ -14,15 +14,11 @@
         <br/>
         <div id="content" class="container bg-light col-md-9 rounded">
             <br><h3 class="text-center">Your Order List</h3><br>
-            
-                
-
                 
                 <?php
                     //get cart from cookies
-                    if(isset($_COOKIE['orderList'])){
+                    if(isset($_COOKIE['orderList']) && !empty($_COOKIE['orderList'])){
                         $orderList = json_decode($_COOKIE['orderList']);
-
                         //database connection
                         $connect = new mysqli("localhost","root","","rms_database");
 
