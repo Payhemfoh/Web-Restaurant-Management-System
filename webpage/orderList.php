@@ -10,6 +10,9 @@
 
     <body class="bg-light">
         <?php printHeader(basename(__FILE__)); ?>
+        <?php 
+            setcookie("service",$_GET['service']);
+        ?>
 
         <br/>
         <div id="content" class="container bg-light col-md-9 rounded">

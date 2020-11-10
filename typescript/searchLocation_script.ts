@@ -25,13 +25,12 @@ $(function(){
             method:'post',
             dataType:'html',
             data:{
-                location_id:location_id,
                 location_address:location_address
             },
             success:()=>{
                 let content = $("body").html();
                 content += `<form id='form' action='../webpage/deliveryStatus.php'></form>`;
-                
+
                 $("body").html(content);
                 $("#form").trigger("submit");
                 

@@ -18,7 +18,6 @@ $(function () {
             method: 'post',
             dataType: 'html',
             data: {
-                location_id: location_id,
                 location_address: location_address
             },
             success: function () {

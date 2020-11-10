@@ -50,13 +50,22 @@
 
             if(!$found){
                 //check staff table
-                $statement = $connect->prepare("SELECT s.username,s.password,p.position_name FROM staff s,position p WHERE username LIKE ? AND password LIKE ? AND s.position_id = p.position_id LIMIT 1");
+                $statement = $connect->prepare("SELECT s.username,s.password,p.* FROM staff s,position p WHERE username LIKE ? AND password LIKE ? AND s.position_id = p.position_id LIMIT 1");
                 $statement->bind_param("ss",$username,$hashed);
                 $statement->execute();
                 $result = $statement->get_result();
                 if($result->num_rows>0){
                     $row = $result->fetch_array();
                     $position = $row['position_name'];
+                    $access = array("customerManagementModule"=>$row['access_customer_module'],
+                                "staffManagementModule"=>$row['access_staff_module'],
+                                "paymentModule"=>$row['access_payment_module'],
+                                "stockManagementModule"=>$row['access_stock_module'],
+                                "menuManagementModule"=>$row['access_menu_module'],
+                                "orderingModule"=>$row['access_order_module'],
+                                "deliveryModule"=>$row['access_delivery_module'],
+                                "analysisModule"=>$row['access_analysis_module'],
+                                "orderManagementModule"=>$row['access_orderChecking_module']);
                     $found = true;
                 }
             }
@@ -67,6 +76,11 @@
                 date_default_timezone_set("Asia/Kuala_Lumpur");
                 $_SESSION['sess_username'] = $username;
                 $_SESSION['sess_position'] = $position;
+                if($position !== "customer"){
+                    if(isset($access)){
+                        $_SESSION['sess_permission'] = json_encode($access);
+                    }
+                }
                 $_SESSION['sess_date'] = date("d-m-Y: h:m:sA");
                 $_SESSION['sess_timestamp'] = time();
                 

@@ -1,16 +1,14 @@
 <?php
     //get location
-    $location_id = $_POST['location_id'];
     $location_address = $_POST['location_address'];
     $valid = true;
 
-    if($valid){
-        setcookie("location_id",$location_id);
-        setcookie("location_address",$location_address);
-    }
     //validate
-
-    /*
+    if(empty($location_address)){
+        echo "Location address is empty!<br>";
+        $valid = false;
+    }
+    
     if($valid){
         //database connection
         $connect = new mysqli("localhost","root","","rms_database");
@@ -20,15 +18,18 @@
             die("Connection error : $connect->connect_errno : $connect->connect_error");
         }
 
-        if($statement = $connect->prepare("INSERT INTO menu VALUES (0,?,?,?,?);")){
-            $statement->bind_param("sssd",$name,$description,$category,$price);
+        if($statement = $connect->prepare("INSERT INTO delivery(delivery_id,customer_address) VALUES (0,?);")){
+            $statement->bind_param("s",$location_address);
             $statement->execute();
 
+            if(!isset($_SESSION)) session_start();
+            
+            $_SESSION['delivery_id'] = $connect->insert_id;
             $statement->close();
         }else{
             die("Failed to prepare SQL statement.");
         }
         $connect->close();
     }
-    */
+    
 ?>

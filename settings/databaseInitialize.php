@@ -21,7 +21,7 @@
     const USERNAME = "root";
     const PASSWORD = "";
     const DATABASE = "RMS_Database";
-    const TABLENAME = ["customer","position","staff","stock","payment","menu_category","menu","orders","order_item","ingredient"];
+    const TABLENAME = ["customer","position","staff","stock","payment","menu_category","menu","delivery","orders","order_item","ingredient"];
     const TABLEATTRIBUTE = [
         "CUSTOMERTABLE",
         "POSITIONTABLE",
@@ -30,9 +30,18 @@
         "PAYMENTTABLE",
         "CATEGORYTABLE",
         "MENUTABLE",
+        "DELIVERYTABLE",
         "ORDERTABLE",
         "ORDERITEMTABLE",
         "INGREDIENTTABLE"
+    ];
+
+    $DELIVERYTABLE = [
+        "delivery_id" => " INT NOT NULL AUTO_INCREMENT PRIMARY KEY,",
+        "customer_address"=>" VARCHAR(150),",
+        "chatFile"=>" VARCHAR(100),",
+        "staff_longitude"=>" FLOAT,",
+        "staff_latitude"=>" FLOAT"
     ];
 
     $CUSTOMERTABLE = [
@@ -95,8 +104,10 @@
         "overall_status" => "ENUM('order received','preparing','delivering','arrived') NOT NULL,",
         "total_price" => "FLOAT NOT NULL,",
         "payment_id" => "INT,",
+        "delivery_id" => "INT,",
         "FOREIGN KEY" => "(customer_id) references RMS_Database.customer(customer_id),",
-        "FOREIGN KEY" => "(payment_id) references RMS_Database.payment(payment_id)"
+        "FOREIGN KEY" => "(payment_id) references RMS_Database.payment(payment_id),",
+        "FOREIGN KEY" => "(delivery_id) references RMS_Database.delivery(delivery_id)"
     ];
 
     $PAYMENTTABLE = [
