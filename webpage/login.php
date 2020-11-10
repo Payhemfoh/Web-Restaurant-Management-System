@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if(!empty($_SESSION['sess_username']))
+    {
+        header('Refresh: 0; URL = ../webpage/homepage.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
