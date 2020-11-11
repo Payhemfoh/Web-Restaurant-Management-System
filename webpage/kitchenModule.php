@@ -18,15 +18,13 @@
 
         <br/>
         <div id="content" class="container bg-light col-md-9 rounded">
-            <br><h2 class="text-center">Order Checking Module</h2><br><br>
-            <div id="general_view">
-            </div>
+            <br><h2 class="text-center">Kitchen Module</h2><br><br>
             <div id="order_requests">
             </div>
         </div>
         <br/>
         <?php printModal(); ?>
         <?php printFooter(); ?>
-        <script src="../javascript/kitchenModule_script.js" ></script>
+        <script type="module" src="../javascript/kitchenModule_script.js" ></script>
     </body>
 </html>

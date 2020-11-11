@@ -101,6 +101,7 @@
         "customer_id" => " INT NOT NULL,",
         "date_time" => " DATETIME NOT NULL,",
         "order_type" => "VARCHAR(20) NOT NULL,",
+        "table_no"=>"INT, ",
         "overall_status" => "ENUM('order received','preparing','delivering','arrived') NOT NULL,",
         "payment_id" => "INT,",
         "delivery_id" => "INT,",

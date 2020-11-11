@@ -18,6 +18,7 @@
 				echo "<script>alert(\"You had been Log out! Please Login again in login page!\")</script>";
 				unset($_SESSION);
 				unset($sess_username);
+				session_destroy();
 			}
 			$_SESSION['sess_timestamp'] = time();
 		}
