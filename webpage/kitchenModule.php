@@ -19,7 +19,10 @@
         <br/>
         <div id="content" class="container bg-light col-md-9 rounded">
             <br><h2 class="text-center">Order Checking Module</h2><br><br>
-            
+            <div id="general_view">
+            </div>
+            <div id="order_requests">
+            </div>
         </div>
         <br/>
         <?php printModal(); ?>

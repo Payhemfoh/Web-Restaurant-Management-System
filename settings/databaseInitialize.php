@@ -102,7 +102,6 @@
         "date_time" => " DATETIME NOT NULL,",
         "order_type" => "VARCHAR(20) NOT NULL,",
         "overall_status" => "ENUM('order received','preparing','delivering','arrived') NOT NULL,",
-        "total_price" => "FLOAT NOT NULL,",
         "payment_id" => "INT,",
         "delivery_id" => "INT,",
         "FOREIGN KEY" => "(customer_id) references RMS_Database.customer(customer_id),",

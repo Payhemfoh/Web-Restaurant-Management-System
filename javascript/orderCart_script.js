@@ -17,4 +17,16 @@ $(function () {
             error: errorModal
         });
     });
+    $("#btn_checkout").on("click", function () {
+        var form = $("<form action='../webpage/payment.php'></form>");
+        $("body").append(form);
+        form.trigger("submit");
+    });
+    $("#btn_payment").on("click", function () {
+        var form = $("<form action='../webpage/payment.php'></form>");
+        $("body").append(form);
+        form.trigger("submit");
+    });
+    $("#btn_sendKitchen").on("click", function () {
+    });
 });

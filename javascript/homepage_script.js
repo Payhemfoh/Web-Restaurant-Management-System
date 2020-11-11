@@ -23,15 +23,16 @@ $(function () {
     //set click event for take away button
     takeAway.on("click", function () {
         document.cookie = "service=take_away; path=/;";
-        var link = $("<form action='../webpage/orderList.php'></a>");
+        var link = $("<form action='../webpage/orderList.php'></form>");
         $("body").append(link);
         link.trigger("submit");
     });
     //set click event for delivery button
     delivery.on("click", function () {
-        var form = $("<form action='../webpage/orderList.php' method='get'><input type='hidden' name='service' value='delivery'></form> ");
-        $("body").append(form);
-        form.trigger("submit");
+        document.cookie = "service=delivery; path=/;";
+        var link = $("<form action='../webpage/orderList.php'></form>");
+        $("body").append(link);
+        link.trigger("submit");
     });
     $(".btn_edit").on("click", function () {
         ("#editModal").modal();

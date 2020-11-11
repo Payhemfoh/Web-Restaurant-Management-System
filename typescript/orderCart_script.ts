@@ -18,5 +18,21 @@ $(function(){
             } ,
             error: errorModal
         });
-    })
+    });
+
+    $("#btn_checkout").on("click",()=>{
+        let form = $("<form action='../webpage/payment.php'></form>");
+        $("body").append(form);
+        form.trigger("submit");
+    });
+
+    $("#btn_payment").on("click",()=>{
+        let form = $("<form action='../webpage/payment.php'></form>");
+        $("body").append(form);
+        form.trigger("submit");
+    });
+
+    $("#btn_sendKitchen").on("click",()=>{
+
+    });
 });

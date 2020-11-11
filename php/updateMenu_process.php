@@ -40,7 +40,7 @@
     if($valid){
 
         $destination = $_POST['destination'];
-        if(is_uploaded_file($_FILES['image']['tmp_name'])){
+        if(file_exists($FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])){
             $filetype = $_FILES['image']['type'];
             $filename = $_FILES['image']['name'];
             $filesize = $_FILES['image']['size'];

@@ -7,12 +7,17 @@ $(()=>{
 });
 
 function setCashPayment(e:JQuery.ClickEvent):void{
-    let service = e.target.getAttribute("value");
+    let service = $("#service").val() as string;
+    let orderId = $("#orderID").val() as number;
+    let price = $("#totalPrice").val() as number;
     if(service === "delivery"){
-
+        $("#paymentBlock").html("<h4>Your order id is "+orderId+".<br>"+
+                                "The total price is RM"+price+"<br>"+
+                                "Our staff will receive the payment when the order is arrived."+
+                                "<br>Thank you</h4><br><br>");
     }else{
-        $("#paymentBlock").html("<h4>Your order id is XXXX.<br>"+
-                                "The total price is RMxx.xx.<br>"+
+        $("#paymentBlock").html("<h4>Your order id is "+orderId+".<br>"+
+                                "The total price is RM"+price+"<br>"+
                                 "Please pay before exit the store."+
                                 "<br>Thank you</h4><br><br>");
     }
@@ -22,12 +27,14 @@ function setEWalletPayment():void{
     $("#paymentBlock").html(`
     <label for="eWalletpaymentMethod">Select E-Wallet:</label><br>
     <div class='btn-group'>
-        <button class='btn btn-primary'>Touch 'N Go E-Wallet</button>
-        <button class='btn btn-primary'>Boost Pay</button>
-        <button class='btn btn-primary'>Grab Pay</button>
-        <button class='btn btn-primary'>Maybank2u Pay</button>
-        <button class='btn btn-primary'>PayPal</button>
+        <button class='btn btn-primary pay_wallet'>Touch 'N Go E-Wallet</button>
+        <button class='btn btn-primary pay_wallet'>Boost Pay</button>
+        <button class='btn btn-primary pay_wallet'>Grab Pay</button>
+        <button class='btn btn-primary pay_wallet'>Maybank2u Pay</button>
+        <button class='btn btn-primary pay_wallet'>PayPal</button>
     </div>`);
+
+    $(".pay_wallet").on("click",walletPaymentForm);
 }
 
 function setCardPayment():void{
@@ -84,4 +91,10 @@ function creditPaymentForm():void{
 
     $("#paymentBlock").html(html);
     showPasswordSetting($("#cvv"),$("#showcvv"));
+}
+
+function walletPaymentForm():void{
+    let html = $("#paymentBlock").html();
+    html+= "<img src='../images/Payment/e_wallet.png' class=\"img-thumbnail\"><br>";
+    $("#paymentBlock").html(html);
 }
