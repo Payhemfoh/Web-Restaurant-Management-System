@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>RMS | Homepage</title>
+        <title>RMS | Menu</title>
         <?php
+            require("../php/sessionFragment.php");
             require("../php/pageFragment.php");
             printHeadInclude();
         ?>
@@ -10,9 +11,6 @@
 
     <body class="bg-light">
         <?php printHeader(basename(__FILE__)); ?>
-        <?php 
-            setcookie("service",$_GET['service']);
-        ?>
 
         <br/>
         <div id="content" class="container bg-light col-md-9 rounded">

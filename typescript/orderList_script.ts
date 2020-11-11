@@ -12,15 +12,16 @@ interface orderList{
 $(()=>{
     
     $(".category_row").on("click",(e)=>{
-        let id = parseInt(e.target.getAttribute("value")!);
+        let id = e.target.getAttribute("value")!;
+        console.log(id);
         displayMenu(id);
     });
 
 });
 
-function displayMenu(id : number):void{
+function displayMenu(id : string):void{
     $.ajax("../webpage/displayMenu.php",{
-        method:"get",
+        method:"post",
         dataType:"html",
         data:{id:id},
         success:(data)=>{
@@ -51,6 +52,7 @@ function setupMenu() : void{
                         'data-dismiss="modal">Cancel</button><br>'+
                         '<button id="modal-submit" class="btn btn-primary btn-primaryLight btn-block">Place Order</button>'
                     );
+
                     $("#modal-submit").on("click",function(){
                         let quantity = $("#orderQty").val() as number;
                         let key = "orderList";

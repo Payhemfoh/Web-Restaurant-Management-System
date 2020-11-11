@@ -5,14 +5,15 @@ $(function(){
         let id = this.getAttribute("value");
 
         //post ajax call to print the information
-        $.ajax("../webpage/makeOrder.php",{
+        $.ajax("../webpage/displayMenuDetail.php",{
             method:"POST",
             dataType:"HTML",
             data:{id:id},
             success: function(data,status,xhr){
                 $("#modal-title").text("Menu Information");
                 $(".modal-body").html(data);
-                $("#btnAgain").attr("data-dismiss","modal");
+                $(".modal-footer").html('<button id="modal-cancel" class="btn btn-primary btn-primaryLight btn-block" '+
+                                        'data-dismiss="modal">Return to Cart</button>');
                 ($("#modal") as any).modal();
             } ,
             error: errorModal

@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php
-        session_start();
-
-        if($_SESSION['sess_position'] == "customer" || $_SESSION['sess_position'] == NULL){
-            header('Refresh: 0; URL=../webpage/homepage.php');
-        }
-    ?>
     <head>
         <title>RMS | Staff Management Module</title>
         <?php 
+            require("../php/sessionFragment.php");
             require("../php/pageFragment.php");
             printHeadInclude();
+
+            if(!isset($sess_username) || $sess_position == "customer" || $sess_permission->staffManagementModule !=="T"){
+                header('Refresh: 0; URL=../webpage/homepage.php');
+            }
         ?>
     </head>
 

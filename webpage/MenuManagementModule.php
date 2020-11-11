@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php
-        session_start();
-
-        if($_SESSION['sess_position'] == "customer" || $_SESSION['sess_position'] == NULL){
-            header('Refresh: 0; URL=../webpage/homepage.php');
-        }
-    ?>
+    
     <head>
         <title>RMS | Menu Management Module</title>
         <?php 
+            require("../php/sessionFragment.php");
             require("../php/pageFragment.php");
             printHeadInclude();
+
+            if(!isset($sess_username) || $sess_position === "customer" || $sess_permission->menuManagementModule !== "T"){
+                header('Refresh: 0; URL=../webpage/homepage.php');
+            }
         ?>
     </head>
 
@@ -53,7 +52,7 @@
 
                             while($row = $result->fetch_array()){
                                 printf( '<tr>
-                                        <td scope="row"><img src="%s" class="img-thumbnail"></td>
+                                        <td scope="row"><img src="%s" class="img-thumbnail" width="300" height="200"></td>
                                         <td>%s</td>
                                         <td>%s</td>
                                         <td>%s</td>
@@ -76,87 +75,6 @@
                         }
                         $connect->close();
                     ?>
-                    
-
-                    <tr>
-                        <td scope="row"><img src="../images/MenuManagement/laksa.jpg" class="img-thumbnail"></th>
-                        <td>Laksa</td>
-                        <td>Delicious Penang Laksa</td>
-                        <td>Noodles,Shrimp Paste, Fish, Vegetables, Chili, Onion, Ginger</td>
-                        <td>RM7.00</td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_edit">Edit</a></td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td scope="row"><img src="../images/MenuManagement/eggsandwich.jpg" class="img-thumbnail"></th>
-                        <td>Egg Sandwich</td>
-                        <td>Delicious sandwich</td>
-                        <td>Egg, Bread, Butter, Mayonese, Vegetables</td>
-                        <td>RM5.00</td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_edit">Edit</a></td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td scope="row"><img src="../images/MenuManagement/duckrice.jpg" class="img-thumbnail"></th>
-                        <td>Duck Rice</td>
-                        <td>Delicious duck rice</td>
-                        <td>Duck, Rice, Soy Sauce, Vegetables, Cooking Oil</td>
-                        <td>RM7.00</td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_edit">Edit</a></td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td scope="row"><img src="../images/MenuManagement/chickenchop.jpg" class="img-thumbnail"></th>
-                        <td>BBQ Chicken Chop</td>
-                        <td>Delicious chicken chop with sweet bbq sauces</td>
-                        <td>Chicken, Fries, Salad, BBQ Sauce</td>
-                        <td>RM12.00</td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_edit">Edit</a></td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td scope="row"><img src="../images/MenuManagement/fishchips.jpg" class="img-thumbnail"></th>
-                        <td>Fish &amp; Chips</td>
-                        <td>Delicious fried fish with tatar sauce</td>
-                        <td>Fish, Fries, Salad, Tatar Sauce</td>
-                        <td>RM12.00</td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_edit">Edit</a></td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td scope="row"><img src="../images/MenuManagement/grillchicken.jpg" class="img-thumbnail"></th>
-                        <td>Grill Chicken Chop</td>
-                        <td>Delicious chicken chop which is grilled and mix with the special made black pepper sauce.</td>
-                        <td>Grill Chicken, Fries, Salad, Black Pepper Sauce</td>
-                        <td>RM14.00</td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_edit">Edit</a></td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td scope="row"><img src="../images/MenuManagement/lambchop.jpg" class="img-thumbnail"></th>
-                        <td>Lamb Chop</td>
-                        <td>Delicious grill lamb chop served with black pepper sauce.</td>
-                        <td>Lamb, Fries, Salad, Black Pepper Sauce</td>
-                        <td>RM16.00</td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_edit">Edit</a></td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td scope="row"><img src="../images/MenuManagement/nasilemak.jpg" class="img-thumbnail"></th>
-                        <td>Nasi Lemak</td>
-                        <td>Localize nasi lemak, the best choice for those who want to enjoy the Malaysia local style dishes.</td>
-                        <td>Coconut Milk, Rice, Egg, Anchovies, Cucumber, Sambal, Chicken, Peanuts</td>
-                        <td>RM8.00</td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_edit">Edit</a></td>
-                        <td><a class="btn btn-primaryLight btn-primary btn_delete">Delete</a></td>
-                    </tr>
                 </tbody>
             </table>
         </div>

@@ -15,15 +15,17 @@ function printHeader($filename){
                 <?php
                 if(!empty($sess_username)){
                     if($sess_position !== "customer"){
-                        echo '<button id="btnGroupDrop1" class="btn btn-primary dropdown-toggle py-3" data-toggle="dropdown">
+                        echo    '<button id="btnGroupDrop1" class="btn btn-primary dropdown-toggle py-3" data-toggle="dropdown">
                                 Modules
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    <a href="../webpage/CustomerManagementModule.php" class="dropdown-item">Customer Management Module</a>
-                                    <a href="../webpage/StaffManagementModule.php" class="dropdown-item">Staff Management Module</a>
-                                    <a href="../webpage/MenuManagementModule.php" class="dropdown-item">Menu Management Module</a>
-                                    <a href="../webpage/StockManagementModule.php" class="dropdown-item">Stock Management Module</a>
-                                </div>';
+
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">';
+                        echo    $sess_permission->customerManagementModule==="T" ? '<a href="../webpage/CustomerManagementModule.php" class="dropdown-item">Customer Management Module</a>':'';
+                        echo    $sess_permission->staffManagementModule==="T" ?    '<a href="../webpage/StaffManagementModule.php" class="dropdown-item">Staff Management Module</a>':'';
+                        echo    $sess_permission->menuManagementModule==="T" ?    '<a href="../webpage/MenuManagementModule.php" class="dropdown-item">Menu Management Module</a>':'';
+                        echo    $sess_permission->stockManagementModule==="T" ?    '<a href="../webpage/StockManagementModule.php" class="dropdown-item">Stock Management Module</a>':'';
+                        echo    $sess_permission->orderManagementModule==="T" ?    '<a href="../webpage/KitchenModule.php" class="dropdown-item">Kitchen Module</a>':'';
+                        echo    '</div>';
                     }
                     
                     echo '<a href="../webpage/orderCart.php" class="btn btn-primary py-3">Your Order List</a>';

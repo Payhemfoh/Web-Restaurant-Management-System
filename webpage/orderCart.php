@@ -3,6 +3,7 @@
     <head>
         <title>RMS | Homepage</title>
         <?php
+            require("../php/sessionFragment.php");
             require("../php/pageFragment.php");
             printHeadInclude();
         ?>
@@ -48,7 +49,7 @@
 
                                 while($row = $result->fetch_array()){
                                     echo "<tr>
-                                        <td scope=\"row\"><img src=\"".$row['menu_picture']."\" class=\"img-thumbnail\"></td>
+                                        <td scope=\"row\"><img src=\"".$row['menu_picture']."\" class=\"img-thumbnail\" width=\"300\" height=\"200\"></td>
                                         <td>".$row['menu_name']."</td>
                                         <td>".$item->qty."</td>
                                         <td><button class=\"btn btn-info btn-detail\" value=\"".$row['menu_id']."\">Details</button></td>
@@ -62,12 +63,18 @@
                         }
                         
                         echo '</tbody>
-                        </table>
-                        <button class="btn btn-block btn-primaryLight btn-primary">Place Order</button>';
+                        </table>';
                         
-                        if(!empty($_COOKIE['order_id'])){
+                        if($_COOKIE['service']==="dine_in"){
                             echo
-                            '<a href="payment.html" class="btn btn-block btn-primaryLight btn-primary">Make Payment</a><br><br>';
+                            '<button id="btn_sendKitchen" class="btn btn-block btn-primaryLight btn-primary">Send to Kitchen</button>';
+                        }else{
+                            echo
+                            '<button id="btn_checkout" class="btn btn-block btn-primaryLight btn-primary">Check Out</button>';
+                        }
+                        if(!empty($_COOKIE['order_id']) && $_COOKIE['service']==="dine_in"){
+                            echo
+                            '<button id="btn_payment" class="btn btn-block btn-primaryLight btn-primary">Make Payment</button><br><br>';
                         }
                         $connect->close();
                     }else{

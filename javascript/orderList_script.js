@@ -1,13 +1,14 @@
 import { errorModal } from "./errorFunction.js";
 $(function () {
     $(".category_row").on("click", function (e) {
-        var id = parseInt(e.target.getAttribute("value"));
+        var id = e.target.getAttribute("value");
+        console.log(id);
         displayMenu(id);
     });
 });
 function displayMenu(id) {
     $.ajax("../webpage/displayMenu.php", {
-        method: "get",
+        method: "post",
         dataType: "html",
         data: { id: id },
         success: function (data) {

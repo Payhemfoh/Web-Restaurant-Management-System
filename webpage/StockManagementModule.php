@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php
-        session_start();
-
-        if($_SESSION['sess_position'] == "customer" || $_SESSION['sess_position'] == NULL){
-            header('Refresh: 0; URL=../webpage/homepage.php');
-        }
-    ?>
     <head>
         <title>RMS | Stock Management Module</title>
         <?php 
+            require("../php/sessionFragment.php");
             require("../php/pageFragment.php");
             printHeadInclude();
+
+            if(!isset($sess_username) || $sess_position == "customer" || $sess_permission->stockManagementModule !=="T"){
+                header('Refresh: 0; URL=../webpage/homepage.php');
+            }
         ?>
     </head>
 
@@ -61,78 +59,6 @@
                                 </tr>";
                         }
                     ?>
-
-                    <tr>
-                        <td>Egg</td>
-                        <td>fresh egg</td>
-                        <td>100</td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_edit" value="1">Edit</button></td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_delete" value="1">Delete</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Onion</td>
-                        <td>purple onion</td>
-                        <td>200</td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_edit" value="1">Edit</button></td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_delete" value="1">Delete</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Ginger</td>
-                        <td>big ginger</td>
-                        <td>20</td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_edit" value="1">Edit</button></td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_delete" value="1">Delete</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Rice</td>
-                        <td>10kg package of the rice</td>
-                        <td>20</td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_edit" value="1">Edit</button></td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_delete" value="1">Delete</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Cooking Oil</td>
-                        <td>2 Litre of cooking oil</td>
-                        <td>10</td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_edit" value="1">Edit</button></td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_delete" value="1">Delete</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Soy Sauce</td>
-                        <td>200ml package of soy sauce</td>
-                        <td>30</td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_edit" value="1">Edit</button></td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_delete" value="1">Delete</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Chicken</td>
-                        <td>the whole chicken</td>
-                        <td>80</td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_edit" value="1">Edit</button></td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_delete" value="1">Delete</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Tomato</td>
-                        <td>big tomato</td>
-                        <td>20</td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_edit" value="1">Edit</button></td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_delete" value="1">Delete</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Potato</td>
-                        <td>fresh potato</td>
-                        <td>50</td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_edit" value="1">Edit</button></td>
-                        <td><button class="btn btn-primaryLight btn-primary btn_delete" value="1">Delete</button></td>
-                    </tr>
                 </tbody>
             </table>    
         </div>

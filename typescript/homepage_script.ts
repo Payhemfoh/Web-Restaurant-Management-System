@@ -25,9 +25,10 @@ $(function(){
 
     //set click event for take away button
     takeAway.on("click",function(){
-        let form = $("<form action='../webpage/orderList.php' method='get'><input type='hidden' name='service' value='take_away'></form> ");
-        $("body").append(form);
-        form.trigger("submit");
+        document.cookie = "service=take_away; path=/;";
+        let link = $("<form action='../webpage/orderList.php'></a>");
+        $("body").append(link);
+        link.trigger("submit");
     });
 
     //set click event for delivery button

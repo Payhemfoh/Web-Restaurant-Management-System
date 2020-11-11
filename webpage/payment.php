@@ -3,6 +3,7 @@
     <head>
         <title>RMS | Payment</title>
         <?php 
+            require("../php/sessionFragment.php");
             require("../php/pageFragment.php");
             printHeadInclude();
         ?>
