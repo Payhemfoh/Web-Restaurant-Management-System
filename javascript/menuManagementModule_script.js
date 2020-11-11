@@ -1,5 +1,14 @@
 import { errorModal } from "./errorFunction.js";
-function readUrl(input) {
+import { inValidInput, validInput } from "./form_handle.js";
+$(function () {
+    $("#table").DataTable();
+    //add new stock button
+    $(".btn_add").on("click", setAddButton);
+    $(".btn_delete").on("click", setDeleteButton);
+    $(".btn_edit").on("click", setEditButton);
+});
+function readFile() {
+    var input = this;
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
@@ -10,142 +19,158 @@ function readUrl(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-$(function () {
-    $("#table").DataTable();
-    //add new stock button
-    $(".btn_add").on("click", function () {
-        $.ajax("../webpage/addNewMenu.php", {
-            method: "post",
-            dataType: "HTML",
-            success: function (data, status, xhr) {
-                $("#modal-title").text("Add New Menu Data");
-                $(".modal-body").html(data);
-                $(".modal-footer").html("");
-                $("#modal-submit").on("click", function (e) {
-                    e.preventDefault();
-                    var valid = false;
-                    /*
-                    //get user input
-                    let name = $("#name_input").val();
-                    let quantity = ($("#quantity_input").val()) as number;
-                    let description = $("#description_input").val();
-                    
-
-                    //validation
-                    if(name === ""){
-                        inValidInput($("#name_input"),$("#name-feedback"),"The name should not be empty!");
-                        valid = false;
-                    }else{
-                        validInput($("#name_input"),$("#name-feedback"));
-                    }
-
-                    if(quantity<0){
-                        inValidInput($("#quantity_input"),$("#quantity-feedback"),"The quantity should not below 0!");
-                        valid = false;
-                    }else{
-                        validInput($("#quantity_input"),$("#quantity-feedback"));
-                    }
-
-                    if(description === ""){
-                        inValidInput($("#description_input"),$("#description-feedback"),"The description should not be empty!");
-                        valid = false;
-                    }else{
-                        validInput($("#description_input"),$("#description-feedback"));
-                    }
-                    */
-                    if (valid) {
-                        //post ajax call
-                        $.ajax("../php/addNewMenu_process.php", {
-                            method: "post",
-                            dataType: "HTML",
-                            data: {},
-                            success: function (data) {
-                                var _this = this;
-                                $("#modal-title").text("Add New Stock Data");
-                                $(".modal-body").html(data);
-                                $("#dropzone").on("change", function () { return readUrl(_this); });
-                                $(".modal-footer").html("");
-                            },
-                            error: errorModal
-                        });
-                    }
-                });
-                $("#modal-cancel").attr("data-dismiss", "modal");
-                $("#modal").modal();
-            },
-            error: errorModal
-        });
-    });
-    $(".btn_delete").on("click", function () {
-        var id = this.getAttribute("value");
-        $.ajax("../webpage/deleteMenu.php", {
-            method: "post",
-            dataType: "html",
-            data: { id: id },
-            success: function (data) {
-                $("#modal-title").text("Delete Menu Data");
-                $(".modal-body").html(data);
-                $(".modal-footer").html("");
-                $("#modal-submit").on("click", function (e) {
-                    e.preventDefault();
-                    $.ajax("../php/deleteMenu_process.php", {
-                        method: "POST",
-                        dataType: "HTML",
-                        data: { id: id },
+function setAddButton() {
+    $.ajax("../webpage/addNewMenu.php", {
+        method: "post",
+        dataType: "HTML",
+        success: function (data, status, xhr) {
+            $("#modal-title").text("Add New Menu Data");
+            $(".modal-body").html(data);
+            $(".modal-footer").html("");
+            $("#newImg").on("change", readFile);
+            $("#modal-submit").on("click", function (e) {
+                e.preventDefault();
+                //get user input
+                var formData = new FormData();
+                var name = $("#name_input").val();
+                var category = ($("#category_input").val());
+                var price = $("#price_input").val();
+                var description = $("#description_input").val();
+                var fileInput = document.getElementById("newImg");
+                var valid = true;
+                //validation
+                if (name === "") {
+                    inValidInput($("#name_input"), $("#name-feedback"), "The name should not be empty!");
+                    valid = false;
+                }
+                else {
+                    validInput($("#name_input"), $("#name-feedback"));
+                }
+                if (fileInput.files && fileInput.files[0]) {
+                    var image = fileInput.files[0];
+                    formData.append("image", image);
+                    formData.append("destination", "../images/MenuManagement/");
+                }
+                if (valid) {
+                    formData.append("name", name);
+                    formData.append("category", category.toString());
+                    formData.append("price", price.toString());
+                    formData.append("description", description);
+                    //post ajax call
+                    $.ajax("../php/addNewMenu_process.php", {
+                        method: "post",
+                        dataType: "html",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
                         success: function (data) {
-                            $("#modal-title").text("Menu Data Deleted");
+                            $("#modal-title").text("Add New Stock Data");
                             $(".modal-body").html(data);
                             $(".modal-footer").html("");
                             $("#btnAgain").attr("data-dismiss", "modal");
                         },
                         error: errorModal
                     });
-                });
-                $("#modal-cancel").attr("data-dismiss", "modal");
-                $("#modal").modal();
-            },
-            error: errorModal
-        });
+                }
+            });
+            $("#modal-cancel").attr("data-dismiss", "modal");
+            $("#modal").modal();
+        },
+        error: errorModal
     });
-    $(".btn_edit").on("click", function () {
-        var id = this.getAttribute("value");
-        $.ajax("../webpage/modifyMenu.php", {
-            method: "post",
-            dataType: "HTML",
-            data: { id: id },
-            success: function (data, status, xhr) {
-                $("#modal-title").text("Modify Menu");
-                $(".modal-body").html(data);
-                $(".modal-footer").html("");
-                $("#modal-cancel").attr("data-dismiss", "modal");
-                $("#modal-submit").on("click", function (e) {
-                    e.preventDefault();
-                    var name = "";
-                    var price = "";
-                    var description = "";
-                    var picture = "";
-                    var category = "";
+}
+function setDeleteButton() {
+    var id = this.getAttribute("value");
+    $.ajax("../webpage/deleteMenu.php", {
+        method: "post",
+        dataType: "html",
+        data: { id: id },
+        success: function (data) {
+            $("#modal-title").text("Delete Menu Data");
+            $(".modal-body").html(data);
+            $(".modal-footer").html("");
+            $("#modal-submit").on("click", function (e) {
+                e.preventDefault();
+                $.ajax("../php/deleteMenu_process.php", {
+                    method: "POST",
+                    dataType: "HTML",
+                    data: { id: id },
+                    success: function (data) {
+                        $("#modal-title").text("Menu Data Deleted");
+                        $(".modal-body").html(data);
+                        $(".modal-footer").html("");
+                        $("#btnAgain").attr("data-dismiss", "modal");
+                    },
+                    error: errorModal
+                });
+            });
+            $("#modal-cancel").attr("data-dismiss", "modal");
+            $("#modal").modal();
+        },
+        error: errorModal
+    });
+}
+function setEditButton() {
+    var id = this.getAttribute("value");
+    $.ajax("../webpage/modifyMenu.php", {
+        method: "post",
+        dataType: "HTML",
+        data: { id: id },
+        success: function (data, status, xhr) {
+            $("#modal-title").text("Modify Menu");
+            $(".modal-body").html(data);
+            $(".modal-footer").html("");
+            $("#newImg").on("change", readFile);
+            $("#modal-cancel").attr("data-dismiss", "modal");
+            $("#modal-submit").on("click", function (e) {
+                e.preventDefault();
+                //get user input
+                var formData = new FormData();
+                var name = $("#name_input").val();
+                var category = ($("#category_input").val());
+                var price = $("#price_input").val();
+                var description = $("#description_input").val();
+                var fileInput = document.getElementById("newImg");
+                var valid = true;
+                //validation
+                if (name === "") {
+                    inValidInput($("#name_input"), $("#name-feedback"), "The name should not be empty!");
+                    valid = false;
+                }
+                else {
+                    validInput($("#name_input"), $("#name-feedback"));
+                }
+                if (fileInput.files && fileInput.files[0]) {
+                    var image = fileInput.files[0];
+                    formData.append("image", image);
+                    formData.append("destination", "../images/MenuManagement/");
+                }
+                if (valid) {
+                    formData.append("name", name);
+                    formData.append("category", category.toString());
+                    formData.append("price", price.toString());
+                    formData.append("description", description);
+                    formData.append("id", id);
+                    //post ajax call
                     $.ajax("../php/updateMenu_process.php", {
-                        method: "POST",
-                        dataType: "HTML",
-                        data: {
-                            name: name,
-                            price: price,
-                            description: description,
-                            category: category,
-                            newImg: picture
-                        },
-                        success: function (data, status, xhr) {
-                            $("#modal-title").text("Modify Menu");
+                        method: "post",
+                        dataType: "html",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (data) {
+                            $("#modal-title").text("Add New Stock Data");
                             $(".modal-body").html(data);
                             $(".modal-footer").html("");
+                            $("#btnAgain").attr("data-dismiss", "modal");
                         },
                         error: errorModal
                     });
-                });
-                $("#modal").modal();
-            },
-            error: errorModal
-        });
+                }
+            });
+            $("#modal-cancel").attr("data-dismiss", "modal");
+            $("#modal").modal();
+        },
+        error: errorModal
     });
-});
+}

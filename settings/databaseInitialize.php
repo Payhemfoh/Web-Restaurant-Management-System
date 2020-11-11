@@ -128,10 +128,11 @@
     $ORDERITEMTABLE = [
         "stock_id" =>" INT NOT NULL,",
         "menu_id" =>" INT NOT NULL,",
+        "order_id" => " INT NOT NULL,",
         "order_status" => "ENUM('preparing','completed') NOT NULL,",
         "quantity" =>" FLOAT NOT NULL,",
         "FOREIGN KEY" => " (menu_id) references RMS_Database.menu(menu_id),",
-        "FOREIGN KEY" => " (stock_id) references RMS_Database.stock(stock_id)"
+        "FOREIGN KEY" => " (order_id) references RMS_Database.orders(order_id)"
     ];
 
     $CATEGORYTABLE = [

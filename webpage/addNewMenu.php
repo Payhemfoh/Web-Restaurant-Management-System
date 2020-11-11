@@ -59,7 +59,7 @@
         <div class="form-group inputDnD">
             <label class="sr-only" for="inputFile">File Upload</label>
             <input type="file" name="newImg" accept="image/*" class="form-control-file text-primary font-weight-bold"
-        if="newImg" onchange="readFile(this)" data-title = "Click Here or Drag and Drop to Upload File"><br>
+        id="newImg" data-title = "Click Here or Drag and Drop to Upload File"><br>
         </div>
     </div>
 

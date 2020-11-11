@@ -1,19 +1,23 @@
 <?php
+    const MBSIZE = 8 * 1024 * 1024;
+
+    //get post value from webpoge
+    $id = $_POST['id'];
     $name = $_POST['name'];
-    $ingredients = $_POST['ingredients'];
-    $price = $_POST['price'];
-    $category = $_POST['category'];
     $description = $_POST['description'];
-    $newImg = $_POST['newImg'];
+    $category = $_POST['category'];
+    $price = $_POST['price'];
+    $fileLocation = "";
     $valid = true;
-    
+
+    //validation
     if(empty($name)){
         echo "<p>Name has not entered yet</p>";
         $valid = false;
     }
 
-    if(empty($ingredients)){
-        echo "<p>Ingredients has not entered yet</p>";
+    if(empty($category)){
+        echo "<p>Category has not selected yet</p>";
         $valid = false;
     }
 
@@ -27,14 +31,57 @@
         $valid = false;
     }
 
-    if(empty($newImg)){
-        echo "<p>New Image has not upload yet</p>";
-        $valid = false;
-    }
-
     if( $price < 0 ){
         echo"<p>Rice must not smaller than 0</p>";
         $valid = false;
+    }
+
+    //file upload
+    if($valid){
+
+        $destination = $_POST['destination'];
+        if(is_uploaded_file($_FILES['image']['tmp_name'])){
+            $filetype = $_FILES['image']['type'];
+            $filename = $_FILES['image']['name'];
+            $filesize = $_FILES['image']['size'];
+            $fileError = $_FILES['image']['error'];
+            $fileTmp = $_FILES['image']['tmp_name'];
+
+            $allowedExts = array("gif", "jpeg", "jpg", "png");
+            $temp = explode(".", $filename);
+            $extension = strtolower(end($temp));
+
+            $fileLocation = $destination.$filename;
+
+            if ((($filetype == "image/gif")
+            || ($filetype == "image/jpeg")
+            || ($filetype == "image/jpg")
+            || ($filetype == "image/pjpeg")
+            || ($filetype == "image/x-png")
+            || ($filetype == "image/png"))
+            && ($filesize < MBSIZE)
+            && in_array($extension, $allowedExts)) {
+                if ($fileError > 0) {
+                    echo "Return Code: " . $fileError . "<br>";
+                } else {
+                    echo "Upload: " . $filename . "<br>";
+                    echo "Type: " . $filetype . "<br>";
+                    echo "Size: " . ($filesize / 1024) . " kB<br>";
+                    echo "Temp file: " . $fileTmp . "<br>";
+
+                    if (file_exists($fileLocation)) {
+                        echo $filename . " already exists. ";
+                    } else {
+                        move_uploaded_file($fileTmp,$fileLocation);
+                        echo "Stored in: $fileLocation";
+                    }
+                }
+            } else {
+                echo $filetype."<br>".$filesize."<br>".MBSIZE;
+                echo "Invalid file";
+                $valid = false;
+            }    
+        }
     }
 
     if($valid){
@@ -48,15 +95,29 @@
         
         //use parameterized query to prevent sql injection
         //insert data into stock table
-        if($statement = $connect->prepare("UPDATE menu SET menu_name = ?, category_id=?, menu_description = ?, menu_price = ?, menu_picture=? WHERE menu_id = ?")){
-            $statement->bind_param("ssdi",$name,$category,$description,$price,$picture,$id);
-            $statement->execute();
 
-            echo "<p>The data had been modified successfully.</p><br>";
-            echo "<button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Return to Menu</button>";
-            $statement->close();
+        if(!empty($fileLocation)){
+            if($statement = $connect->prepare("UPDATE menu SET menu_name = ?, category_id=?, menu_description = ?, menu_price = ?, menu_picture=? WHERE menu_id = ?")){
+                $statement->bind_param("sisdsi",$name,$category,$description,$price,$fileLocation,$id);
+                $statement->execute();
+
+                echo "<p>The data had been modified successfully.</p><br>";
+                echo "<button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Return to Menu</button>";
+                $statement->close();
+            }else{
+                die("Failed to prepare SQL statement.");
+            }
         }else{
-            die("Failed to prepare SQL statement.");
+            if($statement = $connect->prepare("UPDATE menu SET menu_name = ?, category_id=?, menu_description = ?, menu_price = ? WHERE menu_id = ?")){
+                $statement->bind_param("sisdi",$name,$category,$description,$price,$id);
+                $statement->execute();
+
+                echo "<p>The data had been modified successfully.</p><br>";
+                echo "<button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Return to Menu</button>";
+                $statement->close();
+            }else{
+                die("Failed to prepare SQL statement.");
+            }
         }
         $connect->close();
     }else{
