@@ -16,7 +16,7 @@
         <br/>
         <div id="content" class="container bg-light col-md-9 rounded">
             <div id="graph"></div>
-
+            
         </div>
         <br/>
         <?php printModal(); ?>

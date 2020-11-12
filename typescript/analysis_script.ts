@@ -1,8 +1,10 @@
-import * as d3 from "d3";
+//import * as d3 from "d3";
 
 $(()=>{
-    let svg = d3.select("#graph")
-                .attr("width","100px")
-                .attr("height","100px");
-    svg.selectAll("rect.bar");
-});
+    let value:Object[] =[];
+
+    d3.csv("../settings/unemployment-x.csv").then((data)=>{});
+})
+
+//create svg element
+let svg = d3.select("#")

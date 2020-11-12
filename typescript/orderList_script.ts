@@ -10,14 +10,44 @@ interface orderList{
 }
 
 $(()=>{
-    
+    setupWebpage();
+});
+
+function setupWebpage():void{
     $(".category_row").on("click",(e)=>{
         let id = e.target.getAttribute("value")!;
         console.log(id);
         displayMenu(id);
     });
 
-});
+    $(".nav_menu").on("click",(e)=>{
+        e.preventDefault();
+        let id = e.target.getAttribute("value");
+        $.ajax("../webpage/displayMenu.php",{
+            method:"post",
+            dataType:"html",
+            data:{id:id},
+            success:(data)=>{
+                $("#content").html(data);
+                setupMenu();
+            },
+            error:errorModal
+        });
+    })
+
+    $(".nav_main").on("click",(e)=>{
+        e.preventDefault();
+        $.ajax("../webpage/categoryList.php",{
+            method:"post",
+            dataType:"html",
+            success:(data)=>{
+                $("#content").html(data);
+                setupWebpage();
+            },
+            error:errorModal
+        });
+    })
+}
 
 function displayMenu(id : string):void{
     $.ajax("../webpage/displayMenu.php",{
@@ -29,7 +59,7 @@ function displayMenu(id : string):void{
             setupMenu();
         },
         error:errorModal
-    })
+    });
 }
 
 function setupMenu() : void{

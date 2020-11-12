@@ -50,7 +50,7 @@ body {
         <br/>
 
         <div class="sidenav">
-
+          <a href='#' style='color:black' class='nav_main py-0 my-0'>Menu</a><br>
         <?php
 
         //database connection
@@ -61,7 +61,7 @@ body {
             die("Connection error : $connect->connect_errno : $connect->connect_error");
         }
 
-        $sql = "SELECT category_name FROM menu_category";
+        $sql = "SELECT category_name,category_id FROM menu_category";
         $result = $connect->query($sql);
 
         if ($result->num_rows > 0) 
@@ -70,10 +70,9 @@ body {
              
             while($row = $result->fetch_assoc()) 
             {
-                echo "<b>";
+                echo "<a href='#' style='color:black' class='nav_menu py-0 my-0' value='".$row['category_id']."'>";
                 echo $row["category_name"];
-                echo "</b>";
-                echo "<br>";
+                echo "</a>";
             }
         }
         ?>
