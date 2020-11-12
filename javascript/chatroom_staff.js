@@ -18,9 +18,26 @@ $(function () {
             }
         }
     });
+    $("btn_arrived").on("click", orderArrived);
     Updating();
     function Updating() {
         chat.update();
         setTimeout(Updating, 5000);
     }
 });
+function orderArrived() {
+    var delivery_id = $("#delivery_id").val();
+    $.ajax({
+        url: "../php/completeDelivery.php",
+        method: "post",
+        dataType: "html",
+        data: { delivery_id: delivery_id },
+        success: function (data) {
+            $("#modal-title").text("Delivery Request Completed");
+            $(".modal-body").html(data);
+            $(".modal-footer").html("");
+            $("#btnAgain").attr("data-dismiss", "modal");
+            setTimeout(function () { return $("#btnAgain").trigger("click"); }, 1000);
+        }
+    });
+}
