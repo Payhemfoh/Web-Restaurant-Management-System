@@ -2,6 +2,7 @@ import {} from "googlemaps";
 
 let map : google.maps.Map;
 let customerMarker : google.maps.Marker;
+let staffMarker : google.maps.Marker;
 let geocoder : google.maps.Geocoder;
 
 $(function(){
@@ -43,12 +44,30 @@ function markCustomerPosition(result : google.maps.GeocoderResult[],status:googl
     setTimeout(()=>customerMarker.setAnimation(null),500);
 }
 
-function setStaffPosition() : void{
-    $.ajax("../php/deliveryStatus_process.php",{
-        method:"post",
-        data:{
+function markStaffPosition(position : google.maps.LatLng) : void{
+    if(staffMarker == null){
+        staffMarker = new google.maps.Marker({
+            position:position,
+            map:map,
+            title:"Staff Location"
+        });
+    }else{
+        staffMarker.setPosition(position);
+    }
+}
 
+function setStaffPosition() : void{
+    let delivery_id = $("#delivery_id").val();
+    $.ajax("../php/getStaffLocation.php",{
+        method:"post",
+        dataType:"json",
+        data:{
+            id:delivery_id
         },
-        success:(data)=>{}
+        success:(data)=>{
+            if(data.longitude != null && data.latitude != null){
+                markStaffPosition(new google.maps.LatLng(data.longitude,data.latitude));
+            }
+        }
     })
 }

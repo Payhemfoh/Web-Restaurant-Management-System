@@ -1,5 +1,6 @@
 var map;
 var customerMarker;
+var staffMarker;
 var geocoder;
 $(function () {
     initMap();
@@ -33,10 +34,30 @@ function markCustomerPosition(result, status) {
     }
     setTimeout(function () { return customerMarker.setAnimation(null); }, 500);
 }
+function markStaffPosition(position) {
+    if (staffMarker == null) {
+        staffMarker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: "Staff Location"
+        });
+    }
+    else {
+        staffMarker.setPosition(position);
+    }
+}
 function setStaffPosition() {
-    $.ajax("../php/deliveryStatus_process.php", {
+    var delivery_id = $("#delivery_id").val();
+    $.ajax("../php/getStaffLocation.php", {
         method: "post",
-        data: {},
-        success: function (data) { }
+        dataType: "json",
+        data: {
+            id: delivery_id
+        },
+        success: function (data) {
+            if (data.longitude != null && data.latitude != null) {
+                markStaffPosition(new google.maps.LatLng(data.longitude, data.latitude));
+            }
+        }
     });
 }
