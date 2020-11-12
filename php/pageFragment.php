@@ -25,6 +25,7 @@ function printHeader($filename){
                         echo    $sess_permission->menuManagementModule==="T" ?    '<a href="../webpage/MenuManagementModule.php" class="dropdown-item">Menu Management Module</a>':'';
                         echo    $sess_permission->stockManagementModule==="T" ?    '<a href="../webpage/StockManagementModule.php" class="dropdown-item">Stock Management Module</a>':'';
                         echo    $sess_permission->orderManagementModule==="T" ?    '<a href="../webpage/KitchenModule.php" class="dropdown-item">Kitchen Module</a>':'';
+                        echo    $sess_permission->deliveryModule==="T" ?    '<a href="../webpage/deliveryModule.php" class="dropdown-item">Delivery Module</a>':'';
                         echo    '</div>';
                     }
                     

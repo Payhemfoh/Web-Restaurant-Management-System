@@ -1,7 +1,7 @@
 import { Chat } from "./Chat.js";
 $(function () {
-    var username = $("#username-box").text();
-    var delivery_id = "";
+    var username = $("#customer_username").val();
+    var delivery_id = $("#delivery_id").val();
     var chat = new Chat(username + "_" + delivery_id + ".txt");
     chat.getState();
     $("#msg").on("keyup", function (e) {

@@ -89,6 +89,9 @@
                         $delivery_result = $statement->get_result();
                         while($row = $delivery_result->fetch_array()){
                             echo $row['customer_address'];
+                            echo "<input type='hidden' id='staff_latitude' value='".($row['staff_latitude']===null?"0":$row['staff_latitude'])."'>";
+                            echo "<input type='hidden' id='staff_longitude' value='".($row['staff_longitude']===null?"0":$row['staff_longitude'])."'>";
+                            echo "<input type='hidden' id='delivery_id' value='$id' ";
                         }
                         $statement->close();
                     }else{
@@ -105,14 +108,13 @@
                 <div id="chat-area" class="px-4" style="height:500px;background:white;overflow:scroll;overflow-x:hidden;"></div>
                 <form id="message">
                     <div class="form-group">
-                        <p id="username-box"><?php echo isset($sessusername)?$sess_username:"Guest"?></p>
+                        <p id="username-box"><?php echo isset($sess_username)?$sess_username:"Staff"?></p>
                         <textarea id="msg" maxlength="100" class="form-control"></textarea><br> 
                         <button id="btn_sendMsg" class="btn btn-block btn-primaryLight btn-primary">Send</button>
                     </div>
                 </form>
             </div>
             <br>
-            
         </div>
         <br/>
 

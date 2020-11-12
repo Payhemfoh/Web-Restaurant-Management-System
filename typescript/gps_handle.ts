@@ -1,5 +1,4 @@
 import {} from "googlemaps";
-import { errorModal } from "./errorFunction";
 
 let map : google.maps.Map;
 let customerMarker : google.maps.Marker;

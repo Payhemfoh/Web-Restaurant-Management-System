@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php
-        session_start();
-
-        
-    ?>
     <head>
         <title>RMS | Customer Management Module</title>
         <?php 

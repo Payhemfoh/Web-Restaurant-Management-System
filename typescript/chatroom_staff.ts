@@ -2,8 +2,8 @@ import { Chat } from "./Chat.js";
 
 
 $(()=>{
-    let username = $("#username-box").text() as string;
-    let delivery_id = "";
+    let username = $("#customer_username").val() as string;
+    let delivery_id = $("#delivery_id").val();
     let chat = new Chat(username+"_"+delivery_id+".txt");
     chat.getState();
 
