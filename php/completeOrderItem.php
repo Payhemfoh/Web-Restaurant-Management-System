@@ -9,7 +9,9 @@
         die("Connection error : $connect->connect_errno : $connect->connect_error");
     }
 
-    $modify = $connect->prepare("UPDATE order_item SET order_status = 'completed' WHERE item_id=?");
+    $modify = $connect->prepare("UPDATE order_item i, orders o 
+                                SET i.order_status = 'completed',o.overall_status='preparing' 
+                                WHERE item_id=?");
     $modify->bind_param("i",$itemId);
     $modify->execute();
 

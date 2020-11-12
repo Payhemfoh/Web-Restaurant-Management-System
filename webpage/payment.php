@@ -16,7 +16,27 @@
 
         <br/>
         <div id="content" class="container col-md-6 rounded">
-            <br><h3>Payment</h3><br>
+            <br><h3 class='text-center'>Payment</h3><br>
+            <?php
+            echo "<input type='hidden' id='orderId' value='".$_COOKIE['orderId']."'>";
+            ?>
+            <div class="alert">
+                <br><h3 class="text-center">Your orders:</h3></br>
+                <table id="order_table" class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Total Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id='order_item_list'>
+                        
+                    </tbody>
+                </table>
+            </div>
 
             <label for="paymentMethod">Select Payment Method:</label><br>
             <div class="btn-group">

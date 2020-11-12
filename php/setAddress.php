@@ -22,9 +22,7 @@
             $statement->bind_param("s",$location_address);
             $statement->execute();
 
-            if(!isset($_SESSION)) session_start();
-            
-            $_SESSION['delivery_id'] = $connect->insert_id;
+            $_COOKIE['delivery_id'] = $connect->insert_id;
             $statement->close();
         }else{
             die("Failed to prepare SQL statement.");

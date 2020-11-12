@@ -1,5 +1,6 @@
 import { showPasswordSetting } from "./form_handle.js";
 $(function () {
+    loadOrder();
     $("#btn_eWallet").on("click", setEWalletPayment);
     $("#btn_card").on("click", setCardPayment);
     $("#btn_cash").on("click", setCashPayment);
@@ -39,4 +40,14 @@ function walletPaymentForm() {
     var html = $("#paymentBlock").html();
     html += "<img src='../images/Payment/e_wallet.png' class=\"img-thumbnail\"><br>";
     $("#paymentBlock").html(html);
+}
+function loadOrder() {
+    var orderId = $("#orderId").val();
+    $.ajax({
+        url: "../php/loadOrderItem.php",
+        method: "post",
+        dataType: "html",
+        data: { orderId: orderId },
+        success: function (data) { return $("#order_item_list").html(data); }
+    });
 }

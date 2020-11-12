@@ -33,7 +33,6 @@ $(function(){
 
                 $("body").html(content);
                 $("#form").trigger("submit");
-                
             },
             error:errorModal
         })

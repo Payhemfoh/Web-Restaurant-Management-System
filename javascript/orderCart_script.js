@@ -18,9 +18,17 @@ $(function () {
         });
     });
     $("#btn_checkout").on("click", function () {
-        var form = $("<form action='../webpage/payment.php'></form>");
-        $("body").append(form);
-        form.trigger("submit");
+        $.ajax({
+            url: "../php/sendOrderToKitchen.php",
+            method: "post",
+            dataType: "html",
+            success: function (data) {
+                var form = $("<form action='../webpage/payment.php'></form>");
+                $("body").append(form);
+                form.trigger("submit");
+            },
+            error: errorModal
+        });
     });
     $("#btn_payment").on("click", function () {
         var form = $("<form action='../webpage/payment.php'></form>");
@@ -28,5 +36,22 @@ $(function () {
         form.trigger("submit");
     });
     $("#btn_sendKitchen").on("click", function () {
+        var username = $("#username").val();
+        $.ajax({
+            url: "../php/sendOrderToKitchen.php",
+            method: "post",
+            dataType: "html",
+            data: {
+                username: username
+            },
+            success: function (data) {
+                $("#modal-title").text("Menu Information");
+                $(".modal-body").html(data);
+                $(".modal-footer").html('<button id="modal-cancel" class="btn btn-primary btn-primaryLight btn-block" ' +
+                    'data-dismiss="modal">Return to Cart</button>');
+                $("#modal").modal();
+            },
+            error: errorModal
+        });
     });
 });

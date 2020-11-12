@@ -75,12 +75,12 @@ function checkOrderStatus() {
     });
 }
 function loadOrder() {
-    var deliveryId = 0;
+    var orderId = $("#orderId").val();
     $.ajax({
         url: "../php/loadOrderItem.php",
         method: "post",
         dataType: "html",
-        data: { deliveryId: deliveryId },
+        data: { orderId: orderId },
         success: function (data) { return $("#order_item_list").html(data); }
     });
 }

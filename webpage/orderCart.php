@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>RMS | Homepage</title>
+        <title>RMS | Order Cart</title>
         <?php
             require("../php/sessionFragment.php");
             require("../php/pageFragment.php");
@@ -81,7 +81,8 @@
                         echo "<p class='center'>No order found in the cart. Click the button below to start your order.<p>";
                         echo "<a href=\"../webpage/homepage.php\" class='btn btn-block btn-primaryLight btn-primary'>Start Order</a><br>";
                     }
-
+                
+                echo "<input type='hidden' id='username' value='$sess_username'>";
                 ?>
                 
         </div>

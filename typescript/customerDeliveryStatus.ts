@@ -64,12 +64,12 @@ function checkOrderStatus() : void{
 }
 
 function loadOrder():void{
-    let deliveryId = 0;
+    let orderId = $("#orderId").val();
     $.ajax({
         url:"../php/loadOrderItem.php",
         method:"post",
         dataType:"html",
-        data:{deliveryId:deliveryId},
+        data:{orderId:orderId},
         success:(data)=>$("#order_item_list").html(data)
     });
 }

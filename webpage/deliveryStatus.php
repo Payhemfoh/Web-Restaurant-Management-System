@@ -59,9 +59,7 @@
                 <p class="h1 text-center">Your Location</p>
                 <p id="location" class="text-center">
                 <?php 
-                    if(!isset($_SESSION)) session_start();
-                
-                    $id = $_SESSION['delivery_id'];
+                    $id = $_COOKIE['delivery_id'];
                     //database connection
                     $connect = new mysqli("localhost","root","","rms_database");
 
@@ -70,7 +68,7 @@
                         die("Connection error : $connect->connect_errno : $connect->connect_error");
                     }
 
-                    if($statement = $connect->prepare("SELECT * FROM delivery WHERE delivery_id=? LIMIT 1;")){
+                    if($statement = $connect->prepare("SELECT staff_latitude,staff_longitude FROM delivery WHERE delivery_id=? LIMIT 1;")){
                         $statement->bind_param("s",$id);
                         $statement->execute();
                         $delivery_result = $statement->get_result();
@@ -78,7 +76,8 @@
                             echo $row['customer_address'];
                             echo "<input type='hidden' id='staff_latitude' value='".($row['staff_latitude']===null?"0":$row['staff_latitude'])."'>";
                             echo "<input type='hidden' id='staff_longitude' value='".($row['staff_longitude']===null?"0":$row['staff_longitude'])."'>";
-                            echo "<input type='hidden' id='delivery_id' value='$id' ";
+                            echo "<input type='hidden' id='delivery_id' value='$id'> ";
+                            echo "<input type='hidden' id='orderId' value='".$_COOKIE['orderId']."'> ";
                         }
                         $statement->close();
                     }else{
