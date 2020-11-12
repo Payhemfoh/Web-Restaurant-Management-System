@@ -23,7 +23,6 @@
                 <table id="order_table" class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th>No</th>
                             <th>Name</th>
                             <th>Quantity</th>
                             <th>Unit Price</th>
@@ -31,20 +30,8 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Chicken Rice</td>
-                            <td>3</td>
-                            <td>RM7.00</td>
-                            <td>RM21.00</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Egg Sandwich</td>
-                            <td>2</td>
-                            <td>RM5.00</td>
-                            <td>RM10.00</td>
+                    <tbody id='order_item_list'>
+                        
                     </tbody>
                 </table>
             </div>
@@ -53,17 +40,17 @@
             <div id="status" class="alert">
                 <br><h3 class="text-center">Your food status</h3><br>
                 <div class="progress" style="height: 20px">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
-                    role="progress-bar" style="width:50%" aria-valuenow="2" aria-valuemin="0" aria-valuemax="4">
-                    50%
+                    <div id='progress_bar' class="progress-bar progress-bar-striped progress-bar-animated" 
+                    role="progress-bar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="4">
+                    0%
                     </div>
                 </div>
                 <br>
                 <ul class="pagination pagination-lg justify-content-center">
-                    <li class="page-item flex-fill noaction"><span class="page-link text-center">Waiting</span></li>
-                    <li class="page-item active flex-fill noaction"><span class="page-link text-center">Preparing</span></li>
-                    <li class="page-item flex-fill noaction"><span class="page-link text-center">Delivering</span></li>
-                    <li class="page-item flex-fill noaction"><span class="page-link text-center">Arrived</span></li>
+                    <li id='waiting' class="page-item flex-fill noaction"><span class="page-link text-center">Waiting</span></li>
+                    <li id='preparing' class="page-item flex-fill noaction"><span class="page-link text-center">Preparing</span></li>
+                    <li id='delivering' class="page-item flex-fill noaction"><span class="page-link text-center">Delivering</span></li>
+                    <li id='arrived' class="page-item flex-fill noaction"><span class="page-link text-center">Arrived</span></li>
                 </ul>
             </div>
             <br>
@@ -108,7 +95,7 @@
                 <div id="chat-area" class="px-4" style="height:500px;background:white;overflow:scroll;overflow-x:hidden;"></div>
                 <form id="message">
                     <div class="form-group">
-                        <p id="username-box"><?php echo isset($sess_username)?$sess_username:"Staff"?></p>
+                        <p id="username-box"><?php echo isset($sess_username)?$sess_username:"Guest"?></p>
                         <textarea id="msg" maxlength="100" class="form-control"></textarea><br> 
                         <button id="btn_sendMsg" class="btn btn-block btn-primaryLight btn-primary">Send</button>
                     </div>
@@ -121,5 +108,6 @@
         <?php printFooter(); ?>
         <script type="module" src="../javascript/gps_handle.js"></script>
         <script type="module" src="../javascript/chatroom.js"></script>
+        <script type="module" src="../javascript/customerDeliveryStatus.js"></script>
     </body>
 </html>

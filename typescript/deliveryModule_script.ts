@@ -6,7 +6,7 @@ $(()=>{
 
 function loop() : void{
     update();
-    setTimeout(loop,3600);
+    setTimeout(loop,60000);
 }
 
 function update():void{

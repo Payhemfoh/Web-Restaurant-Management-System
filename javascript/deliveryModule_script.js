@@ -4,7 +4,7 @@ $(function () {
 });
 function loop() {
     update();
-    setTimeout(loop, 3600);
+    setTimeout(loop, 60000);
 }
 function update() {
     var username = $("#username").val();

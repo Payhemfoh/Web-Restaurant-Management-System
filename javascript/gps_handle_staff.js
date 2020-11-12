@@ -8,7 +8,7 @@ $(function () {
 });
 function update() {
     setStaffPosition();
-    setTimeout(update, 1000);
+    setTimeout(update, 60000);
 }
 function initMap() {
     geocoder = new google.maps.Geocoder();

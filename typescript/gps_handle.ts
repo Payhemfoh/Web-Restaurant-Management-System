@@ -7,8 +7,13 @@ let geocoder : google.maps.Geocoder;
 
 $(function(){
     initMap();
-    setStaffPosition();
+    update();
 });
+
+function update(){
+    setStaffPosition();
+    setTimeout(update,60000);
+}
 
 function initMap():void{
     geocoder = new google.maps.Geocoder();

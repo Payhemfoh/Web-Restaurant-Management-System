@@ -43,7 +43,7 @@
     <div id="chat-area" class="px-4" style="height:500px;background:white;overflow:scroll;overflow-x:hidden;"></div>
     <form id="message">
         <div class="form-group">
-            <p id="username-box"><?php echo isset($sess_username)?$sess_username:"Guest"?></p>
+            <p id="username-box"><?php echo isset($sess_username)?$sess_username:"Staff"?></p>
             <textarea id="msg" maxlength="100" class="form-control"></textarea><br> 
             <button id="btn_sendMsg" class="btn btn-block btn-primaryLight btn-primary">Send</button>
         </div>

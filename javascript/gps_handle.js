@@ -4,8 +4,12 @@ var staffMarker;
 var geocoder;
 $(function () {
     initMap();
-    setStaffPosition();
+    update();
 });
+function update() {
+    setStaffPosition();
+    setTimeout(update, 60000);
+}
 function initMap() {
     geocoder = new google.maps.Geocoder();
     map = new google.maps.Map(document.getElementById("map"), {

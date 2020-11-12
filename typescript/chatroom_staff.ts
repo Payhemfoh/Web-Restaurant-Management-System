@@ -26,7 +26,7 @@ $(()=>{
 
     function Updating(){
         chat.update();
-        setTimeout(Updating,1000);
+        setTimeout(Updating,5000);
     }
 });
 

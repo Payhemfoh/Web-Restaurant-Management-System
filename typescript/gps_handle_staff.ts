@@ -12,7 +12,7 @@ $(function(){
 
 function update():void{
     setStaffPosition();
-    setTimeout(update,1000);
+    setTimeout(update,60000);
 }
 
 function initMap():void{
