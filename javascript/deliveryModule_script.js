@@ -26,13 +26,15 @@ function update() {
                         deliveryId: deliveryId
                     },
                     success: function (data) {
+                        console.log(data);
                         $("#modal-title").text("Delivery Request Accepted");
                         $(".modal-body").html(data);
                         $(".modal-footer").html("");
                         $("#btnAgain").attr("data-dismiss", "modal");
                         $("#btnAgain").on("click", function () {
-                            update();
+                            location.reload();
                         });
+                        $("#modal").modal();
                         setTimeout(function () { return $("#btnAgain").trigger("click"); }, 1000);
                     },
                     error: errorModal

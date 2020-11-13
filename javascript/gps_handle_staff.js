@@ -28,7 +28,7 @@ function markCustomerPosition(result, status) {
         customerMarker = new google.maps.Marker({
             position: location,
             map: map,
-            title: "Your Location"
+            title: "Customer Location"
         });
     }
     else {
@@ -63,7 +63,6 @@ function markStaffPosition(position) {
             delivery_id: delivery_id,
             longitude: position.coords.longitude,
             latitude: position.coords.latitude
-        },
-        success: function (data) { return console.log(data); }
+        }
     });
 }

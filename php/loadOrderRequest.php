@@ -18,7 +18,7 @@
 
         echo "<table style='width:100%'>";
         while($row = $result->fetch_assoc()){
-            printf("<tr><td><div class=\"order_item\">
+            printf("<div class=\"order_item\"><tr><td>
                         <h3>Order : %s</h3>
                         <h4>Quantity : %d</h4>
                         <h4>Date Time: %s</h4>

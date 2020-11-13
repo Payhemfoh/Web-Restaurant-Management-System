@@ -11,6 +11,19 @@ export class Chat{
         this.file = filename;
     }
 
+    get getInstance():boolean{
+        return this.instance;
+    }
+
+    get getStatus():number{
+        return this.status;
+    }
+
+    get getFile():string{
+        return this.file;
+    }
+    
+
     public update() : void{
         if(!this.instance){
             this.instance = true;

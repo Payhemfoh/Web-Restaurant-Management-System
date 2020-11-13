@@ -1,7 +1,7 @@
 <?php
-    $delivery_id = $_POST['delivery_id'];
+    $delivery_id = $_POST['id'];
 
-    $result = array();
+    $data = array();
 
     //database connection
     $connect = new mysqli("localhost","root","","rms_database");
@@ -17,9 +17,9 @@
         $statement->bind_param("i",$delivery_id);
         $statement->execute();
         $result = $statement->get_result();
-        while($row = $result->fetch_array()){
-            $result['longitude'] = $row['staff_longitude'];
-            $result['latitude'] = $row['staff_latitude'];
+        while($row = $result->fetch_assoc()){
+            $data['longitude'] = $row['staff_longitude'];
+            $data['latitude'] = $row['staff_latitude'];
         }
         $statement->close();
     }else{
@@ -27,5 +27,5 @@
     }
     $connect->close();
 
-    echo json_encode($result,JSON_FORCE_OBJECT);
+    echo json_encode($data,JSON_FORCE_OBJECT);
 ?>

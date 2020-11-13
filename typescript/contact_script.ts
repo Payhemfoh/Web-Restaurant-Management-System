@@ -23,7 +23,7 @@ $(()=>{
             valid = false;
         }else{
             //the regex to check email format
-            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
+            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email as string))
             {
                 validInput($("#email"),$("#email-feedback"));
             }else{

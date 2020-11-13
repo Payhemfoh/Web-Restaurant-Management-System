@@ -1,5 +1,6 @@
 <?php
     //get location
+    $order_id = $_COOKIE['orderId'];
     $location_address = $_POST['location_address'];
     $valid = true;
 
@@ -22,7 +23,14 @@
             $statement->bind_param("s",$location_address);
             $statement->execute();
 
-            $_COOKIE['delivery_id'] = $connect->insert_id;
+            $delivery_id = $connect->insert_id;
+            setcookie("delivery_id",$delivery_id,time()+ (10 * 365 * 24 * 60 * 60),"/");
+
+            if($update = $connect->prepare("UPDATE orders SET delivery_id = ? WHERE order_id=?")){
+                $update->bind_param("ii",$delivery_id,$order_id);
+                $update->execute();
+                $update->close();
+            }
             $statement->close();
         }else{
             die("Failed to prepare SQL statement.");

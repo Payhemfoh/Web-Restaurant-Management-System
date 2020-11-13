@@ -70,8 +70,9 @@ function setStaffPosition() : void{
             id:delivery_id
         },
         success:(data)=>{
+            
             if(data.longitude != null && data.latitude != null){
-                markStaffPosition(new google.maps.LatLng(data.longitude,data.latitude));
+                markStaffPosition(new google.maps.LatLng(data.latitude,data.longitude));
             }
         }
     })

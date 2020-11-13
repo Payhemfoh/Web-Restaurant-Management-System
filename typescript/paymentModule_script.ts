@@ -11,7 +11,7 @@ $(()=>{
         let price = $("#totalPrice").val() as number;
         
         $.ajax({
-            url:"payment_process.php",
+            url:"../php/payment_process.php",
             method:"post",
             dataType:"html",
             data:{totalPrice : price},
@@ -29,9 +29,10 @@ $(()=>{
                     $("#complete").on("click",()=>{
                         let form = $("<form action='../webpage/homepage.php'></form>");
                         $(".modal-body").append(form);
-                        form.trigger("submit");
+                        setTimeout(()=>form.trigger("submit"),5000);
                     });
                 }
+                ($("#modal") as any).modal();
             }
         })
 

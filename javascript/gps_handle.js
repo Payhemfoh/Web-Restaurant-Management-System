@@ -60,7 +60,7 @@ function setStaffPosition() {
         },
         success: function (data) {
             if (data.longitude != null && data.latitude != null) {
-                markStaffPosition(new google.maps.LatLng(data.longitude, data.latitude));
+                markStaffPosition(new google.maps.LatLng(data.latitude, data.longitude));
             }
         }
     });

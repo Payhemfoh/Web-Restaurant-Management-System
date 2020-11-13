@@ -29,11 +29,13 @@ function printHeader($filename){
                         echo    $sess_permission->analysisModule==="T" ?    '<a href="../webpage/salesAnalysis.php" class="dropdown-item">Analysis Module</a>':'';
                         echo    '</div>';
                     }else{
-                        if(isset($_COOKIE['service'])&&isset($_COOKIE['orderId'])){
-                            echo "<a href='../webpage/payment.php' class=\"btn btn-primary py-3\">Check Payment</a>";
-                        }else if($_COOKIE['service']==='delivery' && isset($_COOKIE['deliveryId'])){
-                            echo "<a href='../webpage/payment.php' class=\"btn btn-primary py-3\">Delivery Status</a>";
+                        if($_COOKIE['service']==='delivery' && isset($_COOKIE['delivery_id'])){
+                            echo "<a href='../webpage/deliveryStatus.php' class=\"btn btn-primary py-3\">Delivery Status</a>";
                         }
+                        else if(isset($_COOKIE['service'])&&isset($_COOKIE['orderId'])){
+                            echo "<a href='../webpage/payment.php' class=\"btn btn-primary py-3\">Check Payment</a>";
+                        }
+                        
                     }
                     
                     echo '<a href="../webpage/orderCart.php" class="btn btn-primary py-3">Your Order List</a>';

@@ -11,12 +11,10 @@ function update(){
 }
 
 function checkOrderStatus() : void{
-    let deliveryId = 0;
     $.ajax({
         url:"../php/checkOrderStatus.php",
         method:"post",
         dataType:"json",
-        data:{deliveryId:deliveryId},
         success:(data)=>{
             if(data.status!=null){
                 let bar = $("#progress_bar");

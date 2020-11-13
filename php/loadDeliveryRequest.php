@@ -14,7 +14,7 @@
                                             FROM delivery d, orders o,staff s
                                             WHERE o.delivery_id = d.delivery_id 
                                             AND d.staff_id = s.staff_id
-                                            AND o.status LIKE 'delivering'
+                                            AND o.overall_status LIKE 'delivering'
                                             AND s.username=?")){
             $statement->bind_param("i",$staff_username);
             $statement->execute();
@@ -24,27 +24,35 @@
         }
         else{
             //if staff do not accept delivery quest yet
-            if($statement = $connect->prepare("SELECT * 
-                                                FROM delivery d, orders o, customer c,
-                                                WHERE o.delivery_id = d.delivery_id 
-                                                AND o.status LIKE 'delivering'
+            if($statement = $connect->prepare("SELECT d.delivery_id,c.username,d.customer_address
+                                                FROM delivery d, orders o, customer c
+                                                WHERE o.delivery_id = d.delivery_id
+                                                AND o.customer_id = c.customer_id
+                                                AND o.overall_status = 'delivering'
                                                 AND d.staff_id IS NULL")){
                 $statement->execute();
                 $result = $statement->get_result();
 
-                while($row = $result->fetch_array()){
-                    printf("<div class=\"delivery_request\"
-                                <h3>Customer Username : %s</h3>
-                                <h3>Customer Location : %s</h3>
-                                <button class='btn btn-block btn-primaryLight btn-primary btn_done' value='%d'>Accept</button>
+                echo "<table style='width:100%'>";
+                while($row = $result->fetch_assoc()){
+                    printf("<div class=\"delivery_request\"><tr><td>
+                                <h4>Customer Username : %s</h4>
+                                <p><b>Customer Location :</b> %s</p>
+                            <br><br></td>
+                            <td>
+                                <button class='btn btn-block btn-primaryLight btn-primary btn_accepted' value='%d'>Accept</button>
+                            </td>
                             </div>
-                    ",$row['username'],$row['address']);
+                    ",$row['username'],$row['customer_address'],$row['delivery_id']);
                     }
 
                 $statement->close();
             }else{
-                die("Failed to prepare SQL statement.");
+                die("Failed to prepare SQL statement.".$connect->error);
             }
         }
-    }   
+        
+    }else{
+        die("Failed to prepare SQL statement.".$connect->error);
+    }
 ?>

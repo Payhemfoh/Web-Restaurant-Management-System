@@ -31,13 +31,15 @@ function update():void{
                         deliveryId:deliveryId
                     },
                     success:(data)=>{
+                        console.log(data);
                         $("#modal-title").text("Delivery Request Accepted");
                         $(".modal-body").html(data);
                         $(".modal-footer").html("");
                         $("#btnAgain").attr("data-dismiss","modal");
                         $("#btnAgain").on("click",()=>{
-                            update();
+                            location.reload();
                         });
+                        ($("#modal") as any).modal();
                         setTimeout(()=>$("#btnAgain").trigger("click"),1000);
                     },
                     error:errorModal

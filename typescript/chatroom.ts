@@ -1,6 +1,5 @@
 import { Chat } from "./Chat.js";
 
-
 $(()=>{
     let username = $("#username-box").text() as string;
     let delivery_id = $("#delivery_id").val();
@@ -22,6 +21,20 @@ $(()=>{
         }
     });
 
+    $("#btn_sendMsg").on("click",(e)=>{
+        e.preventDefault();
+        let text = $("#msg").val() as string;
+        let max = parseInt($("#msg").attr("maxlength") as string);
+        let length = text.length;
+
+        if(length <= max + 1){
+            chat.sendMsg(text,username);
+            $("#msg").val("");
+        }else{
+            $("#msg").val(text.substring(0,max));
+        }
+    })
+
     Updating();
 
     function Updating(){
@@ -29,4 +42,3 @@ $(()=>{
         setTimeout(Updating,5000);
     }
 });
-

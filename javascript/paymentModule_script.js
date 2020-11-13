@@ -9,7 +9,7 @@ $(function () {
         var orderId = $("#orderID").val();
         var price = $("#totalPrice").val();
         $.ajax({
-            url: "payment_process.php",
+            url: "../php/payment_process.php",
             method: "post",
             dataType: "html",
             data: { totalPrice: price },
@@ -28,9 +28,10 @@ $(function () {
                     $("#complete").on("click", function () {
                         var form = $("<form action='../webpage/homepage.php'></form>");
                         $(".modal-body").append(form);
-                        form.trigger("submit");
+                        setTimeout(function () { return form.trigger("submit"); }, 5000);
                     });
                 }
+                $("#modal").modal();
             }
         });
     });

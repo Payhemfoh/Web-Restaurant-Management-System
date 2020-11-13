@@ -38,7 +38,7 @@ function markCustomerPosition(result : google.maps.GeocoderResult[],status:googl
         customerMarker = new google.maps.Marker({
             position:location,
             map:map,
-            title:"Your Location"
+            title:"Customer Location"
         });
     }else{
         customerMarker.setPosition(location);
@@ -74,7 +74,6 @@ function markStaffPosition(position : Position){
             delivery_id:delivery_id,
             longitude:position.coords.longitude,
             latitude:position.coords.latitude
-        },
-        success:(data)=>console.log(data)
+        }
     })
 }

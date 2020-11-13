@@ -18,6 +18,19 @@ $(function () {
             }
         }
     });
+    $("#btn_sendMsg").on("click", function (e) {
+        e.preventDefault();
+        var text = $("#msg").val();
+        var max = parseInt($("#msg").attr("maxlength"));
+        var length = text.length;
+        if (length <= max + 1) {
+            chat.sendMsg(text, username);
+            $("#msg").val("");
+        }
+        else {
+            $("#msg").val(text.substring(0, max));
+        }
+    });
     Updating();
     function Updating() {
         chat.update();

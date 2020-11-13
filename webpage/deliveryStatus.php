@@ -68,11 +68,11 @@
                         die("Connection error : $connect->connect_errno : $connect->connect_error");
                     }
 
-                    if($statement = $connect->prepare("SELECT staff_latitude,staff_longitude FROM delivery WHERE delivery_id=? LIMIT 1;")){
-                        $statement->bind_param("s",$id);
+                    if($statement = $connect->prepare("SELECT staff_latitude,staff_longitude,customer_address FROM delivery WHERE delivery_id=? LIMIT 1;")){
+                        $statement->bind_param("i",$id);
                         $statement->execute();
                         $delivery_result = $statement->get_result();
-                        while($row = $delivery_result->fetch_array()){
+                        while($row = $delivery_result->fetch_assoc()){
                             echo $row['customer_address'];
                             echo "<input type='hidden' id='staff_latitude' value='".($row['staff_latitude']===null?"0":$row['staff_latitude'])."'>";
                             echo "<input type='hidden' id='staff_longitude' value='".($row['staff_longitude']===null?"0":$row['staff_longitude'])."'>";
@@ -92,9 +92,10 @@
             <div id="chatbox" class="alert alert-info">
                 <p class="h1 text-center">Chat Room</p>
                 <div id="chat-area" class="px-4" style="height:500px;background:white;overflow:scroll;overflow-x:hidden;"></div>
+                <br>
                 <form id="message">
                     <div class="form-group">
-                        <p id="username-box"><?php echo isset($sess_username)?$sess_username:"Guest"?></p>
+                        <p id="username-box" class='h4'><?php echo isset($sess_username)?$sess_username:"Guest"?></p>
                         <textarea id="msg" maxlength="100" class="form-control"></textarea><br> 
                         <button id="btn_sendMsg" class="btn btn-block btn-primaryLight btn-primary">Send</button>
                     </div>

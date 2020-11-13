@@ -1,6 +1,7 @@
 <?php
     $totalPrice = $_POST['totalPrice'];
-    $orderId = $_POST['orderId'];
+    $orderId = $_COOKIE['orderId'];
+    $service = $_COOKIE['service'];
 
     //database connection
     $connect = new mysqli("localhost","root","","rms_database");
@@ -10,30 +11,42 @@
         die("Connection error : $connect->connect_errno : $connect->connect_error");
     }
 
-    if($statement = $connect->prepare("SELECT o.order_id,m.menu_name,i.quantity,m.menu_price
-                                        FROM orders o, order_item i, menu m
-                                        WHERE o.order_id = ?
-                                        AND i.order_id = o.order_id
-                                        AND i.menu_id = m.menu_id")){
-        $statement->bind_param("i",$orderId);
+    if($statement = $connect->prepare("INSERT INTO payment(payment_id,staff_id,date_time,total_price)
+                                        VALUES (0,1,now(),?)")){
+        $statement->bind_param("d",$totalPrice);
         $statement->execute();
-        $result = $statement->get_result();
-        $total = 0.0;
-        while($row = $result->fetch_array()){
-            $totalPrice = (float)((int)$row['quantity'] * (float)$row['menu_price']);
-            $total+=$totalPrice;
-            printf("<tr>
-                        <td>%s</td>
-                        <td>%d</td>
-                        <td>RM%.2f</td>
-                        <td>RM%.2f</td>
-                    </tr>",
-                    $row['menu_name'],
-                    $row['quantity'],
-                    $row['menu_price'],
-                    $totalPrice);
+        $paymentId = $statement->insert_id;
+
+        if($service === "dine_in"){
+            if($update = $connect->prepare("UPDATE orders SET payment_id=?,overall_status='arrived' WHERE order_id = ?")){
+                $update->bind_param("ii",$paymentId,$orderId);
+                $update->execute();
+                $update->close();
+            }else{
+                die("Failed to update order.".$connect->error);
+            }
+        }else{
+            if($update = $connect->prepare("UPDATE orders SET payment_id=? WHERE order_id = ?")){
+                $update->bind_param("ii",$paymentId,$orderId);
+                $update->execute();
+                $update->close();
+            }else{
+                die("Failed to update order.".$connect->error);
+            }
         }
-        printf("<input id='totalPrice' type='hidden' value='%.2f' />",$total);
+
+        if($service === "dine_in" || $service==="take_away"){
+            setcookie("orderList","",time()-3600,"/");
+            setcookie("orderId","",time()-3600,"/");
+            setcookie("service","",time()-3600,"/");
+            setcookie("tableNo","",time()-3600,"/");
+            setcookie("arrival","",time()-3600,"/");
+            echo "<p>Payment Process Successfully. Please come again.</p><br>";
+            echo "<button id=\"complete\" class=\"btn btn-block btn-lg btn-outline-primary\">Return to Homepage</button>";
+        }else{
+            echo "<p>Payment Process Successfully. Click the button below to enter delivery address</p><br>";
+            echo "<button id=\"complete\" class=\"btn btn-block btn-lg btn-outline-primary\">Enter Delivery Address</button>";
+        }
         
         $statement->close();
     }else{

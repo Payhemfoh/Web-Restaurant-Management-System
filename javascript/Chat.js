@@ -5,6 +5,27 @@ var Chat = /** @class */ (function () {
         this.status = 0;
         this.file = filename;
     }
+    Object.defineProperty(Chat.prototype, "getInstance", {
+        get: function () {
+            return this.instance;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Chat.prototype, "getStatus", {
+        get: function () {
+            return this.status;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Chat.prototype, "getFile", {
+        get: function () {
+            return this.file;
+        },
+        enumerable: false,
+        configurable: true
+    });
     Chat.prototype.update = function () {
         var _this = this;
         if (!this.instance) {

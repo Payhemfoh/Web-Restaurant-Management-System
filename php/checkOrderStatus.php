@@ -1,6 +1,7 @@
 <?php
-    $deliveryId = $_POST['deliveryId'];
+    $deliveryId = $_COOKIE['delivery_id'];
     $record = new stdClass();
+    $record->status = new stdClass();
 
     //database connection
     $connect = new mysqli("localhost","root","","rms_database");
@@ -17,7 +18,7 @@
         $statement->bind_param("i",$deliveryId);
         $statement->execute();
         $result = $statement->get_result();
-        while($row = $result->fetch_array()){
+        while($row = $result->fetch_assoc()){
             $record->status = $row['overall_status'];
         }
         

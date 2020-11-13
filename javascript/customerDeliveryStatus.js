@@ -7,12 +7,10 @@ function update() {
     setTimeout(update, 60000);
 }
 function checkOrderStatus() {
-    var deliveryId = 0;
     $.ajax({
         url: "../php/checkOrderStatus.php",
         method: "post",
         dataType: "json",
-        data: { deliveryId: deliveryId },
         success: function (data) {
             if (data.status != null) {
                 var bar = $("#progress_bar");
