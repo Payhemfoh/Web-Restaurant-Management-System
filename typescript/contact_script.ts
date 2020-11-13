@@ -22,7 +22,14 @@ $(()=>{
             inValidInput($("email"),$("email-feedback"),"Email should not be empty!");
             valid = false;
         }else{
-            validInput($("email"),$("email-feedback"));
+            //the regex to check email format
+            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
+            {
+                validInput($("#email"),$("#email-feedback"));
+            }else{
+                inValidInput($("#email"),$("#email-feedback"),"The email format is Invalid!");
+                valid = false;
+            }
         }
 
         if(content === ""){
