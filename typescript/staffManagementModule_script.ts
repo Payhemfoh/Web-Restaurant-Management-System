@@ -274,7 +274,12 @@ function setEditButton() : void{
                         inValidInput($("#phone"),$("#phone-feedback"),"Phone No should not be empty!");
                         valid = false;
                     }else{
-                        validInput($("#phone"),$("#phone-feedback"));
+                         if(/^[0-9]{3}-[0-9]{7}$/.test(phone)){
+                            validInput($("#phone"),$("#phone-feedback"));
+                        }else{
+                            inValidInput($("#phone"),$("#phone-feedback"),"Phone No format is Invalid!!");
+                            valid = false;
+            }
                     }
                     if(email === ""){
                         inValidInput($("#email"),$("#email-feedback"),"Email should not be empty!");
