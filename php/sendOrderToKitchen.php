@@ -35,7 +35,7 @@
             $newOrder->execute();
             $orderId = $newOrder->insert_id;
 
-            setcookie("orderId",$orderId);
+            setcookie("orderId",$orderId,time()+ (10 * 365 * 24 * 60 * 60),"/");
 
             if($service === "dine_in"){
                 $table_no = $_COOKIE['table_no'];
@@ -76,7 +76,7 @@
             echo "Failed to insert record into table";
         }
         //clear the order item list
-        setcookie("orderList","",time()-3600);
+        setcookie("orderList","",time()-3600,"/");
     }
 
     $connect->close();

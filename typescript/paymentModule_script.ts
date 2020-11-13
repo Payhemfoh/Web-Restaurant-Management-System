@@ -5,6 +5,38 @@ $(()=>{
     $("#btn_eWallet").on("click",setEWalletPayment);
     $("#btn_card").on("click",setCardPayment);
     $("#btn_cash").on("click",setCashPayment);
+    $("#complete-payment").on("click",()=>{
+        let service = $("#service").val() as string;
+        let orderId = $("#orderID").val() as number;
+        let price = $("#totalPrice").val() as number;
+        
+        $.ajax({
+            url:"payment_process.php",
+            method:"post",
+            dataType:"html",
+            data:{totalPrice : price},
+            success:(data)=>{
+                $("#modal-title").text("Complete Payment");
+                $(".modal-body").html(data);
+                $(".modal-footer").html("");
+                if(service === "delivery"){
+                    $("#complete").on("click",()=>{
+                        let form = $("<form action='../webpage/setLocation.php'></form>");
+                        $(".modal-body").append(form);
+                        form.trigger("submit");
+                    });
+                }else{
+                    $("#complete").on("click",()=>{
+                        let form = $("<form action='../webpage/homepage.php'></form>");
+                        $(".modal-body").append(form);
+                        form.trigger("submit");
+                    });
+                }
+            }
+        })
+
+        
+    });
 });
 
 function setCashPayment(e:JQuery.ClickEvent):void{
@@ -27,13 +59,13 @@ function setCashPayment(e:JQuery.ClickEvent):void{
 function setEWalletPayment():void{
     $("#paymentBlock").html(`
     <label for="eWalletpaymentMethod">Select E-Wallet:</label><br>
-    <div class='btn-group'>
-        <button class='btn btn-primary pay_wallet'>Touch 'N Go E-Wallet</button>
-        <button class='btn btn-primary pay_wallet'>Boost Pay</button>
-        <button class='btn btn-primary pay_wallet'>Grab Pay</button>
-        <button class='btn btn-primary pay_wallet'>Maybank2u Pay</button>
-        <button class='btn btn-primary pay_wallet'>PayPal</button>
-    </div>`);
+    <div class='container btn-group justify-content-center'>
+        <button class='btn btn-primary col-lg pay_wallet'>Touch 'N Go E-Wallet</button>
+        <button class='btn btn-primary col-lg pay_wallet'>Boost Pay</button>
+        <button class='btn btn-primary col-lg pay_wallet'>Grab Pay</button>
+        <button class='btn btn-primary col-lg pay_wallet'>Maybank2u Pay</button>
+        <button class='btn btn-primary col-lg pay_wallet'>PayPal</button>
+    </div><br><br>`);
 
     $(".pay_wallet").on("click",walletPaymentForm);
 }
@@ -41,11 +73,11 @@ function setEWalletPayment():void{
 function setCardPayment():void{
     $("#paymentBlock").html(`
     <label for="creditCardpaymentMethod">Select Credit Card:</label><br>
-    <div class="btn-group">
-        <button class="btn btn-primary pay_card">Visa</button>
-        <button class="btn btn-primary pay_card">Master</button>
-        <button class="btn btn-primary pay_card">American Express</button>
-    </div>`);
+    <div class="container btn-group justify-content-center">
+        <button class="btn btn-primary col-lg pay_card">Visa</button>
+        <button class="btn btn-primary col-lg pay_card">Master</button>
+        <button class="btn btn-primary col-lg pay_card">American Express</button>
+    </div><br><br>`);
 
     $(".pay_card").on("click",creditPaymentForm);
 }
@@ -96,7 +128,7 @@ function creditPaymentForm():void{
 
 function walletPaymentForm():void{
     let html = $("#paymentBlock").html();
-    html+= "<img src='../images/Payment/e_wallet.png' class=\"img-thumbnail\"><br>";
+    html+= "<div class='text-center'><img src='../images/Payment/e_wallet.png' class=\"img-thumbnail\"></div><br>";
     $("#paymentBlock").html(html);
 }
 

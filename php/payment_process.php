@@ -1,4 +1,5 @@
 <?php
+    $totalPrice = $_POST['totalPrice'];
     $orderId = $_POST['orderId'];
 
     //database connection

@@ -7,8 +7,8 @@ function printHeader($filename){
             <div class="btn-group btn-group-lg float-left">
                 <a href="../webpage/homepage.php" class="btn btn-primary py-3"><img src="../images/logo.png"/></a>
                 <a href="../webpage/homepage.php" class="btn btn-primary py-3">RMS</a>
-                <a href="../webpage/contactUs.php" class="btn btn-primary py-3">contact us</a>
-                <a href="../webpage/aboutUs.php" class="btn btn-primary py-3">about us</a>
+                <a href="../webpage/contactUs.php" class="btn btn-primary py-3">Contact Us</a>
+                <a href="../webpage/aboutUs.php" class="btn btn-primary py-3">About Us</a>
             </div>
 
             <div class="btn-group btn-group-lg float-right">
@@ -26,7 +26,14 @@ function printHeader($filename){
                         echo    $sess_permission->stockManagementModule==="T" ?    '<a href="../webpage/StockManagementModule.php" class="dropdown-item">Stock Management Module</a>':'';
                         echo    $sess_permission->orderManagementModule==="T" ?    '<a href="../webpage/KitchenModule.php" class="dropdown-item">Kitchen Module</a>':'';
                         echo    $sess_permission->deliveryModule==="T" ?    '<a href="../webpage/deliveryModule.php" class="dropdown-item">Delivery Module</a>':'';
+                        echo    $sess_permission->analysisModule==="T" ?    '<a href="../webpage/salesAnalysis.php" class="dropdown-item">Analysis Module</a>':'';
                         echo    '</div>';
+                    }else{
+                        if(isset($_COOKIE['service'])&&isset($_COOKIE['orderId'])){
+                            echo "<a href='../webpage/payment.php' class=\"btn btn-primary py-3\">Check Payment</a>";
+                        }else if($_COOKIE['service']==='delivery' && isset($_COOKIE['deliveryId'])){
+                            echo "<a href='../webpage/payment.php' class=\"btn btn-primary py-3\">Delivery Status</a>";
+                        }
                     }
                     
                     echo '<a href="../webpage/orderCart.php" class="btn btn-primary py-3">Your Order List</a>';

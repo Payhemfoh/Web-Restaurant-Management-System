@@ -39,10 +39,10 @@
             </div>
 
             <label for="paymentMethod">Select Payment Method:</label><br>
-            <div class="btn-group">
-                <button id="btn_eWallet" class="btn btn-primary">e-wallet</button>
-                <button id="btn_card" class="btn btn-primary">Credit/debit Card</button>
-                <button id="btn_cash" class="btn btn-primary">
+            <div class="container btn-group justify-content-center">
+                <button id="btn_eWallet" class="btn btn-primary col-lg">e-wallet</button>
+                <button id="btn_card" class="btn btn-primary col-lg">Credit/debit Card</button>
+                <button id="btn_cash" class="btn btn-primary col-lg">
                 <?php
                     echo $_COOKIE['service']==="delivery"? "Pay when arrived":"Counter Pay";
                 ?>
@@ -64,16 +64,11 @@
                 $orderId = 0;
             else
                 $orderId = $_COOKIE['orderId'];
-            
-            if(!isset($_POST['totalPrice']))
-                $totalPrice = 0.0;
-            else
-                $totalPrice = $_POST['totalPrice'];
 
             printf("<input id='service' type='hidden' value='%s' />
-            <input id='orderID' type='hidden' value='%d' />
-            <input id='totalPrice' type='hidden' value='%.2f' />",$service,$orderId,$totalPrice);
+            <input id='orderID' type='hidden' value='%d' />",$service,$orderId);
             
+            echo "<button id='complete-payment' class='btn btn-block btn-primaryLight btn-primary'>Complete Payment</button>";
             ?>
         </div>
         <br/>
