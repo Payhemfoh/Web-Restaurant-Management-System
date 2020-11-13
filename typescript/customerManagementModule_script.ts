@@ -32,6 +32,7 @@ function setDeleteButton() : void{
                             $(".modal-body").html(data);
                             $(".modal-footer").html("");
                             $("#btnAgain").attr("data-dismiss","modal");
+                            $("#btnAgain").on("click",()=>{location.reload();});
                         },
                         error:errorModal
                     });
@@ -173,8 +174,9 @@ function setAddButton() : void{
                             success:function(data){
                                 $("#modal-title").text("Add New Stock Data");
                                 $(".modal-body").html(data);
-                                
                                 $(".modal-footer").html("");
+                                $("#btnAgain").attr("data-dismiss","modal");
+                                $("#btnAgain").on("click",()=>{location.reload();});
                             },
                             error:errorModal
                         })
@@ -323,6 +325,8 @@ function setEditButton() : void{
                                 $("#modal-title").text("Modify Customer");
                                 $(".modal-body").html(data);
                                 $(".modal-footer").html("");
+                                $("#btnAgain").attr("data-dismiss","modal");
+                                $("#btnAgain").on("click",()=>{location.reload();});
                             },
                             error:errorModal
                         });

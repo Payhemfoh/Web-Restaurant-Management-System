@@ -68,7 +68,6 @@ function setupMenu() {
                         var fragment = getCookie(key);
                         var orderListObject;
                         if (fragment != null && fragment !== "") {
-                            console.log(fragment);
                             orderListObject = JSON.parse(fragment);
                             orderListObject.item.push({ id: id, qty: quantity });
                         }
@@ -108,6 +107,5 @@ function getCookie(key) {
     return fragment;
 }
 function setCookie(update) {
-    console.log(update);
     document.cookie = update;
 }

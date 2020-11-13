@@ -6,7 +6,6 @@
 
     if(isset($_COOKIE['orderId']))
         $orderId = $_COOKIE['orderId'];
-    
 
     //database connection
     $connect = new mysqli("localhost","root","","rms_database");
@@ -30,43 +29,55 @@
 
     //create new order if no orderId found
     if($orderId === 0){
-        $newOrder = $connect->prepare("INSERT INTO orders(order_id,customer_id,data_time,order_type,overall_status)
-                                        VALUES (0,?,SYSDATE(),?,'order received')");
-        $newOrder->bind_param("is",$customer_id,$service);
-        $newOrder->execute();
-        $orderId = $newOrder->insert_id;
+        if($newOrder = $connect->prepare("INSERT INTO orders(order_id,customer_id,date_time,order_type,overall_status)
+                                        VALUES (0,?,SYSDATE(),?,'order received')")){
+            $newOrder->bind_param("is",$customer_id,$service);
+            $newOrder->execute();
+            $orderId = $newOrder->insert_id;
 
-        setcookie("orderId",$orderId);
+            setcookie("orderId",$orderId);
 
-        if($service === "dine_in"){
-            $table_no = $_COOKIE['table_no'];
-            $modify = $connect->prepare("UPDATE orders SET table_no=? WHERE order_id=?;");
-            $modify->bind_param("ii",$table_no,$orderId);
-            $modify->execute();
-            $modify->close();
-        }else if($service === "take_away"){
-            $datetime = $_COOKIE['arrival'];
-            $arrival = date("Y-m-d H:i:s",strtotime($datetime));
-            $modify = $connect->prepare("UPDATE orders SET arrival_time=? WHERE order_id=?;");
-            $modify->bind_param("si",$arrival,$orderId);
-            $modify->execute();
-            $modify->close();
+            if($service === "dine_in"){
+                $table_no = $_COOKIE['table_no'];
+                $modify = $connect->prepare("UPDATE orders SET table_no=? WHERE order_id=?;");
+                $modify->bind_param("ii",$table_no,$orderId);
+                $modify->execute();
+                $modify->close();
+            }else if($service === "take_away"){
+                $datetime = $_COOKIE['arrival'];
+                $arrival = date("Y-m-d H:i:s",strtotime($datetime));
+                $modify = $connect->prepare("UPDATE orders SET arrival_time=? WHERE order_id=?;");
+                $modify->bind_param("si",$arrival,$orderId);
+                $modify->execute();
+                $modify->close();
+            }
+
+            $newOrder->close();
+        }else{
+            echo "Failed to create new order".$connect->error;
         }
-
-        $newOrder->close();
     }
 
-    //create order item one-by-one
-    $insert = $connect->prepare("INSERT INTO order_item(item_id,menu_id,order_status,quantity,order_id)
-                                VALUES (0,?,'preparing',?,?);");
-    $insert->bind_param("isii",$item->id,$item->qty,$orderId);
+    if($orderId != 0){
+        //create order item one-by-one
+        if($insert = $connect->prepare("INSERT INTO order_item(item_id,menu_id,order_status,quantity,order_id)
+                                    VALUES (0,?,'preparing',?,?);")){
+            $id = 0;
+            $qty = 0;
+            $insert->bind_param("iii",$id,$qty,$orderId);
 
-    foreach($orderList->item as $item){
-        $insert->execute();
+            foreach($orderList->item as $item){
+                $id = $item->id;
+                $qty = $item->qty;
+                $insert->execute();
+            }
+            $insert->close();
+        }else{
+            echo "Failed to insert record into table";
+        }
+        //clear the order item list
+        setcookie("orderList","",time()-3600);
     }
-    $insert->close();
-    //clear the order item list
-    setcookie("orderList","",time()-3600);
 
     $connect->close();
 ?> 

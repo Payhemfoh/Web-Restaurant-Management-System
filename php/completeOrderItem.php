@@ -39,15 +39,12 @@
                 $update->bind_param("i",$orderId);
                 $update->execute();
 
-                if($statement->get_result()){
-                    echo "<h4>Order Item Completed</h4><br>
-                    <button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Refresh</button>";
-                }else{
-                    echo "<h4>Failed to complete order item</h4><button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Refresh</button>";
-                }
                 $update->close();
             }
 
+            echo "<h4>Order Item Completed</h4><br>
+                <button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Refresh</button>";
+            
             $check->close();
         }
 

@@ -89,7 +89,6 @@ function setupMenu() : void{
                         let orderListObject : orderList;
 
                         if(fragment!=null && fragment!==""){
-                            console.log(fragment);
                             orderListObject = JSON.parse(fragment);
                             orderListObject.item.push({id:id,qty:quantity});
                         }else{
@@ -133,6 +132,5 @@ function getCookie(key:string)
 }
 
 function setCookie(update:string):void{
-    console.log(update);
     document.cookie=update;
 }

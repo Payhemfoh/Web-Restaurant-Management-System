@@ -80,9 +80,9 @@ function setAddButton() : void {
                         success:function(data){
                             $("#modal-title").text("Add New Stock Data");
                             $(".modal-body").html(data);
-                            
                             $(".modal-footer").html("");
                             $("#btnAgain").attr("data-dismiss","modal");
+                            $("#btnAgain").on("click",()=>location.reload());
                         },
                         error:errorModal
                     });
@@ -121,6 +121,7 @@ function setDeleteButton(this: any):void{
                         $(".modal-body").html(data);
                         $(".modal-footer").html("");
                         $("#btnAgain").attr("data-dismiss","modal");
+                        $("#btnAgain").on("click",()=>location.reload());
                     },
                     error:errorModal
                 });
@@ -191,9 +192,9 @@ function setEditButton(this:any):void{
                         success:function(data){
                             $("#modal-title").text("Add New Stock Data");
                             $(".modal-body").html(data);
-                            
                             $(".modal-footer").html("");
                             $("#btnAgain").attr("data-dismiss","modal");
+                            $("#btnAgain").on("click",()=>location.reload());
                         },
                         error:errorModal
                     });

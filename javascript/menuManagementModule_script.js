@@ -68,6 +68,7 @@ function setAddButton() {
                             $(".modal-body").html(data);
                             $(".modal-footer").html("");
                             $("#btnAgain").attr("data-dismiss", "modal");
+                            $("#btnAgain").on("click", function () { return location.reload(); });
                         },
                         error: errorModal
                     });
@@ -100,6 +101,7 @@ function setDeleteButton() {
                         $(".modal-body").html(data);
                         $(".modal-footer").html("");
                         $("#btnAgain").attr("data-dismiss", "modal");
+                        $("#btnAgain").on("click", function () { return location.reload(); });
                     },
                     error: errorModal
                 });
@@ -163,6 +165,7 @@ function setEditButton() {
                             $(".modal-body").html(data);
                             $(".modal-footer").html("");
                             $("#btnAgain").attr("data-dismiss", "modal");
+                            $("#btnAgain").on("click", function () { return location.reload(); });
                         },
                         error: errorModal
                     });

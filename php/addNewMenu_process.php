@@ -36,11 +36,10 @@
     }
 
     //file upload
-    if($valid){
+    if($valid && isset($_FILES['image'])){
 
-        $destination = $_POST['destination'];
-        
-        if(file_exists($FILES['image']['tmp_name']) ||is_uploaded_file($_FILES['image']['tmp_name'])){
+        if(file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])){
+            $destination = $_POST['destination'];
             $filetype = $_FILES['image']['type'];
             $filename = $_FILES['image']['name'];
             $filesize = $_FILES['image']['size'];
@@ -64,15 +63,20 @@
                 if ($fileError > 0) {
                     echo "Return Code: " . $fileError . "<br>";
                 } else {
-                    if (file_exists($fileLocation)) {
-                        echo $filename . " already exists. ";
-                    } else {
-                        move_uploaded_file($fileTmp,$fileLocation);
-                        echo "Stored in: $fileLocation";
+                    $location = $fileLocation;
+                    $counter = 0;
+                    while (file_exists($location)) {
+                        $location = $fileLocation.$counter;
+                        $counter += 1;
                     }
+                    $fileLocation = $location;
+
+                    move_uploaded_file($fileTmp,$fileLocation);
                 }
             } else {
+                echo $filetype."<br>".$filesize."<br>".MBSIZE;
                 echo "Invalid file";
+                $valid = false;
             }    
         }
     }
@@ -90,6 +94,9 @@
                                             " VALUES (0,?,?,?,?,?);")){
             $statement->bind_param("sisds",$name,$category,$description,$price,$fileLocation);
             $statement->execute();
+
+            echo "<p>The data had been added successfully.</p><br>";
+            echo "<button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Return to Menu</button>";
 
             $statement->close();
         }else{

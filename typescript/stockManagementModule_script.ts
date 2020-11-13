@@ -59,12 +59,14 @@ $(function(){
                                 $("#modal-title").text("Add New Stock Data");
                                 $(".modal-body").html(data);
                                 $(".modal-footer").html("");
+                                $("#btnAgain").attr("data-dismiss","modal");
+                                $("#btnAgain").on("click",()=>{location.reload();});
                             },
                             error:errorModal
                         })
                     }
                 });
-                $("modal-cancel").attr("data-dismiss","modal");
+                $("#modal-cancel").attr("data-dismiss","modal");
 
                 ($("#modal") as any).modal();
             },
@@ -99,6 +101,7 @@ $(function(){
                             $(".modal-body").html(data);
                             $(".modal-footer").html("");
                             $("#btnAgain").attr("data-dismiss","modal");
+                            $("#btnAgain").on("click",()=>{location.reload();});
                         },
                         error:errorModal
                     })
@@ -171,6 +174,7 @@ $(function(){
                                 $(".modal-body").html(data);
                                 $(".modal-footer").html("");
                                 $("#btnAgain").attr("data-dismiss","modal");
+                                $("#btnAgain").on("click",()=>{location.reload();});
                             },
                             error:errorModal
                         });

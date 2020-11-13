@@ -28,6 +28,7 @@ function setDeleteButton() {
                             $(".modal-body").html(data);
                             $(".modal-footer").html("");
                             $("#btnAgain").attr("data-dismiss", "modal");
+                            $("#btnAgain").on("click", function () { location.reload(); });
                         },
                         error: errorModal
                     });
@@ -174,6 +175,8 @@ function setAddButton() {
                                 $("#modal-title").text("Add New Stock Data");
                                 $(".modal-body").html(data);
                                 $(".modal-footer").html("");
+                                $("#btnAgain").attr("data-dismiss", "modal");
+                                $("#btnAgain").on("click", function () { location.reload(); });
                             },
                             error: errorModal
                         });
@@ -324,6 +327,8 @@ function setEditButton() {
                                 $("#modal-title").text("Modify Customer");
                                 $(".modal-body").html(data);
                                 $(".modal-footer").html("");
+                                $("#btnAgain").attr("data-dismiss", "modal");
+                                $("#btnAgain").on("click", function () { location.reload(); });
                             },
                             error: errorModal
                         });

@@ -18,7 +18,7 @@ function update():void{
 
             $(".btn_done").on("click",(e)=>{
                 let itemId = e.target.getAttribute("value");
-                $.ajax("../php/completeOrderItem",{
+                $.ajax("../php/completeOrderItem.php",{
                     dataType:"html",
                     method:"post",
                     data:{
@@ -29,6 +29,8 @@ function update():void{
                         $(".modal-body").html(data);
                         $(".modal-footer").html("");
                         $("#btnAgain").attr("data-dismiss","modal");
+                        $("#btnAgain").on("click",()=>location.reload());
+                        ($("#modal") as any).modal();
                         setTimeout(()=>$("#btnAgain").trigger("click"),1000);
                     },
                     error:errorModal

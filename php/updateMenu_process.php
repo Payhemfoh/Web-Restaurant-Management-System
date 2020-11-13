@@ -37,10 +37,10 @@
     }
 
     //file upload
-    if($valid){
+    if($valid && isset($_FILES['image'])){
 
-        $destination = $_POST['destination'];
-        if(file_exists($FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])){
+        if(file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])){
+            $destination = $_POST['destination'];
             $filetype = $_FILES['image']['type'];
             $filename = $_FILES['image']['name'];
             $filesize = $_FILES['image']['size'];
@@ -64,17 +64,15 @@
                 if ($fileError > 0) {
                     echo "Return Code: " . $fileError . "<br>";
                 } else {
-                    echo "Upload: " . $filename . "<br>";
-                    echo "Type: " . $filetype . "<br>";
-                    echo "Size: " . ($filesize / 1024) . " kB<br>";
-                    echo "Temp file: " . $fileTmp . "<br>";
-
-                    if (file_exists($fileLocation)) {
-                        echo $filename . " already exists. ";
-                    } else {
-                        move_uploaded_file($fileTmp,$fileLocation);
-                        echo "Stored in: $fileLocation";
+                    $location = $fileLocation;
+                    $counter = 0;
+                    while (file_exists($location)) {
+                        $location = $fileLocation.$counter;
+                        $counter += 1;
                     }
+                    $fileLocation = $location;
+
+                    move_uploaded_file($fileTmp,$fileLocation);
                 }
             } else {
                 echo $filetype."<br>".$filesize."<br>".MBSIZE;
