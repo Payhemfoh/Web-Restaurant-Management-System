@@ -29,7 +29,7 @@ body {
 .sidenav a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 18px;
   color: #2196F3;
   display: block;
 }
@@ -50,7 +50,7 @@ body {
         <br/>
 
         <div class="sidenav">
-          <a href='#' style='color:black' class='nav_main py-0 my-0'>Menu</a><br>
+          <a href='#' class='nav_main py-0 my-0'>Category</a><br>
         <?php
 
         //database connection
@@ -70,7 +70,7 @@ body {
              
             while($row = $result->fetch_assoc()) 
             {
-                echo "<a href='#' style='color:black' class='nav_menu py-0 my-0' value='".$row['category_id']."'>";
+                echo "<a href='#' class='nav_menu py-0 my-0' value='".$row['category_id']."'>";
                 echo $row["category_name"];
                 echo "</a>";
             }

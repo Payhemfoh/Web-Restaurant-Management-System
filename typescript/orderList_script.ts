@@ -16,7 +16,6 @@ $(()=>{
 function setupWebpage():void{
     $(".category_row").on("click",(e)=>{
         let id = e.target.getAttribute("value")!;
-        console.log(id);
         displayMenu(id);
     });
 

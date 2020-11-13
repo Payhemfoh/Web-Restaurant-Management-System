@@ -1,4 +1,3 @@
-import { stackOrderInsideOut } from "d3";
 import { errorModal } from "./errorFunction.js";
 
 $(function(){

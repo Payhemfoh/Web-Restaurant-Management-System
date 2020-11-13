@@ -1,8 +1,29 @@
 "use strict";
-//import * as d3 from "d3";
+//import Chart from "chart.js"
 $(function () {
-    var value = [];
-    d3.csv("../settings/unemployment-x.csv").then(function (data) { });
+    var canvas = (document.getElementById("graph").getContext("2d"));
+    var dataset = {};
+    $.ajax({
+        url: "../php/getDataSet.php",
+        dataType: "json",
+        success: function (data) {
+            dataset = data;
+            var chart = new Chart(canvas, {
+                //type of chart
+                type: "bar",
+                //data for dataset
+                data: dataset,
+                //addition parameter for chart setting
+                options: {
+                    scales: {
+                        yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                    }
+                }
+            });
+        }
+    });
 });
-//create svg element
-var svg = d3.select("#");

@@ -39,6 +39,6 @@
         <br/>
         <?php printModal(); ?>
         <?php printFooter(); ?>
-        <script src="../javascript/homepage_script.js" ></script>
+        <script type='module' src="../javascript/homepage_script.js" ></script>
     </body>
 </html>

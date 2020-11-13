@@ -45,13 +45,8 @@
                                     $phoneNo);
             $statement->execute();
 
-            if($statement->get_result()){
-                echo "<p>The data had been added into database.</p><br>";
-                echo "<button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Return to Menu</button>";
-            }else{
-                echo "<p>Failed to insert data into database.</p><br>";
-                echo "<button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Return to Menu</button>";
-            }
+            echo "<p>The data had been added into database.</p><br>";
+            echo "<button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Return to Menu</button>";
             $statement->close();
         }else{
             die("Failed to prepare SQL statement.");

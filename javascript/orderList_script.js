@@ -5,7 +5,6 @@ $(function () {
 function setupWebpage() {
     $(".category_row").on("click", function (e) {
         var id = e.target.getAttribute("value");
-        console.log(id);
         displayMenu(id);
     });
     $(".nav_menu").on("click", function (e) {

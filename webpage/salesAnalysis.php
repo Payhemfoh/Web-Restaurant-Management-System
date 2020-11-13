@@ -7,16 +7,16 @@
             require("../php/pageFragment.php");
             printHeadInclude();
         ?>
-        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     </head>
 
     <body class="bg-light">
         <?php printHeader(basename(__FILE__)); ?>
-
+        <br><h3 class="text-center">Sales Analysis</h3><br>
         <br/>
         <div id="content" class="container bg-light col-md-9 rounded">
-            <div id="graph"></div>
-            
+            <canvas id="graph" aria-label="chartjs_graph" role="graph"></canvas>
+
         </div>
         <br/>
         <?php printModal(); ?>

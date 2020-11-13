@@ -1,10 +1,30 @@
-//import * as d3 from "d3";
+//import Chart from "chart.js"
 
 $(()=>{
-    let value:Object[] =[];
-
-    d3.csv("../settings/unemployment-x.csv").then((data)=>{});
+    let canvas = ((document.getElementById("graph")! as HTMLCanvasElement).getContext("2d")) as CanvasRenderingContext2D;
+    let dataset = {};
+    $.ajax({
+        url:"../php/getDataSet.php",
+        dataType:"json",
+        success:(data)=>{
+            dataset = data;
+            let chart = new Chart(canvas,{
+                //type of chart
+                type:"bar",
+                //data for dataset
+                data: dataset,
+                //addition parameter for chart setting
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    });
+    
 })
-
-//create svg element
-let svg = d3.select("#")

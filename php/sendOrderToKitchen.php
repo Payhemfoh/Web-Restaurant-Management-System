@@ -43,12 +43,17 @@
             $modify = $connect->prepare("UPDATE orders SET table_no=? WHERE order_id=?;");
             $modify->bind_param("ii",$table_no,$orderId);
             $modify->execute();
+            $modify->close();
         }else if($service === "take_away"){
-            $arrival = $_COOKIE['arrival'];
+            $datetime = $_COOKIE['arrival'];
+            $arrival = date("Y-m-d H:i:s",strtotime($datetime));
             $modify = $connect->prepare("UPDATE orders SET arrival_time=? WHERE order_id=?;");
             $modify->bind_param("si",$arrival,$orderId);
             $modify->execute();
+            $modify->close();
         }
+
+        $newOrder->close();
     }
 
     //create order item one-by-one
@@ -57,10 +62,9 @@
     $insert->bind_param("isii",$item->id,$item->qty,$orderId);
 
     foreach($orderList->item as $item){
-        echo $item->id."<br>";
-        echo $item->qty."<br>";
+        $insert->execute();
     }
-
+    $insert->close();
     //clear the order item list
     setcookie("orderList","",time()-3600);
 
