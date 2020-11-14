@@ -7,6 +7,35 @@
     $valid = true;
 
     //validation
+    if (empty($id))
+    {
+        echo "<h3><font color = 'red'>id is empty.</font></h3>";
+        $valid = false;
+    }
+
+    if (empty($name))
+    {
+        echo "<h3><font color = 'red'>name is empty.</font></h3>";
+        $valid = false;
+    }
+
+    if (empty($quantity))
+    {
+        echo "<h3><font color = 'red'>quantity is empty.</font></h3>";
+        $valid = false;
+    }
+
+    if (empty($description))
+    {
+        echo "<h3><font color = 'red'>description is empty.</font></h3>";
+        $valid = false;
+    }
+
+    if ($quantity < 0)
+    {
+        echo "<h3><font color = 'red'>quantity should not be less than 0.</font></h3>";
+        $valid = false;
+    }
 
 
     if($valid){

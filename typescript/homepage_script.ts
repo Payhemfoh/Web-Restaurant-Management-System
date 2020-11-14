@@ -100,9 +100,4 @@ $(function(){
         $("body").append(link);
         link.trigger("submit");
     })
-
-    
-    $(".btn_edit").on("click",function(){
-        (("#editModal") as any).modal();
-    })
 });

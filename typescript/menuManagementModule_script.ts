@@ -7,10 +7,7 @@ $(function(){
 
     //add new stock button
     $(".btn_add").on("click",setAddButton);
-
     $(".btn_delete").on("click",setDeleteButton);
-
-
     $(".btn_edit").on("click",setEditButton);
 });
 
@@ -55,6 +52,27 @@ function setAddButton() : void {
                     valid = false;
                 }else{
                     validInput($("#name_input"),$("#name-feedback"));
+                }
+
+                if(category < 0){
+                    inValidInput($("#category_input"),$("#category-feedback"),"The price should not be more than 0!");
+                    valid = false;
+                }else{
+                    validInput($("#category_input"),$("#category-feedback"));
+                }
+
+                if(price < 0){
+                    inValidInput($("#price_input"),$("#price-feedback"),"The price should not be more than 0!");
+                    valid = false;
+                }else{
+                    validInput($("#price_input"),$("#price-feedback"));
+                }
+
+                if(description === ""){
+                    inValidInput($("#description_input"),$("#description-feedback"),"The description should not be empty!");
+                    valid = false;
+                }else{
+                    validInput($("#description_input"),$("#description-feedback"));
                 }
 
                 if(fileInput.files && fileInput.files[0]){
