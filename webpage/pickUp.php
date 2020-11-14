@@ -28,12 +28,16 @@
                 die("Connection error : $connect->connect_errno : $connect->connect_error");
             }
 
-            $sql = "SELECT order_id, order_type, overall_status FROM orders";
+            $sql = "SELECT o.order_id, o.arrival_time, o.date_time, c.username, c.phone_number
+                    FROM orders o, customer c
+                    WHERE o.order_type='take_away'
+                    AND o.overall_status = 'delivering'
+                    AND o.customer_id = c.customer+id";
             $result = $connect->query($sql);
 
             if ($result->num_rows > 0) 
             {
-                printf( '<tr>
+                printf( '<table><tr>
                     <td>%s</td>
                     <td>%s</d>
                     <td>%s</d>
@@ -45,53 +49,28 @@
                 // output data of each row
                 while($row = $result->fetch_assoc())
                 {
-                    $checkType = $row["order_type"];
-                    $checkStatus = $row["overall_status"];
-                    $id = $row["order_id"];
-                
-                    if( $checkType == "take_away" && $checkStatus == "delivering" ){
-                        printf( '<tr>
-                                <td>%s</td>
-                                <td>%s</d>
-                                <td>%s</d>
-                            </tr>',
-                            $row["order_type"],
-                            $row['overall_status'],
-                            "<input type='checkbox' onclick='checkTick(this,$id);'/>");
-                    }
+                    printf( '<tr>
+                            <td>Username : %s</td>
+                            <td>Contact No : %s</td>
+                            <td>Arrival time: %s</td>
+                            <td>Order date and time: %s</td>
+                            <button class=\'btn btn-block btn-primaryLight btn-primary btn_delivered\' value=\'%d\'>
+                        Delivered
+                        </button>
+                        </tr>',
+                        $row["username"],
+                        $row['phone_number'],
+                        $row["arrival_time"],
+                        $row["date_time"],
+                        $row["order_id"]);
                 }
+                echo "</table>";
             }
         ?>
         </div>
         
-        <script type="text/javascript">
-            function checkTick(tick,currentId)
-            {
-                if(tick.checked() == true)
-                {
-                    var mysql = require('mysql');
-
-                    var link = mysql.createConnection({
-                    host: "localhost",
-                    user: "root",
-                    password: "",
-                    database: "rms_database"
-                    });
-
-                    link.connect(function(e) {
-                        if (e) throw e;
-                        var sql = "UPDATE orders SET overall_status ='arrived' WHERE id = currentId";
-                        link.query(sql, function (e, result) {
-                            if (e) throw e;
-                                console.log(result.affectedRows + " record(s) updated");
-                        });
-                    });
-                }
-            }
-        </script>
-        
         <?php printModal(); ?>
         <?php printFooter(); ?>
-        <script type="module" src="../javascript/kitchenModule_script.js" ></script>
+        <script src="../javascript/pickUp_script.js"></script>
     </body>
 </html>

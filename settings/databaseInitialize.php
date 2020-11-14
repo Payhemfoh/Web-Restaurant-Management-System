@@ -65,7 +65,7 @@
         "access_payment_module" => " ENUM('T','F') NOT NULL,",
         "access_stock_module" => " ENUM('T','F') NOT NULL,",
         "access_menu_module" => " ENUM('T','F') NOT NULL,",
-        "access_order_module" => " ENUM('T','F') NOT NULL,",
+        "access_pickup_module" => " ENUM('T','F') NOT NULL,",
         "access_delivery_module" => " ENUM('T','F') NOT NULL,",
         "access_analysis_module" => " ENUM('T','F') NOT NULL,",
         "access_orderChecking_module" => " ENUM('T','F') NOT NULL"

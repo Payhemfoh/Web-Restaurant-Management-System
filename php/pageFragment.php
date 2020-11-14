@@ -27,6 +27,7 @@ function printHeader($filename){
                         echo    $sess_permission->orderManagementModule==="T" ?    '<a href="../webpage/KitchenModule.php" class="dropdown-item">Kitchen Module</a>':'';
                         echo    $sess_permission->deliveryModule==="T" ?    '<a href="../webpage/deliveryModule.php" class="dropdown-item">Delivery Module</a>':'';
                         echo    $sess_permission->analysisModule==="T" ?    '<a href="../webpage/salesAnalysis.php" class="dropdown-item">Analysis Module</a>':'';
+                        echo    $sess_permission->pickUpModule==="T" ?    '<a href="../webpage/pickUp.php" class="dropdown-item">Pick Up Module</a>':'';
                         echo    '</div>';
                     }else{
                         if($_COOKIE['service']==='delivery' && isset($_COOKIE['delivery_id'])){

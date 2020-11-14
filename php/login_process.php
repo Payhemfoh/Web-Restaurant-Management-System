@@ -62,7 +62,7 @@
                                 "paymentModule"=>$row['access_payment_module'],
                                 "stockManagementModule"=>$row['access_stock_module'],
                                 "menuManagementModule"=>$row['access_menu_module'],
-                                "orderingModule"=>$row['access_order_module'],
+                                "pickUpModule"=>$row['access_pickup_module'],
                                 "deliveryModule"=>$row['access_delivery_module'],
                                 "analysisModule"=>$row['access_analysis_module'],
                                 "orderManagementModule"=>$row['access_orderChecking_module']);
