@@ -5,6 +5,11 @@
     $valid = true;
 
     //validate
+    if(empty($order_id)){
+        echo "Order Id is empty!<br>";
+        $valid = false;
+    }
+
     if(empty($location_address)){
         echo "Location address is empty!<br>";
         $valid = false;

@@ -41,7 +41,7 @@
         $valid = false;
     }
     
-    if (empty($phone))
+    if (empty($phoneNo))
     {
         echo "<h3><font color = 'red'>Your phone number is empty.</font></h3>";
         $valid = false;
@@ -89,7 +89,7 @@
         $valid = false;
     }
     
-    if(!preg_match("/^[0-9]{3}-[0-9]{7}$/", $phone))
+    if(!preg_match("/^[0-9]{3}-[0-9]{7}$/", $phoneNo))
     {
         echo "<h3><font color = 'red'>Your phone number is invalid.</h3></font>";
         $valid = false;

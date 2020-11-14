@@ -64,30 +64,8 @@
         echo "<h3><font color = 'red'>Your username is empty.</font></h3>";
         $valid = false;
     }
-    
-    if (empty($password))
-    {
-        echo "<h3><font color = 'red'>Your password is empty.</font></h3>";
-        $valid = false;
-    }
-
-    if (empty($newPassword))
-    {
-        echo "<h3><font color = 'red'>Your new password is empty. This field is required.</font></h3>";
-        $valid = false;
-    }
-    
-    if (empty($confirm_password))
-    {
-        echo "<h3><font color = 'red'>Your confirm password is empty. This field is required.</font></h3>";
-        $valid = false;
-    }
 
     //advance checking
-    if($confirm_Password!==$newPassword){
-        echo "<h3><font color = 'red'>Password not match with Confirm Password field.</font></h3>";
-        $valid = false;
-    }
     
     if(!ctype_alpha($fname))
     {

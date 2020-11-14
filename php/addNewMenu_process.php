@@ -31,7 +31,7 @@
     }
 
     if( $price < 0 ){
-        echo"<p>Rice must not smaller than 0</p>";
+        echo"<p>Price must not smaller than 0</p>";
         $valid = false;
     }
 

@@ -47,17 +47,13 @@
         $valid = false;
     }
     
-    if (empty($phone))
+    if (empty($phoneNo))
     {
         echo "<h3><font color = 'red'>Your phone number is empty.</font></h3>";
         $valid = false;
     }
 
     //advance checking
-    if($confirm_Password!==$password){
-        echo "<h3><font color = 'red'>Password not match with Confirm Password field.</font></h3>";
-        $valid = false;
-    }
     
     if(!ctype_alpha($fname))
     {
@@ -71,7 +67,7 @@
         $valid = false;
     }
     
-    if(!preg_match("/^[0-9]{3}-[0-9]{7}$/", $phone))
+    if(!preg_match("/^[0-9]{3}-[0-9]{7}$/", $phoneNo))
     {
         echo "<h3><font color = 'red'>Your phone number is invalid.</h3></font>";
         $valid = false;

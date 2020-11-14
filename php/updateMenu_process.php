@@ -11,6 +11,37 @@
     $valid = true;
 
     //validation
+    if(empty($id)){
+        echo "<p>Id has not entered yet</p>";
+        $valid = false;
+    }
+
+    if(empty($name)){
+        echo "<p>Name has not entered yet</p>";
+        $valid = false;
+    }
+
+    if(empty($category)){
+        echo "<p>Category has not selected yet</p>";
+        $valid = false;
+    }
+
+    if(empty($price)){
+        echo "<p>Price has not entered yet</p>";
+        $valid = false;
+    }
+
+    if(empty($description)){
+        echo "<p>Description has not entered yet</p>";
+        $valid = false;
+    }
+
+    if( $price < 0 ){
+        echo"<p>Price must not smaller than 0</p>";
+        $valid = false;
+    }
+
+    //validation
     if(empty($name)){
         echo "<p>Name has not entered yet</p>";
         $valid = false;
