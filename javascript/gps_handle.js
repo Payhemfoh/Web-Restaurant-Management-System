@@ -2,16 +2,21 @@ var map;
 var customerMarker;
 var staffMarker;
 var geocoder;
+var directionService;
+var directionRender;
 $(function () {
     initMap();
     update();
 });
 function update() {
     setStaffPosition();
+    calcRoute();
     setTimeout(update, 60000);
 }
 function initMap() {
     geocoder = new google.maps.Geocoder();
+    directionService = new google.maps.DirectionsService();
+    directionRender = new google.maps.DirectionsRenderer({ map: map });
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 0, lng: 0 },
         zoom: 16,
@@ -64,4 +69,26 @@ function setStaffPosition() {
             }
         }
     });
+}
+function calcRoute() {
+    if (staffMarker != null && customerMarker != null) {
+        staffMarker.setMap(null);
+        customerMarker.setMap(null);
+        var start = staffMarker.getPosition();
+        var end = customerMarker.getPosition();
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode.DRIVING,
+            optimizeWaypoints: true,
+            unitSystem: google.maps.UnitSystem.METRIC,
+            provideRouteAlternatives: true,
+            avoidFerries: true,
+        };
+        directionService.route(request, function (result, status) {
+            if (status == 'OK') {
+                directionRender.setDirections(result);
+            }
+        });
+    }
 }

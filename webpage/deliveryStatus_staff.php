@@ -16,20 +16,22 @@
             die("Connection error : $connect->connect_errno : $connect->connect_error");
         }
 
-        if($statement = $connect->prepare("SELECT * 
+        if($statement = $connect->prepare("SELECT c.username,d.customer_address,d.chatFile 
                                             FROM delivery d,orders o,customer c 
                                             WHERE d.delivery_id=? 
                                             AND d.delivery_id = o.delivery_id
                                             AND o.customer_id = c.customer_id
-                                            LIMIT 1;")){
-            $statement->bind_param("s",$delivery_id);
+                                            LIMIT 1")){
+            $statement->bind_param("i",$delivery_id);
             $statement->execute();
             $delivery_result = $statement->get_result();
-            while($row = $delivery_result->fetch_array()){
+            
+            while($row = $delivery_result->fetch_assoc()){
                 echo $row['customer_address'];
                 echo "<input type='hidden' id='staff_latitude' value='0'>";
                 echo "<input type='hidden' id='staff_longitude' value='0'>";
                 echo "<input type='hidden' id='delivery_id' value='$delivery_id'>";
+                echo "<input type='hidden' id='chatFile' value='".$row['chatFile']."'>";
                 echo "<input type='hidden' id='customer_username' value='".$row['username']."'>";
             }
             $statement->close();

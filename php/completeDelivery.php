@@ -12,7 +12,7 @@
 
         //get orderId
         if($check = $connect->prepare("SELECT order_id,delivery_id FROM orders WHERE delivery_id = ? LIMIT 1")){
-            $check->bind_param($deliveryId);
+            $check->bind_param("i",$deliveryId);
             $check->execute();
             $result = $check->get_result();
             if($row = $result->fetch_assoc()){
@@ -23,6 +23,8 @@
                                                 WHERE order_id=?")){
                     $statement->bind_param("i",$orderId);
                     $statement->execute();
+
+                    setcookie("delivery_id","",time()-3600,"/");
                     
                     echo "<h4>Delivery Request Completed</h4><br>
                     <button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Refresh</button>";

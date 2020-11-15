@@ -10,7 +10,7 @@
         die("Connection error : $connect->connect_errno : $connect->connect_error");
     }
 
-    if($statement = $connect->prepare("SELECT * FROM menu WHERE menu_id=? LIMIT 1")){
+    if($statement = $connect->prepare("SELECT * FROM menu WHERE menu_id = ? LIMIT 1")){
         $statement->bind_param("i",$id);
         $statement->execute();
 
@@ -29,11 +29,28 @@
                         </div>
 
                         <div class='form-group'>
-                            <label for='name'>Ingredients:</label>
-                            <textarea readonly class='form-control' 
-                            name='ingredients'>Chicken,Rice,Cucumber,Soy Sauce,Cooking Oil, Chili Sauce</textarea>
-                        </div>
+                <label for='category'>Category:</label>
+                <select id='category_input' class='form-control' name='category'>";
+            
 
+                if($statement2 = $connect->prepare("SELECT * FROM menu_category")){
+                    $statement2->execute();
+                    $result2 = $statement2->get_result();
+
+                    while($row2 = $result2->fetch_array()){
+                        if($row2['category_id'] === $row['category_id']){
+                            echo '<option value='.$row2['category_id'].' selected>'.$row2['category_name'].'</option>';
+                        }
+                    }
+
+                    $statement2->close();
+                }else{
+                    die("Failed to prepare SQL statement.");
+                }
+
+                echo    "</select>
+                        </div>
+                        
                         <div class='form-group'>
                             <label for='price'>Price(RM):</label>
                             <input type='number' readonly step='0.01' class='form-control' name='price' value='".$row['menu_price']."'>

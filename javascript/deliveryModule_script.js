@@ -1,11 +1,7 @@
 import { errorModal } from "./errorFunction.js";
 $(function () {
-    loop();
-});
-function loop() {
     update();
-    setTimeout(loop, 60000);
-}
+});
 function update() {
     var username = $("#username").val();
     $.ajax("../php/loadDeliveryRequest.php", {
@@ -26,7 +22,6 @@ function update() {
                         deliveryId: deliveryId
                     },
                     success: function (data) {
-                        console.log(data);
                         $("#modal-title").text("Delivery Request Accepted");
                         $(".modal-body").html(data);
                         $(".modal-footer").html("");

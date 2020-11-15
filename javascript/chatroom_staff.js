@@ -1,9 +1,8 @@
 import { Chat } from "./Chat.js";
 $(function () {
-    var username = $("#username-box").text();
-    var customer_username = $("#customer_username").val();
-    var delivery_id = $("#delivery_id").val();
-    var chat = new Chat(customer_username + "_" + delivery_id + ".txt");
+    var username = $("#username").val();
+    var file = $("#chatFile").val();
+    var chat = new Chat(file);
     chat.getState();
     $("#msg").on("keyup", function (e) {
         if (e.key == "Enter") {
@@ -19,25 +18,32 @@ $(function () {
             }
         }
     });
-    $("btn_arrived").on("click", orderArrived);
+    $("#btn_arrived").on("click", orderArrived);
     Updating();
     function Updating() {
         chat.update();
         setTimeout(Updating, 5000);
     }
 });
-function orderArrived() {
+function orderArrived(e) {
+    e.preventDefault();
     var delivery_id = $("#delivery_id").val();
+    console.log(delivery_id);
     $.ajax({
         url: "../php/completeDelivery.php",
         method: "post",
         dataType: "html",
         data: { delivery_id: delivery_id },
         success: function (data) {
+            console.log(data);
             $("#modal-title").text("Delivery Request Completed");
             $(".modal-body").html(data);
             $(".modal-footer").html("");
             $("#btnAgain").attr("data-dismiss", "modal");
+            $("#btnAgain").on("click", function () {
+                location.reload();
+            });
+            $("#modal").modal();
             setTimeout(function () { return $("#btnAgain").trigger("click"); }, 1000);
         }
     });

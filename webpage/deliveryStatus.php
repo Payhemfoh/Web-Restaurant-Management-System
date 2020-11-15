@@ -105,6 +105,7 @@
         </div>
         <br/>
 
+        <?php printModal(); ?>
         <?php printFooter(); ?>
         <script type="module" src="../javascript/gps_handle.js"></script>
         <script type="module" src="../javascript/chatroom.js"></script>

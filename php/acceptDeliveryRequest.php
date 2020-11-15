@@ -35,6 +35,7 @@
                     $statement->bind_param("ii",$staffId,$deliveryId);
                     $statement->execute();
                     
+                    setcookie("delivery_id",$deliveryId,time()+ (10 * 365 * 24 * 60 * 60),"/");
                     echo "<h4>Delivery Request Accepted</h4><br>
                     <button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Refresh</button>";
                     

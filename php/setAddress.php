@@ -1,10 +1,18 @@
 <?php
+    if(!isset($_SESSION))
+        session_start();
     //get location
+    $username =$_SESSION['sess_username'];
     $order_id = $_COOKIE['orderId'];
     $location_address = $_POST['location_address'];
     $valid = true;
 
     //validate
+    if(empty($username)){
+        echo "Username is empty!<br>";
+        $valid = false;
+    }
+
     if(empty($order_id)){
         echo "Order Id is empty!<br>";
         $valid = false;
@@ -35,6 +43,14 @@
                 $update->bind_param("ii",$delivery_id,$order_id);
                 $update->execute();
                 $update->close();
+            }
+
+            $file = $username.'_'.$delivery_id.'.txt';
+
+            if($setFile = $connect->prepare("UPDATE delivery SET chatFile = ? WHERE delivery_id=?")){
+                $setFile->bind_param("si",$file,$delivery_id);
+                $setFile->execute();
+                $setFile->close();
             }
             $statement->close();
         }else{

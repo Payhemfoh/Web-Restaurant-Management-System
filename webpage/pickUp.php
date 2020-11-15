@@ -32,7 +32,7 @@
                     FROM orders o, customer c
                     WHERE o.order_type='take_away'
                     AND o.overall_status = 'delivering'
-                    AND o.customer_id = c.customer+id";
+                    AND o.customer_id = c.customer_id";
             $result = $connect->query($sql);
 
             if ($result->num_rows > 0) 

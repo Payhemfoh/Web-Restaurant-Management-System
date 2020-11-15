@@ -42,6 +42,7 @@ $(function () {
             "<div class=\"form-group\">" +
             "<label for = \"time\">Please enter your Expected Arrival Time:</label><br>" +
             "<input type='time' class = 'form-control' id='arrival_time' name='arrival_time'>" +
+            "<div id='time-feedback'></div>" +
             "</div>" +
             "<button id='modal-submit' class=\"btn btn-block btn-primaryLight btn-primary\">" +
             "Start Order</button>");
@@ -52,23 +53,21 @@ $(function () {
             e.preventDefault();
             var arrival_date = $("#arrival_date").val();
             var arrival_time = $("#arrival_time").val();
-            var valid = false;
+            var valid = true;
             if (arrival_date === "") {
-                inValidInput($("arrival_date"), $("date-feedback"), "The date should not be empty");
+                inValidInput($("#arrival_date"), $("#date-feedback"), "The date should not be empty");
                 valid = false;
             }
             else {
-                validInput($("arrival_date"), $("date-feedback"));
+                validInput($("#arrival_date"), $("#date-feedback"));
             }
             if (arrival_time === "") {
-                inValidInput($("arrival_time"), $("time-feedback"), "The time should not be empty");
+                inValidInput($("#arrival_time"), $("#time-feedback"), "The time should not be empty");
                 valid = false;
             }
             else {
-                validInput($("arrival_time"), $("time-feedback"));
+                validInput($("#arrival_time"), $("#time-feedback"));
             }
-            console.log(arrival_date);
-            console.log();
             if (valid) {
                 document.cookie = "arrival=" + arrival_date + " " + arrival_time + "; path=/;";
                 var link = $("<form action='../webpage/orderList.php'></form>");

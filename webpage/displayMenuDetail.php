@@ -31,12 +31,6 @@
                         </div>
 
                         <div class='form-group'>
-                            <label for='name'>Ingredients:</label>
-                            <textarea readonly class='form-control' 
-                            name='ingredients'>Chicken,Rice,Cucumber,Soy Sauce,Cooking Oil, Chili Sauce</textarea>
-                        </div>
-
-                        <div class='form-group'>
                             <label for='price'>Price(RM):</label>
                             <input type='number' readonly step='0.01' class='form-control' name='price' value='".$row['menu_price']."'>
                         </div>

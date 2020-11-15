@@ -54,6 +54,28 @@ function checkOrderStatus() : void{
                         if($("#preparing").hasClass("active")) $("#preparing").removeClass("active");
                         if($("#delivering").hasClass("active")) $("#delivering").removeClass("active");
                         if(!$("#arrived").hasClass("active")) $("#arrived").addClass("active");
+
+
+                        //set click event for dine in button
+                        $("#modal-title").text("Order Arrived");
+                        $(".modal-body").html(
+                                                "<h4 class='text-center'>Your order had arrived</h4><br>"+
+                                                "<button id='modal-submit' class=\"btn btn-block btn-primaryLight btn-primary\">"+
+                                                "Complete Order</button>");
+
+                        $("#modal-submit").attr("data-dismiss","modal");
+
+                        $("#modal-submit").on("click",(e)=>{
+                            e.preventDefault();
+                            document.cookie = 'orderId=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+                            document.cookie = 'service=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+                            document.cookie = 'delivery_id=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+                            let link = $("<form action='../webpage/homepage.php'></form>");
+                            $("body").append(link);
+                            link.trigger("submit");
+                        });
+
+                        ($("#modal") as any).modal();
                         break;
                 }
             }

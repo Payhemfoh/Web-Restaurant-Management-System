@@ -62,13 +62,6 @@
             </div>
 
             <div class='form-group'>
-                <label for='name'>Ingredients:</label>
-                <textarea class='form-control' 
-                name='ingredients'>Chicken,Rice,Cucumber,Soy Sauce,Cooking Oil, Chili Sauce</textarea>
-                <div id='ingredient-feedback'></div>
-            </div>
-
-            <div class='form-group'>
                 <label for='price'>Price(RM):</label>
                 <input type='number' id='price_input' step='0.01' class='form-control' name='price' value='%.2f'>
                 <div id='price-feedback'></div>
