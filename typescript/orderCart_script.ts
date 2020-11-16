@@ -28,7 +28,7 @@ $(function(){
             dataType:"html",
             data:{username:username},
             success:(data)=>{
-                document.cookie="orderList=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+                console.log(data);
                 let form = $("<form action='../webpage/payment.php'></form>");
                 $("body").append(form);
                 form.trigger("submit");

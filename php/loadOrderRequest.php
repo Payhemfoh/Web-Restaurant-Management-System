@@ -7,7 +7,7 @@
         die("Connection error : $connect->connect_errno : $connect->connect_error");
     }
 
-    if($statement = $connect->prepare("SELECT m.menu_name,i.quantity,o.date_time,o.order_type,c.username,i.item_id,m.menu_picture
+    if($statement = $connect->prepare("SELECT m.menu_name,i.quantity,o.*,c.username,i.item_id,m.menu_picture
                                         FROM menu m,order_item i,orders o, customer c 
                                         WHERE order_status LIKE 'preparing' 
                                         AND i.menu_id = m.menu_id

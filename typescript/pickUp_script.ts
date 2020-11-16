@@ -14,7 +14,7 @@ $(()=>{
                 $("#btnAgain").attr("data-dismiss","modal");
                 $("#btnAgain").on("click",()=>location.reload());
                 ($("#modal") as any).modal();
-                setTimeout(()=>$("#btnAgain").trigger("click"),500);
+                setTimeout(()=>$("#btnAgain").trigger("click"),1000);
             },
         });
     });

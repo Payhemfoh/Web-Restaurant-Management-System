@@ -37,26 +37,19 @@
 
             if ($result->num_rows > 0) 
             {
-                printf( '<table><tr>
-                    <td>%s</td>
-                    <td>%s</d>
-                    <td>%s</d>
-                </tr>',
-                "Order type",
-                "Overall status",
-                "Done");
+                echo '<table style="width:100%">';
 
                 // output data of each row
                 while($row = $result->fetch_assoc())
                 {
-                    printf( '<tr>
-                            <td>Username : %s</td>
-                            <td>Contact No : %s</td>
-                            <td>Arrival time: %s</td>
-                            <td>Order date and time: %s</td>
-                            <button class=\'btn btn-block btn-primaryLight btn-primary btn_delivered\' value=\'%d\'>
-                        Delivered
-                        </button>
+                    printf( '<tr><td>
+                            Username : %s<br>
+                            Contact No : %s<br>
+                            Order date and time: %s<br>
+                            Arrival time: %s</td>
+                            <td><button class=\'btn btn-block btn-primaryLight btn-primary btn_delivered\' value=\'%d\'>
+                        Arrived
+                        </button></td>
                         </tr>',
                         $row["username"],
                         $row['phone_number'],
@@ -67,6 +60,7 @@
                 echo "</table>";
             }
         ?>
+        </div>
         </div>
         
         <?php printModal(); ?>

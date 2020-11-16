@@ -23,7 +23,9 @@
     if($statement = $connect->prepare("SELECT m.menu_name as x,SUM(quantity) as y 
                                         FROM order_item o, menu m 
                                         WHERE o.menu_id = m.menu_id
-                                        GROUP BY m.menu_name")){
+                                        GROUP BY m.menu_name
+                                        ORDER BY y
+                                        LIMIT 10")){
         $statement->execute();
         $result = $statement->get_result();
         while($row = $result->fetch_assoc()){

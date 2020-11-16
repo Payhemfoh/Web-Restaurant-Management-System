@@ -27,7 +27,7 @@ function update() {
                         $("#btnAgain").attr("data-dismiss", "modal");
                         $("#btnAgain").on("click", function () { return location.reload(); });
                         $("#modal").modal();
-                        setTimeout(function () { return $("#btnAgain").trigger("click"); }, 500);
+                        setTimeout(function () { return $("#btnAgain").trigger("click"); }, 1000);
                     },
                     error: errorModal
                 });

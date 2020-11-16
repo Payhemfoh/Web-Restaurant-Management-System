@@ -33,7 +33,15 @@
                         $row['menu_price'],
                         $totalPrice);
             }
-            printf("<input id='totalPrice' type='hidden' value='%.2f' />",$total);
+            echo "<tr>
+                <td colspan='4'>
+                    <div class='input-group'><div class='input-group-prepend'>
+                        <div class='input-group-text'>Total Price </div>
+                    </div>
+                    <input id='totalPrice' type='number' value='$total' step='0.01' class='form-control' readonly>
+                    </div>
+                </td>
+            </tr>";
             
             $statement->close();
         }else{

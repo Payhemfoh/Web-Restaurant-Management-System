@@ -52,12 +52,12 @@ $(function(){
                                 "<label for = \"time\">Please enter your Expected Arrival Time:</label><br>"+
                                 "<input type='time' class = 'form-control' id='arrival_time' name='arrival_time'>"+
                                 "<div id='time-feedback'></div>"+
-                                "</div>"+
-                                "<button id='modal-submit' class=\"btn btn-block btn-primaryLight btn-primary\">"+
-                                "Start Order</button>");
-    
-        $(".modal-footer").html("<button id=\"modal-cancel\" class=\"btn btn-block btn-primaryLight btn-primary\""+
+                                "</div><br>"+"<button id='modal-submit' class=\"btn btn-block btn-primaryLight btn-primary\">"+
+                                "Start Order</button>"+
+                                "<button id=\"modal-cancel\" class=\"btn btn-block btn-primaryLight btn-primary\""+
                                 "data-dismiss=\"modal\">Cancel</button>");
+    
+        $(".modal-footer").html();
         $("#modalcancel").attr("data-dismiss","modal");
 
         $("#modal-submit").on("click",(e)=>{

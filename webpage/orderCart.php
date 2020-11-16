@@ -79,7 +79,12 @@
                         $connect->close();
                     }else{
                         echo "<p class='center'>No order found in the cart. Click the button below to start your order.<p>";
-                        echo "<a href=\"../webpage/homepage.php\" class='btn btn-block btn-primaryLight btn-primary'>Start Order</a><br>";
+                        if(isset($_COOKIE['service'])){
+                            echo "<a href=\"../webpage/orderList.php\" class='btn btn-block btn-primaryLight btn-primary'>Start Order</a><br>";
+                        }else{
+                            echo "<a href=\"../webpage/homepage.php\" class='btn btn-block btn-primaryLight btn-primary'>Start Order</a><br>";
+                        }
+                        
                     }
                 
                 echo "<input type='hidden' id='username' value='$sess_username'>";

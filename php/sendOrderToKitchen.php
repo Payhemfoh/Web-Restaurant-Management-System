@@ -3,6 +3,7 @@
     $orderId = 0;
     $orderList = json_decode($_COOKIE['orderList']);
     $service = $_COOKIE['service'];
+    $valid = true;
 
     if(isset($_COOKIE['orderId']))
         $orderId = $_COOKIE['orderId'];
