@@ -48,7 +48,7 @@
                             Order date and time: %s<br>
                             Arrival time: %s</td>
                             <td><button class=\'btn btn-block btn-primaryLight btn-primary btn_delivered\' value=\'%d\'>
-                        Arrived
+                        Pick Up
                         </button></td>
                         </tr>',
                         $row["username"],
