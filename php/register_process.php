@@ -20,56 +20,47 @@
 
 
     //<---------------------Start Validation--------------------->
-    if(empty($fname))
-    {
+    if(empty($fname)){
         echo "<h3><font color = 'red'>Your first name is empty.</font></h3>";
         $valid = false;
     }
     
-    if(empty($lname))
-    {
+    if(empty($lname)){
         echo "<h3><font color = 'red'>Your last name is empty.</font></h3>";
         $valid = false;
     }
     
-    if(empty($gender))
-    {
+    if(empty($gender)){
         echo "<h3><font color = 'red'>Your gender is not selected.</font></h3>";
         $valid = false;
     }
 
-    if(empty($birthday))
-    {
+    if(empty($birthday)){
         echo "<h3><font color = 'red'>Your date of birth is empty.</font></h3>";
         $valid = false;
     }
     
-    if (empty($phone))
-    {
+    if (empty($phone)){
         echo "<h3><font color = 'red'>Your phone number is empty.</font></h3>";
         $valid = false;
     }
     
-    if (empty($email))
-    {
+    if (empty($email)){
         echo "<h3><font color = 'red'>Your email is empty.</font></h3>";
         $valid = false;
     }
     
-    if (empty($username))
-    {
+    if (empty($username)){
         echo "<h3><font color = 'red'>Your username is empty.</font></h3>";
         $valid = false;
     }
     
-    if (empty($password))
-    {
+    if (empty($password)){
         echo "<h3><font color = 'red'>Your password is empty.</font></h3>";
         $valid = false;
     }
     
-    if (empty($confirm_Password))
-    {
+    if (empty($confirm_Password)){
         echo "<h3><font color = 'red'>Your confirm password is empty. This field is required.</font></h3>";
         $valid = false;
     }
