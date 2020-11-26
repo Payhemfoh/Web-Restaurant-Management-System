@@ -78,7 +78,7 @@
                         }
                         $connect->close();
                     }else{
-                        echo "<p class='center'>No order found in the cart. Click the button below to start your order.<p>";
+                        echo "<p class='text-center'>No order found in the cart. Click the button below to start your order.<p>";
                         if(isset($_COOKIE['service'])){
                             echo "<a href=\"../webpage/orderList.php\" class='btn btn-block btn-primaryLight btn-primary'>Start Order</a><br>";
                         }else{

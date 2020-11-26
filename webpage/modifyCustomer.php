@@ -17,7 +17,7 @@
 
         while($row = $result->fetch_array()){
             echo "<form>
-                    <font size='6'>Edit Stock Data</font>
+                    <h3 class='text-center'>Edit Customer Data</h3>
                     <div class='row'>
                         <div class='form-group col'>
                             <label for = 'fname'><b>First Name:</b></label>

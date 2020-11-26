@@ -38,6 +38,7 @@
                     </div></tr>
             ",$row['menu_picture'],$row['item_id']);
         }
+        echo "<hr />";
         echo "</table>";
 
         $statement->close();

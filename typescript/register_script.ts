@@ -26,12 +26,14 @@ $(function(){
         }else{
             validInput($("#fname"),$("#fname-feedback"));
         }
+
         if(lname === ""){
             inValidInput($("#lname"),$("#lname-feedback"),"Last Name should not be empty!");
             valid = false;
         }else{
             validInput($("#lname"),$("#lname-feedback"));
         }
+
         if(gender == undefined){
             inValidInput($("#gender"),$("#gender-feedback"),"Gender should not be empty!");
             valid = false;
@@ -47,12 +49,14 @@ $(function(){
                 inValidInput($("#gender"),$("#gender-feedback"),"Invalid gender!");
             }
         }
+
         if(birthday === ""){
             inValidInput($("#birthday"),$("#birthday-feedback"),"Date Of Birth should not be empty!");
             valid = false;
         }else{
             validInput($("#birthday"),$("#birthday-feedback"));
         }
+
         if(phone === ""){
             inValidInput($("#phone"),$("#phone-feedback"),"Phone No should not be empty!");
             valid = false;
@@ -64,6 +68,7 @@ $(function(){
                 valid = false;
             }
         }
+
         if(email === ""){
             inValidInput($("#email"),$("#email-feedback"),"Email should not be empty!");
             valid = false;
@@ -78,18 +83,21 @@ $(function(){
             }
             
         }
+
         if(username === ""){
             inValidInput($("#username"),$("#username-feedback"),"Username should not be empty!");
             valid = false;
         }else{
             validInput($("#username"),$("#username-feedback"));
         }
+
         if(password === ""){
             inValidInput($("#password"),$("#password-feedback"),"Password should not be empty!");
             valid = false;
         }else{
             validInput($("#password"),$("#password-feedback"));
         }
+        
         if(confirmPassword === ""){
             inValidInput($("#confirm_password"),$("#confirmPassword-feedback"),"Confirm Password should not be empty!");
             valid = false;

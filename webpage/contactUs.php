@@ -25,13 +25,13 @@
                 <p id='text'>For more information, please do follow us on our following social media:</p>
 		    </center>
                 <div class="row">
-                    <div class="col p-4">
+                    <div class="col p-4 text-center">
                         <a class='media' href='https://www.facebook.com' target='_blank'><i class='fab fa-facebook-f'></i></a>
                     </div>
-                    <div class="col p-4">
+                    <div class="col p-4 text-center">
                         <a class='media' href='https://www.twitter.com' target='_blank'><i class='fab fa-twitter'></i></a>
                     </div>
-                    <div class="col p-4">
+                    <div class="col p-4 text-center">
                         <a class='media' href='https://www.instagram.com' target='_blank'><i class='fab fa-instagram'></i></a>
                     </div>
                 </div>

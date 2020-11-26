@@ -1,6 +1,6 @@
 <form>
     <fieldset>
-        <br><h3 class="text-center">Register</h3><br>
+        <br><h3 class="text-center">Add Customer Data</h3><br>
         
         <div class="row">
             <div class="form-group col">

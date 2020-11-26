@@ -18,7 +18,7 @@
 
         while($row = $result->fetch_array()){
             echo "<form>					
-                <center><font size='6'>Delete Staff Data</font></center>
+                <h3 class='text-center'>Delete Customer Data</h3>
 
                 <div class='row'>
                     <div class='form-group col'>

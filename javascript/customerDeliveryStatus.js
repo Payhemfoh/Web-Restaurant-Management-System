@@ -4,7 +4,17 @@ $(function () {
 });
 function update() {
     checkOrderStatus();
-    setTimeout(update, 60000);
+    setTimeout(update, 1000);
+}
+function loadOrder() {
+    var orderId = $("#orderId").val();
+    $.ajax({
+        url: "../php/loadOrderItem.php",
+        method: "post",
+        dataType: "html",
+        data: { orderId: orderId },
+        success: function (data) { return $("#order_item_list").html(data); }
+    });
 }
 function checkOrderStatus() {
     $.ajax({
@@ -86,15 +96,5 @@ function checkOrderStatus() {
                 }
             }
         }
-    });
-}
-function loadOrder() {
-    var orderId = $("#orderId").val();
-    $.ajax({
-        url: "../php/loadOrderItem.php",
-        method: "post",
-        dataType: "html",
-        data: { orderId: orderId },
-        success: function (data) { return $("#order_item_list").html(data); }
     });
 }

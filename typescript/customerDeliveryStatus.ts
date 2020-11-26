@@ -7,7 +7,18 @@ $(()=>{
 
 function update(){
     checkOrderStatus();
-    setTimeout(update,60000);
+    setTimeout(update,1000);
+}
+
+function loadOrder():void{
+    let orderId = $("#orderId").val();
+    $.ajax({
+        url:"../php/loadOrderItem.php",
+        method:"post",
+        dataType:"html",
+        data:{orderId:orderId},
+        success:(data)=>$("#order_item_list").html(data)
+    });
 }
 
 function checkOrderStatus() : void{
@@ -80,16 +91,5 @@ function checkOrderStatus() : void{
                 }
             }
         }
-    });
-}
-
-function loadOrder():void{
-    let orderId = $("#orderId").val();
-    $.ajax({
-        url:"../php/loadOrderItem.php",
-        method:"post",
-        dataType:"html",
-        data:{orderId:orderId},
-        success:(data)=>$("#order_item_list").html(data)
     });
 }

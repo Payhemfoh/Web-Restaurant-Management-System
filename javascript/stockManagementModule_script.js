@@ -1,7 +1,9 @@
 import { errorModal } from "./errorFunction.js";
 import { validInput, inValidInput } from "./form_handle.js";
 $(function () {
-    $("#table").DataTable();
+    $("#table").DataTable({
+        "order": [[2, 'asc']]
+    });
     //add new stock button
     $(".btn_add").on("click", function () {
         $.ajax("../webpage/addNewStock.php", {
@@ -73,7 +75,7 @@ $(function () {
             method: "POST",
             dataType: "HTML",
             data: { id: id },
-            success: function (data, status, xhr) {
+            success: function (data) {
                 $("#modal-title").text("Delete Stock Data");
                 $(".modal-body").html(data);
                 $(".modal-footer").html("");
@@ -84,7 +86,7 @@ $(function () {
                         method: "POST",
                         dataType: "HTML",
                         data: { id: id },
-                        success: function (data, status, xhr) {
+                        success: function (data) {
                             $("#modal-title").text("Stock Data Deleted");
                             $(".modal-body").html(data);
                             $(".modal-footer").html("");
@@ -97,8 +99,8 @@ $(function () {
                 $("#modal").modal();
             },
             error: errorModal
-        });
-    });
+        }); // end callback
+    }); //end on set listener
     //edit stock button
     $(".btn_edit").on("click", function () {
         var id = this.getAttribute("value");

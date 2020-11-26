@@ -4,6 +4,7 @@ var staffMarker;
 var geocoder;
 var directionService;
 var directionRender;
+var polyline;
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 0, lng: 0 },
@@ -54,14 +55,22 @@ function markStaffPosition(position) {
         }
     });
 }
+function checkPoint() {
+    if (polyline == null) {
+        calcRoute();
+    }
+    else {
+        if (google.maps.geometry.poly.isLocationOnEdge(staffMarker.getPosition(), polyline, 10e-1)) {
+            calcRoute();
+        }
+    }
+}
 function calcRoute() {
     if (staffMarker != null && customerMarker != null) {
-        staffMarker.setMap(null);
-        customerMarker.setMap(null);
-        var start = staffMarker.getPosition();
+        var start_1 = staffMarker.getPosition();
         var end = customerMarker.getPosition();
         var request = {
-            origin: start,
+            origin: start_1,
             destination: end,
             travelMode: google.maps.TravelMode.DRIVING,
             optimizeWaypoints: true,
@@ -71,7 +80,35 @@ function calcRoute() {
         };
         directionService.route(request, function (result, status) {
             if (status == 'OK') {
-                directionRender.setDirections(result);
+                //directionRender.setDirections(result);
+                map.setCenter(start_1);
+                var iconsetngs = {
+                    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+                };
+                polyline = new google.maps.Polyline({
+                    path: [],
+                    strokeOpacity: 0.8,
+                    strokeColor: '#FF0000',
+                    strokeWeight: 3,
+                    icons: [{
+                            icon: iconsetngs,
+                            repeat: '60px',
+                            offset: '100%'
+                        }]
+                });
+                var bounds = new google.maps.LatLngBounds();
+                var legs = result.routes[0].legs;
+                for (var i = 0; i < legs.length; i++) {
+                    var steps = legs[i].steps;
+                    for (var j = 0; j < steps.length; j++) {
+                        var nextSegment = steps[j].path;
+                        for (var k = 0; k < nextSegment.length; k++) {
+                            polyline.getPath().push(nextSegment[k]);
+                            bounds.extend(nextSegment[k]);
+                        }
+                    }
+                }
+                polyline.setMap(map);
             }
         });
     }
@@ -88,6 +125,6 @@ function update() {
     else {
         $("map").html("Geolocation is not supported by this browser.");
     }
-    setTimeout(calcRoute, 1000);
+    setTimeout(checkPoint, 1000);
     setTimeout(update, 10000);
 }

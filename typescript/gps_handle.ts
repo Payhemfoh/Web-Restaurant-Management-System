@@ -6,6 +6,7 @@ let staffMarker : google.maps.Marker;
 let geocoder : google.maps.Geocoder;
 let directionService : google.maps.DirectionsService;
 let directionRender : google.maps.DirectionsRenderer;
+let polyline : google.maps.Polyline;
 
 $(function(){
     initMap();
@@ -14,8 +15,8 @@ $(function(){
 
 function update(){
     setStaffPosition();
-    calcRoute();
-    setTimeout(update,60000);
+    checkPoint();
+    setTimeout(update,1000);
 }
 
 function initMap():void{
@@ -82,10 +83,18 @@ function setStaffPosition() : void{
     })
 }
 
+function checkPoint(){
+    if(polyline==null){
+        calcRoute();
+    }else{
+        if (google.maps.geometry.poly.isLocationOnEdge(staffMarker.getPosition() as google.maps.LatLng, polyline, 10e-1)) {
+            calcRoute();
+        }
+    }
+}
+
 function calcRoute() {
     if(staffMarker != null && customerMarker != null){
-        staffMarker.setMap(null);
-        customerMarker.setMap(null);
         let start = staffMarker.getPosition() as google.maps.LatLng;
         let end = customerMarker.getPosition() as google.maps.LatLng;
         let request : google.maps.DirectionsRequest = {
@@ -100,7 +109,39 @@ function calcRoute() {
         };
         directionService.route(request, (result, status) => {
             if (status == 'OK') {
-                directionRender.setDirections(result);
+                //directionRender.setDirections(result);
+
+                map.setCenter(start);
+                let iconsetngs = {
+                    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+                };
+
+                polyline = new google.maps.Polyline({
+                    path: [],
+                    strokeOpacity: 0.8,
+                    strokeColor: '#FF0000',
+                    strokeWeight: 3,
+                    icons: [{
+                        icon: iconsetngs,
+                        repeat:'60px',
+                        offset: '100%'}]
+                  });
+                let bounds = new google.maps.LatLngBounds();
+        
+        
+                let legs = result.routes[0].legs;
+                for (let i = 0; i < legs.length; i++) {
+                    let steps = legs[i].steps;
+                    for (let j = 0; j < steps.length; j++) {
+                        let nextSegment = steps[j].path;
+                        for (let k = 0; k < nextSegment.length; k++) {
+                            polyline.getPath().push(nextSegment[k]);
+                            bounds.extend(nextSegment[k]);
+                        }
+                    }
+                }
+        
+                polyline.setMap(map);
             }
         });
     }
