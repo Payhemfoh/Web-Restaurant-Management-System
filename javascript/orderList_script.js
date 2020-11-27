@@ -1,3 +1,4 @@
+import { getCookie, setCookie } from "./cookie_manupulation.js";
 import { errorModal } from "./errorFunction.js";
 $(function () {
     setupWebpage();
@@ -56,7 +57,7 @@ function setupMenu() {
                 data: {
                     id: id
                 },
-                success: function (data, status, xhr) {
+                success: function (data) {
                     $("#modal-title").text("Menu Detail");
                     $(".modal-body").html(data);
                     $(".modal-footer").html('<button id="modal-cancel" class="btn btn-primary btn-primaryLight btn-block" ' +
@@ -69,7 +70,17 @@ function setupMenu() {
                         var orderListObject;
                         if (fragment != null && fragment !== "") {
                             orderListObject = JSON.parse(fragment);
-                            orderListObject.item.push({ id: id, qty: quantity });
+                            var index_1 = -1;
+                            if (orderListObject.item.some(function (obj, value) { if (obj.id === id) {
+                                index_1 = value;
+                                return true;
+                            } return false; })) {
+                                var totalQuantity = orderListObject.item[index_1].qty;
+                                orderListObject.item[index_1].qty = parseInt(totalQuantity) + parseInt(quantity);
+                            }
+                            else {
+                                orderListObject.item.push({ id: id, qty: quantity });
+                            }
                         }
                         else {
                             orderListObject = { item: [{ id: id, qty: quantity }] };
@@ -85,27 +96,4 @@ function setupMenu() {
             });
         }
     });
-}
-function getCookie(key) {
-    var cookie = document.cookie;
-    //get the beginning string of key in cookie 
-    var begin = cookie.indexOf("; " + key + "=");
-    //search the key in cookie
-    if (begin === -1) {
-        //if the key is first cookie
-        begin = cookie.indexOf(key + "=");
-        //if the key is not found
-        if (begin != 0)
-            return null;
-    }
-    //search the end of the key
-    var end = cookie.indexOf(";", begin + 1);
-    if (end === -1) {
-        end = cookie.length;
-    }
-    var fragment = decodeURI(cookie.substring(cookie.indexOf("=", begin) + 1, end));
-    return fragment;
-}
-function setCookie(update) {
-    document.cookie = update;
 }

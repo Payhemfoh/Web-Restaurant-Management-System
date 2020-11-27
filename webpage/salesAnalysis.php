@@ -15,6 +15,38 @@
         <br><h3 class="text-center">Sales Analysis</h3><br>
         <br/>
         <div id="content" class="container bg-light col-md-9 rounded">
+            <form>
+                <div class="form-group">
+                    <select id="dataType" class='form-control'>
+                        <option value="bar">Profit</option>
+                        <option value="line">Total Order</option>
+                        <option value="doughnut">doughnut</option>
+                        <option value="pie">pie</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select id="timeRange" class='form-control'>
+                        <option value="hourly">hourly</option>
+                        <option value="daily">daily</option>
+                        <option value="monthly">monthly</option>
+                        <option value="yearly">yearly</option>
+                        <option value="">No range</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select id="chartType" class='form-control'>
+                        <option value="bar">bar</option>
+                        <option value="line">line</option>
+                        <option value="doughnut">doughnut</option>
+                        <option value="pie">pie</option>
+                    </select>
+                </div>
+                <br>
+                <button id="generateGraph" class="btn btn-block btn-primaryLight btn-primary">Generate Graph</button>
+                <br><br>
+            </form>
             <canvas id="graph" aria-label="chartjs_graph" role="graph"></canvas>
 
         </div>

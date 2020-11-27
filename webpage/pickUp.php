@@ -43,10 +43,10 @@
                 while($row = $result->fetch_assoc())
                 {
                     printf( '<tr><td>
-                            Username : %s<br>
-                            Contact No : %s<br>
-                            Order date and time: %s<br>
-                            Arrival time: %s</td>
+                            <h4>Username :</h4><p> %s</p>
+                            <h4>Contact No :</h4><p> %s</p>
+                            <h4>Order date and time:</h4><p> %s</p>
+                            <h4>Arrival time:</h4><p> %s</p></td>
                             <td><button class=\'btn btn-block btn-primaryLight btn-primary btn_delivered\' value=\'%d\'>
                         Pick Up
                         </button></td>
@@ -59,8 +59,9 @@
                 }
                 echo "</table>";
             }
-        ?>
-        </div>
+            ?>
+            </div>
+            <button id='btn_history' class='btn btn-primary btn-primaryLight btn-block'>Pick Up History</button><br>
         </div>
         
         <?php printModal(); ?>

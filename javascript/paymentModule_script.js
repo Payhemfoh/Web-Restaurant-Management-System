@@ -54,11 +54,11 @@ function setCashPayment(e) {
     }
 }
 function setEWalletPayment() {
-    $("#paymentBlock").html("\n    <label for=\"eWalletpaymentMethod\">Select E-Wallet:</label><br>\n    <div class='container btn-group justify-content-center'>\n        <button class='btn btn-primary col-lg pay_wallet'>Touch 'N Go E-Wallet</button>\n        <button class='btn btn-primary col-lg pay_wallet'>Boost Pay</button>\n        <button class='btn btn-primary col-lg pay_wallet'>Grab Pay</button>\n        <button class='btn btn-primary col-lg pay_wallet'>Maybank2u Pay</button>\n        <button class='btn btn-primary col-lg pay_wallet'>PayPal</button>\n    </div><br><br>");
+    $("#paymentBlock").html("\n    <label for=\"eWalletpaymentMethod\">Select E-Wallet:</label><br>\n    <div class='container justify-content-center'>\n        <button class='btn btn-primary col-lg pay_wallet'>Touch 'N Go E-Wallet</button>\n        <button class='btn btn-primary col-lg pay_wallet'>Boost Pay</button>\n        <button class='btn btn-primary col-lg pay_wallet'>Grab Pay</button>\n        <button class='btn btn-primary col-lg pay_wallet'>Maybank2u Pay</button>\n        <button class='btn btn-primary col-lg pay_wallet'>PayPal</button>\n    </div><br><br>");
     $(".pay_wallet").on("click", walletPaymentForm);
 }
 function setCardPayment() {
-    $("#paymentBlock").html("\n    <label for=\"creditCardpaymentMethod\">Select Credit Card:</label><br>\n    <div class=\"container btn-group justify-content-center\">\n        <button class=\"btn btn-primary col-lg pay_card\">Visa</button>\n        <button class=\"btn btn-primary col-lg pay_card\">Master</button>\n        <button class=\"btn btn-primary col-lg pay_card\">American Express</button>\n    </div><br><br>");
+    $("#paymentBlock").html("\n    <label for=\"creditCardpaymentMethod\">Select Credit Card:</label><br>\n    <div class=\"container justify-content-center\">\n        <button class=\"btn btn-primary col-lg pay_card\">Visa</button>\n        <button class=\"btn btn-primary col-lg pay_card\">Master</button>\n        <button class=\"btn btn-primary col-lg pay_card\">American Express</button>\n    </div><br><br>");
     $(".pay_card").on("click", creditPaymentForm);
 }
 function creditPaymentForm() {

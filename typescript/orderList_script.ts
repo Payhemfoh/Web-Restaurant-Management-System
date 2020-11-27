@@ -1,13 +1,5 @@
+import { getCookie, orderList, setCookie } from "./cookie_manupulation.js";
 import { errorModal } from "./errorFunction.js";
-
-interface order{
-    id:number,
-    qty:number
-}
-
-interface orderList{
-    item:order[]
-}
 
 $(()=>{
     setupWebpage();
@@ -73,7 +65,7 @@ function setupMenu() : void{
                 data:{
                     id:id
                 },
-                success:function(data,status,xhr){
+                success:(data)=>{
                     $("#modal-title").text("Menu Detail");
                     $(".modal-body").html(data);
                     $(".modal-footer").html(
@@ -90,7 +82,15 @@ function setupMenu() : void{
 
                         if(fragment!=null && fragment!==""){
                             orderListObject = JSON.parse(fragment);
-                            orderListObject.item.push({id:id,qty:quantity});
+                            let index = -1;
+                            if(orderListObject.item.some((obj,value)=>{if(obj.id===id){index=value;return true;}return false;})){
+                                let totalQuantity = orderListObject.item[index].qty;
+                                
+                                orderListObject.item[index].qty = parseInt(totalQuantity as any) + parseInt(quantity as any);
+                                
+                            }else{
+                                orderListObject.item.push({id:id,qty:quantity});
+                            }
                         }else{
                             orderListObject = {item:[{id:id,qty:quantity}]};
                         }
@@ -107,30 +107,4 @@ function setupMenu() : void{
             });
         }
     });
-}
-
-function getCookie(key:string)
-    :string|null
-{
-    let cookie = document.cookie;
-    //get the beginning string of key in cookie 
-    let begin = cookie.indexOf("; "+key+"=");
-    //search the key in cookie
-    if(begin === -1){
-        //if the key is first cookie
-        begin = cookie.indexOf(key+"=");
-        //if the key is not found
-        if(begin != 0 ) return null;
-    }
-    //search the end of the key
-    let end = cookie.indexOf(";",begin+1);
-    if(end === -1){
-        end = cookie.length;
-    }
-    let fragment = decodeURI(cookie.substring(cookie.indexOf("=",begin)+1,end));
-    return fragment;
-}
-
-function setCookie(update:string):void{
-    document.cookie=update;
 }

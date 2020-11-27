@@ -60,7 +60,7 @@ function setCashPayment(e:JQuery.ClickEvent):void{
 function setEWalletPayment():void{
     $("#paymentBlock").html(`
     <label for="eWalletpaymentMethod">Select E-Wallet:</label><br>
-    <div class='container btn-group justify-content-center'>
+    <div class='container justify-content-center'>
         <button class='btn btn-primary col-lg pay_wallet'>Touch 'N Go E-Wallet</button>
         <button class='btn btn-primary col-lg pay_wallet'>Boost Pay</button>
         <button class='btn btn-primary col-lg pay_wallet'>Grab Pay</button>
@@ -74,7 +74,7 @@ function setEWalletPayment():void{
 function setCardPayment():void{
     $("#paymentBlock").html(`
     <label for="creditCardpaymentMethod">Select Credit Card:</label><br>
-    <div class="container btn-group justify-content-center">
+    <div class="container justify-content-center">
         <button class="btn btn-primary col-lg pay_card">Visa</button>
         <button class="btn btn-primary col-lg pay_card">Master</button>
         <button class="btn btn-primary col-lg pay_card">American Express</button>

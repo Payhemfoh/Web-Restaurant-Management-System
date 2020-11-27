@@ -37,8 +37,8 @@
                     echo "<table style='width:100%'>";
                     while($row = $result->fetch_assoc()){
                         printf("<div class=\"delivery_request\"><tr><td>
-                                    <h4>Customer Username : %s</h4>
-                                    <p><b>Customer Location :</b> %s</p>
+                                    <h4>Customer Username :</h4><p> %s</p>
+                                    <h4>Customer Location :</h4><p> %s</p>
                                 <br><br></td>
                                 <td>
                                     <button class='btn btn-block btn-primaryLight btn-primary btn_accepted' value='%d'>Accept</button>

@@ -44,11 +44,12 @@
                             <label for='quantity'>Quantity:</label>
                             <div class='input-group'>
                                 <div class='input-group-prepend'>
-                                    <button id='btnLess' class='btn btn-count btn-outline-primary disabled' disabled>&lt;</button>
+                                    <button id='btnLess' class='btn btn-count btn-outline-primary'>&lt;</button>
                                 </div>
-                                <input type='number' id='orderQty' class='numberInput form-control col-md-2 text-center' name='quantity' value = '1' readonly>
+                                <input type='number' id='orderQty' class='numberInput form-control col-md-2 text-center' name='quantity' value = '".
+                                (isset($_POST['qty'])? $_POST['qty']: 1)."' readonly>
                                 <div class='input-group-postpend'>
-                                    <button id='btnMore' class='btn btn-count btn-outline-primary disabled' disabled>&gt;</button>
+                                    <button id='btnMore' class='btn btn-count btn-outline-primary'>&gt;</button>
                                 </div>
                             </div>
                         </div>

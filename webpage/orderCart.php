@@ -21,62 +21,78 @@
                     if(!empty(($_COOKIE['orderList']))){
                         $orderList = json_decode($_COOKIE['orderList']);
 
-                        
-                        //database connection
-                        $connect = new mysqli("localhost","root","","rms_database");
-
-                        //check connection
-                        if($connect->connect_error){
-                            die("Connection error : $connect->connect_errno : $connect->connect_error");
-                        }
-
-                        echo '
-                        <table class="table table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Details</th>
-                                </tr>
-                            </thead>
-                            <tbody>';
+                        $item_index = 0;
                         foreach($orderList->item as $item){
-                            if($statement = $connect->prepare("SELECT * FROM menu WHERE menu_id = ? LIMIT 1;")){
-                                $statement->bind_param("i",$item->id);
-                                $statement->execute();
-                                $result = $statement->get_result();
+                            ++$item_index;
+                        }
+                        
+                        if($item_index !== 0){
+                            //database connection
+                            $connect = new mysqli("localhost","root","","rms_database");
 
-                                while($row = $result->fetch_array()){
-                                    echo "<tr>
-                                        <td scope=\"row\"><img src=\"".$row['menu_picture']."\" class=\"img-thumbnail\" width=\"300\" height=\"200\"></td>
-                                        <td>".$row['menu_name']."</td>
-                                        <td>".$item->qty."</td>
-                                        <td><button class=\"btn btn-info btn-detail\" value=\"".$row['menu_id']."\">Details</button></td>
-                                    </tr>";
+                            //check connection
+                            if($connect->connect_error){
+                                die("Connection error : $connect->connect_errno : $connect->connect_error");
+                            }
+
+                            echo '
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Details</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                            
+                            foreach($orderList->item as $item){
+                                if($statement = $connect->prepare("SELECT * FROM menu WHERE menu_id = ? LIMIT 1;")){
+                                    $statement->bind_param("i",$item->id);
+                                    $statement->execute();
+                                    $result = $statement->get_result();
+
+                                    while($row = $result->fetch_array()){
+                                        echo "<tr>
+                                            <td scope=\"row\"><img src=\"".$row['menu_picture']."\" class=\"img-thumbnail\" width=\"300\" height=\"200\"></td>
+                                            <td>".$row['menu_name']."</td>
+                                            <td>".$item->qty."</td>
+                                            <td><button class=\"btn btn-info btn-detail\" value=\"".$row['menu_id']."\" quantity='".$item->qty."'>Details</button></td>
+                                            <td><button class=\"btn btn-info btn-delete\" value=\"".$row['menu_id']."\" quantity='".$item->qty."'>Delete</button></td>
+                                        </tr>";
+                                    }
+
+                                    $statement->close();
+                                }else{
+                                    die("Failed to prepare SQL statement.");
                                 }
-
-                                $statement->close();
+                            }
+                            
+                            echo '</tbody>
+                            </table>';
+                            
+                            if($_COOKIE['service']==="dine_in"){
+                                echo
+                                '<button id="btn_sendKitchen" class="btn btn-block btn-primaryLight btn-primary">Send to Kitchen</button>';
                             }else{
-                                die("Failed to prepare SQL statement.");
+                                echo
+                                '<button id="btn_checkout" class="btn btn-block btn-primaryLight btn-primary">Check Out</button>';
+                            }
+                            if(!empty($_COOKIE['order_id']) && $_COOKIE['service']==="dine_in"){
+                                echo
+                                '<button id="btn_payment" class="btn btn-block btn-primaryLight btn-primary">Make Payment</button><br><br>';
+                            }
+                            $connect->close();
+                        }else{
+                            echo "<p class='text-center'>No order found in the cart. Click the button below to start your order.<p>";
+                            if(isset($_COOKIE['service'])){
+                                echo "<a href=\"../webpage/orderList.php\" class='btn btn-block btn-primaryLight btn-primary'>Start Order</a><br>";
+                            }else{
+                                echo "<a href=\"../webpage/homepage.php\" class='btn btn-block btn-primaryLight btn-primary'>Start Order</a><br>";
                             }
                         }
-                        
-                        echo '</tbody>
-                        </table>';
-                        
-                        if($_COOKIE['service']==="dine_in"){
-                            echo
-                            '<button id="btn_sendKitchen" class="btn btn-block btn-primaryLight btn-primary">Send to Kitchen</button>';
-                        }else{
-                            echo
-                            '<button id="btn_checkout" class="btn btn-block btn-primaryLight btn-primary">Check Out</button>';
-                        }
-                        if(!empty($_COOKIE['order_id']) && $_COOKIE['service']==="dine_in"){
-                            echo
-                            '<button id="btn_payment" class="btn btn-block btn-primaryLight btn-primary">Make Payment</button><br><br>';
-                        }
-                        $connect->close();
                     }else{
                         echo "<p class='text-center'>No order found in the cart. Click the button below to start your order.<p>";
                         if(isset($_COOKIE['service'])){

@@ -39,10 +39,10 @@
             </div>
 
             <label for="paymentMethod">Select Payment Method:</label><br>
-            <div class="container btn-group justify-content-center">
-                <button id="btn_eWallet" class="btn btn-primary col-lg">e-wallet</button>
-                <button id="btn_card" class="btn btn-primary col-lg">Credit/debit Card</button>
-                <button id="btn_cash" class="btn btn-primary col-lg">
+            <div class="container justify-content-center row">
+                <button id="btn_eWallet" class="btn btn-primary col-lg">e-wallet</button><br>
+                <button id="btn_card" class="btn btn-primary col-lg">Credit/debit Card</button><br>
+                <button id="btn_cash" class="btn btn-primary col-lg"><br>
                 <?php
                     echo $_COOKIE['service']==="delivery"? "Pay when arrived":"Counter Pay";
                 ?>
