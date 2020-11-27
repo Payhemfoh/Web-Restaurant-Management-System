@@ -83,12 +83,14 @@
                             if(!empty($_COOKIE['order_id']) && $_COOKIE['service']==="dine_in"){
                                 echo
                                 '<button id="btn_payment" class="btn btn-block btn-primaryLight btn-primary">Make Payment</button><br><br>';
+                                echo "<a href=\"../webpage/homepage.php\" class='btn btn-block btn-primaryLight btn-primary'>Cancel</a><br>";
                             }
                             $connect->close();
                         }else{
                             echo "<p class='text-center'>No order found in the cart. Click the button below to start your order.<p>";
                             if(isset($_COOKIE['service'])){
                                 echo "<a href=\"../webpage/orderList.php\" class='btn btn-block btn-primaryLight btn-primary'>Start Order</a><br>";
+                                echo "<a href=\"../webpage/homepage.php\" class='btn btn-block btn-primaryLight btn-primary'>Cancel</a><br>";
                             }else{
                                 echo "<a href=\"../webpage/homepage.php\" class='btn btn-block btn-primaryLight btn-primary'>Start Order</a><br>";
                             }
@@ -97,6 +99,7 @@
                         echo "<p class='text-center'>No order found in the cart. Click the button below to start your order.<p>";
                         if(isset($_COOKIE['service'])){
                             echo "<a href=\"../webpage/orderList.php\" class='btn btn-block btn-primaryLight btn-primary'>Start Order</a><br>";
+                            echo "<a href=\"../webpage/homepage.php\" class='btn btn-block btn-primaryLight btn-primary'>Cancel</a><br>";
                         }else{
                             echo "<a href=\"../webpage/homepage.php\" class='btn btn-block btn-primaryLight btn-primary'>Start Order</a><br>";
                         }
