@@ -140,7 +140,8 @@
 
                 <br><br>
 
-                <button class='btn btn-block btn-primaryLight btn-primary' id='btn_update' value='$id'>Update</button>";
+                <button class='btn btn-block btn-primaryLight btn-primary' id='btn_update' value='$id'>Update</button>
+                <a href=\"../webpage/homepage.php\" class='btn btn-block btn-primaryLight btn-primary'>Cancel</a><br>";
                 ?>
             </form>
         </div>
