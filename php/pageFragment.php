@@ -43,6 +43,8 @@ function printHeader($filename){
                     echo '<a href="../webpage/orderCart.php" class="btn btn-primary py-3">Your Order List</a>';
                     echo '<a href="../webpage/userProfile.php" class="btn btn-primary py-3">Hi,'.$sess_username.'</a>';
                     echo '<button id="logout_menu" class="btn btn-primary py-3">Log Out</button>';
+
+                    include("../webpage/noscript.html");
                 }
                 else{
                     //modify for the special cases in register page and login page when user is not login

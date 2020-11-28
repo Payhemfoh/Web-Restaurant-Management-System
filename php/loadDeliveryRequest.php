@@ -60,4 +60,5 @@
         echo "<p>Failed to update data! Click the button below to try again.</p><br>";
         echo "<button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Refresh</button>";
     }
+    echo "<a href='../webpage/deliveryHistory.php' class='btn btn-primary btn-primaryLight btn-block'>Delivery History</a><br>"
 ?>
