@@ -21,7 +21,7 @@
             <br><h2 class="text-center">Kitchen Module</h2><br><br>
             <div id="order_requests">
             </div>
-            <button id='btn_history' class='btn btn-primary btn-primaryLight btn-block'>Completed Order History</button>
+            <a id='btn_history' href='../webpage/kitchenHistory.php' class='btn btn-primary btn-primaryLight btn-block'>View History</a>
         </div>
         <br/>
         <?php printModal(); ?>

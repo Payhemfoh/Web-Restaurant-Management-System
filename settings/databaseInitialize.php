@@ -89,7 +89,7 @@
     $MENUTABLE = [
         "menu_id" => " INT NOT NULL AUTO_INCREMENT PRIMARY KEY,",
         "menu_name" => " VARCHAR(50) NOT NULL,",
-        "category_id" => "INT NOT NULL,",
+        "category_id" => " INT NOT NULL,",
         "menu_description" => " VARCHAR(200) NOT NULL,",
         "menu_price" => " FLOAT NOT NULL,",
         "menu_picture" => " VARCHAR(50) NOT NULL,",
@@ -100,14 +100,16 @@
         "order_id" => " INT NOT NULL AUTO_INCREMENT PRIMARY KEY,",
         "customer_id" => " INT NOT NULL,",
         "date_time" => " DATETIME NOT NULL,",
-        "order_type" => "VARCHAR(20) NOT NULL,",
-        "table_no"=>"INT, ",
-        "overall_status" => "ENUM('order received','preparing','delivering','arrived') NOT NULL,",
-        "payment_id" => "INT,",
-        "delivery_id" => "INT,",
-        "FOREIGN KEY" => "(customer_id) references RMS_Database.customer(customer_id),",
-        "FOREIGN KEY" => "(payment_id) references RMS_Database.payment(payment_id),",
-        "FOREIGN KEY" => "(delivery_id) references RMS_Database.delivery(delivery_id)"
+        "order_type" => " VARCHAR(20) NOT NULL,",
+        "table_no"=>" INT, ",
+        "arrival_time"=>" DATETIME",
+        "pickup_time"=>" DATETIME",
+        "overall_status" => " ENUM('order received','preparing','pickUp','delivering','arrived') NOT NULL,",
+        "payment_id" => " INT,",
+        "delivery_id" => " INT,",
+        "FOREIGN KEY" => " (customer_id) references RMS_Database.customer(customer_id),",
+        "FOREIGN KEY" => " (payment_id) references RMS_Database.payment(payment_id),",
+        "FOREIGN KEY" => " (delivery_id) references RMS_Database.delivery(delivery_id)"
     ];
 
     $PAYMENTTABLE = [
@@ -122,7 +124,7 @@
         "stock_id" => " INT NOT NULL AUTO_INCREMENT PRIMARY KEY,",
         "stock_name" => " VARCHAR(50) NOT NULL,",
         "stock_description" => " VARCHAR(200) NOT NULL,",
-        "quantity" => "FLOAT NOT NULL"
+        "quantity" => " FLOAT NOT NULL"
     ];
 
     $ORDERITEMTABLE = [

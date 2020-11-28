@@ -11,7 +11,8 @@
         }
 
         if($statement = $connect->prepare("UPDATE orders
-                                            SET overall_status = 'arrived'
+                                            SET overall_status = 'arrived',
+                                            pickup_time = NOW()
                                             WHERE order_id = ?")){
             $statement->bind_param("i",$orderId);
             $statement->execute();
@@ -21,7 +22,7 @@
 
             $statement->close();
         }else{
-            die("Failed to prepare SQL statement.");
+            die("Failed to prepare SQL statement.".$connect->error);
         }
         $connect->close();
     }else{

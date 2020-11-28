@@ -74,7 +74,8 @@
             switch($timeRange){
                 case "24hours":
                     $data->datasets[0]->label = "total sales in each hours";
-                    $query = "SELECT concat(date(o.date_time),' ',hour(o.date_time),':00:00') as x,CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
+                    $query = "SELECT concat(date(o.date_time),' ',hour(o.date_time),':00:00') as x,
+                                        CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
                                 FROM orders o,payment p
                                 WHERE o.payment_id = p.payment_id
                                 AND o.date_time >= NOW() - INTERVAL 2 DAY
@@ -92,7 +93,8 @@
                 break;
                 case "12months":
                     $data->datasets[0]->label = "total sales in each month";
-                    $query = "SELECT concat(month(o.date_time),'-',year(o.date_time)) as x, CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
+                    $query = "SELECT concat(month(o.date_time),'-',year(o.date_time)) as x, 
+                                        CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
                                 FROM orders o,payment p
                                 WHERE o.payment_id = p.payment_id
                                 AND o.date_time >= NOW() - INTERVAL 1 YEAR

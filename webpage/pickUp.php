@@ -31,13 +31,13 @@
             $sql = "SELECT o.order_id, o.arrival_time, o.date_time, c.username, c.phone_number
                     FROM orders o, customer c
                     WHERE o.order_type='take_away'
-                    AND o.overall_status = 'delivering'
+                    AND o.pickup_time is null
                     AND o.customer_id = c.customer_id";
             $result = $connect->query($sql);
 
             if ($result->num_rows > 0) 
             {
-                echo '<table style="width:100%">';
+                echo '<table class="table table-hover" style="width:100%">';
 
                 // output data of each row
                 while($row = $result->fetch_assoc())
@@ -46,7 +46,7 @@
                             <h4>Username :</h4><p> %s</p>
                             <h4>Contact No :</h4><p> %s</p>
                             <h4>Order date and time:</h4><p> %s</p>
-                            <h4>Arrival time:</h4><p> %s</p></td>
+                            <h4>Expected Arrival time:</h4><p> %s</p></td>
                             <td><button class=\'btn btn-block btn-primaryLight btn-primary btn_delivered\' value=\'%d\'>
                         Pick Up
                         </button></td>
@@ -61,7 +61,7 @@
             }
             ?>
             </div>
-            <button id='btn_history' class='btn btn-primary btn-primaryLight btn-block'>Pick Up History</button><br>
+            <a href='../webpage/pickupHistory.php' class='btn btn-primary btn-primaryLight btn-block'>Pick Up History</a><br>
         </div>
         
         <?php printModal(); ?>
