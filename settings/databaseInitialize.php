@@ -88,7 +88,7 @@
 
     $MENUTABLE = [
         "menu_id" => " INT NOT NULL AUTO_INCREMENT PRIMARY KEY,",
-        "menu_name" => " VARCHAR(50) NOT NULL,",
+        "menu_name" => " VARCHAR(60) NOT NULL,",
         "category_id" => " INT NOT NULL,",
         "menu_description" => " VARCHAR(200) NOT NULL,",
         "menu_price" => " FLOAT NOT NULL,",
