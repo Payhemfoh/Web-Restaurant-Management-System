@@ -21,7 +21,7 @@
     const USERNAME = "root";
     const PASSWORD = "";
     const DATABASE = "RMS_Database";
-    const TABLENAME = ["customer","position","staff","stock","payment","menu_category","menu","delivery","orders","order_item","ingredient"];
+    const TABLENAME = ["customer","position","staff","stock","payment","menu_category","menu","delivery","orders","order_item"];
     const TABLEATTRIBUTE = [
         "CUSTOMERTABLE",
         "POSITIONTABLE",
@@ -32,8 +32,7 @@
         "MENUTABLE",
         "DELIVERYTABLE",
         "ORDERTABLE",
-        "ORDERITEMTABLE",
-        "INGREDIENTTABLE"
+        "ORDERITEMTABLE"
     ];
 
     $DELIVERYTABLE = [
@@ -102,8 +101,8 @@
         "date_time" => " DATETIME NOT NULL,",
         "order_type" => " VARCHAR(20) NOT NULL,",
         "table_no"=>" INT, ",
-        "arrival_time"=>" DATETIME",
-        "pickup_time"=>" DATETIME",
+        "arrival_time"=>" DATETIME, ",
+        "pickup_time"=>" DATETIME, ",
         "overall_status" => " ENUM('order received','preparing','pickUp','delivering','arrived') NOT NULL,",
         "payment_id" => " INT,",
         "delivery_id" => " INT,",
@@ -140,13 +139,6 @@
     $CATEGORYTABLE = [
         "category_id" => " INT NOT NULL AUTO_INCREMENT PRIMARY KEY,",
         "category_name" => " VARCHAR(20) NOT NULL"
-    ];
-
-    $INGREDIENTTABLE =[
-        "menu_id" => " INT NOT NULL, ",
-        "ingredient_id" => " INT NOT NULL,",
-        "FOREIGN KEY"=>" (menu_id) REFERENCES RMS_Database.menu(menu_id),",
-        "FOREIGN KEY"=>" (ingredient_id) REFERENCES RMS_Database.stock(stock_id)"
     ];
 
     try{
