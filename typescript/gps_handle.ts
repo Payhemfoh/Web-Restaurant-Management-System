@@ -110,38 +110,55 @@ function calcRoute() {
         directionService.route(request, (result, status) => {
             if (status == 'OK') {
                 //directionRender.setDirections(result);
-
                 map.setCenter(start);
-                let iconsetngs = {
-                    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
-                };
+                if(!polyline){
+                    let iconsetngs = {
+                        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+                    };
 
-                polyline = new google.maps.Polyline({
-                    path: [],
-                    strokeOpacity: 0.8,
-                    strokeColor: '#FF0000',
-                    strokeWeight: 3,
-                    icons: [{
-                        icon: iconsetngs,
-                        repeat:'60px',
-                        offset: '100%'}]
-                  });
-                let bounds = new google.maps.LatLngBounds();
-        
-        
-                let legs = result.routes[0].legs;
-                for (let i = 0; i < legs.length; i++) {
-                    let steps = legs[i].steps;
-                    for (let j = 0; j < steps.length; j++) {
-                        let nextSegment = steps[j].path;
-                        for (let k = 0; k < nextSegment.length; k++) {
-                            polyline.getPath().push(nextSegment[k]);
-                            bounds.extend(nextSegment[k]);
+                    polyline = new google.maps.Polyline({
+                        path: [],
+                        strokeOpacity: 0.8,
+                        strokeColor: '#FF0000',
+                        strokeWeight: 3,
+                        icons: [{
+                            icon: iconsetngs,
+                            repeat:'60px',
+                            offset: '100%'}]
+                    });
+                    
+                    let bounds = new google.maps.LatLngBounds();
+                    
+                    let legs = result.routes[0].legs;
+                    for (let i = 0; i < legs.length; i++) {
+                        let steps = legs[i].steps;
+                        for (let j = 0; j < steps.length; j++) {
+                            let nextSegment = steps[j].path;
+                            for (let k = 0; k < nextSegment.length; k++) {
+                                polyline.getPath().push(nextSegment[k]);
+                                bounds.extend(nextSegment[k]);
+                            }
+                        }
+                    }
+            
+                    polyline.setMap(map);
+                }else{
+                    polyline.setPath([]);
+
+                    let bounds = new google.maps.LatLngBounds();
+
+                    let legs = result.routes[0].legs;
+                    for (let i = 0; i < legs.length; i++) {
+                        let steps = legs[i].steps;
+                        for (let j = 0; j < steps.length; j++) {
+                            let nextSegment = steps[j].path;
+                            for (let k = 0; k < nextSegment.length; k++) {
+                                polyline.getPath().push(nextSegment[k]);
+                                bounds.extend(nextSegment[k]);
+                            }
                         }
                     }
                 }
-        
-                polyline.setMap(map);
             }
         });
     }

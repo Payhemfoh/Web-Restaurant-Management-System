@@ -18,20 +18,18 @@
             <form>
                 <div class="form-group">
                     <select id="dataType" class='form-control'>
-                        <option value="bar">Profit</option>
-                        <option value="line">Total Order</option>
-                        <option value="doughnut">doughnut</option>
-                        <option value="pie">pie</option>
+                        <option value="sales">Sales</option>
+                        <option value="order">Order Popularity</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <select id="timeRange" class='form-control'>
-                        <option value="hourly">hourly</option>
-                        <option value="daily">daily</option>
-                        <option value="monthly">monthly</option>
-                        <option value="yearly">yearly</option>
-                        <option value="">No range</option>
+                        <option value="24hours">Last 24 hours</option>
+                        <option value="30days">Last 30 days</option>
+                        <option value="12months">Last 12 months</option>
+                        <option value="5years">Last 5 year</option>
+                        <option value="norange">No range</option>
                     </select>
                 </div>
 

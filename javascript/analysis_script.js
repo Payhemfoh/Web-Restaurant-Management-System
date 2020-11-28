@@ -12,10 +12,18 @@ function generateGraph() {
     var canvas = (document.getElementById("graph").getContext("2d"));
     var dataset = {};
     var chartType = $("#chartType").val();
+    var dataType = $("#dataType").val();
+    var timeRange = $("#timeRange").val();
     $.ajax({
         url: "../php/getDataSet.php",
+        method: "post",
         dataType: "json",
+        data: {
+            dataType: dataType,
+            timeRange: timeRange
+        },
         success: function (data) {
+            console.table(data);
             dataset = data;
             var chart = new Chart(canvas, {
                 //type of chart

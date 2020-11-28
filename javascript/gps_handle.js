@@ -98,33 +98,50 @@ function calcRoute() {
             if (status == 'OK') {
                 //directionRender.setDirections(result);
                 map.setCenter(start_1);
-                var iconsetngs = {
-                    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
-                };
-                polyline = new google.maps.Polyline({
-                    path: [],
-                    strokeOpacity: 0.8,
-                    strokeColor: '#FF0000',
-                    strokeWeight: 3,
-                    icons: [{
-                            icon: iconsetngs,
-                            repeat: '60px',
-                            offset: '100%'
-                        }]
-                });
-                var bounds = new google.maps.LatLngBounds();
-                var legs = result.routes[0].legs;
-                for (var i = 0; i < legs.length; i++) {
-                    var steps = legs[i].steps;
-                    for (var j = 0; j < steps.length; j++) {
-                        var nextSegment = steps[j].path;
-                        for (var k = 0; k < nextSegment.length; k++) {
-                            polyline.getPath().push(nextSegment[k]);
-                            bounds.extend(nextSegment[k]);
+                if (!polyline) {
+                    var iconsetngs = {
+                        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+                    };
+                    polyline = new google.maps.Polyline({
+                        path: [],
+                        strokeOpacity: 0.8,
+                        strokeColor: '#FF0000',
+                        strokeWeight: 3,
+                        icons: [{
+                                icon: iconsetngs,
+                                repeat: '60px',
+                                offset: '100%'
+                            }]
+                    });
+                    var bounds = new google.maps.LatLngBounds();
+                    var legs = result.routes[0].legs;
+                    for (var i = 0; i < legs.length; i++) {
+                        var steps = legs[i].steps;
+                        for (var j = 0; j < steps.length; j++) {
+                            var nextSegment = steps[j].path;
+                            for (var k = 0; k < nextSegment.length; k++) {
+                                polyline.getPath().push(nextSegment[k]);
+                                bounds.extend(nextSegment[k]);
+                            }
+                        }
+                    }
+                    polyline.setMap(map);
+                }
+                else {
+                    polyline.setPath([]);
+                    var bounds = new google.maps.LatLngBounds();
+                    var legs = result.routes[0].legs;
+                    for (var i = 0; i < legs.length; i++) {
+                        var steps = legs[i].steps;
+                        for (var j = 0; j < steps.length; j++) {
+                            var nextSegment = steps[j].path;
+                            for (var k = 0; k < nextSegment.length; k++) {
+                                polyline.getPath().push(nextSegment[k]);
+                                bounds.extend(nextSegment[k]);
+                            }
                         }
                     }
                 }
-                polyline.setMap(map);
             }
         });
     }

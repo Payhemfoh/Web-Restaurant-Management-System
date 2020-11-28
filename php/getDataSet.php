@@ -26,8 +26,10 @@
     $data->datasets[0]->backgroundColor = array();
     $data->datasets[0]->borderColor = array();
     $data->datasets[0]->data = array();
-    $data->datasets[0]->label = "total order";
     $data->datasets[0]->borderWidth = 1;
+
+    $dataType = $_POST['dataType'];
+    $timeRange = $_POST['timeRange'];
     
     //database connection
     $connect = new mysqli("localhost","root","","rms_database");
@@ -37,12 +39,85 @@
         die("Connection error : $connect->connect_errno : $connect->connect_error");
     }
 
-    if($statement = $connect->prepare("SELECT m.menu_name as x,SUM(quantity) as y 
-                                        FROM order_item o, menu m 
-                                        WHERE o.menu_id = m.menu_id
-                                        GROUP BY m.menu_name
-                                        ORDER BY y DESC
-                                        LIMIT 10")){
+    switch($dataType){
+        case "order":
+            switch($timeRange){
+                case "24hours":
+                    $data->datasets[0]->label = "total order in last 24 hours";
+                    $timeQuery = "AND o.date_time >= NOW() - INTERVAL 1 DAY";
+                break;
+                case "30days":
+                    $data->datasets[0]->label = "total order in last 30 days";
+                    $timeQuery = "AND o.date_time >= NOW() - INTERVAL 1 MONTH";
+                break;
+                case "12months":
+                    $data->datasets[0]->label = "total order in last 12 months";
+                    $timeQuery = "AND o.date_time >= NOW() - INTERVAL 1 YEAR";
+                break;
+                case "5years":
+                    $data->datasets[0]->label = "total order in last 5 years";
+                    $timeQuery = "AND o.date_time >= NOW() - INTERVAL 5 YEAR";
+                break;
+                case "norange":
+                default:
+                    $timeQuery = "";
+            }
+            $query = "SELECT m.menu_name as x,SUM(i.quantity) as y
+                        FROM order_item i,menu m, orders o
+                        WHERE i.menu_id = m.menu_id 
+                        AND i.order_id = o.order_id
+                        $timeQuery
+                        GROUP BY m.menu_name
+                        ORDER BY y DESC";
+            break;  
+        case "sales":
+            switch($timeRange){
+                case "24hours":
+                    $data->datasets[0]->label = "total sales in each hours";
+                    $query = "SELECT concat(date(o.date_time),' ',hour(o.date_time),':00:00') as x,CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
+                                FROM orders o,payment p
+                                WHERE o.payment_id = p.payment_id
+                                AND o.date_time >= NOW() - INTERVAL 2 DAY
+                                group by x
+                                ORDER BY x";
+                break;
+                case "30days":
+                    $data->datasets[0]->label = "total sales in each day";
+                    $query = "SELECT date(o.date_time) as x,CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
+                                FROM orders o,payment p
+                                WHERE o.payment_id = p.payment_id
+                                AND o.date_time >= NOW() - INTERVAL 1 MONTH
+                                group by x
+                                ORDER BY x";
+                break;
+                case "12months":
+                    $data->datasets[0]->label = "total sales in each month";
+                    $query = "SELECT concat(month(o.date_time),'-',year(o.date_time)) as x, CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
+                                FROM orders o,payment p
+                                WHERE o.payment_id = p.payment_id
+                                AND o.date_time >= NOW() - INTERVAL 1 YEAR
+                                group by month(o.date_time)
+                                ORDER BY x";
+                break;
+                case "5years":
+                    $data->datasets[0]->label = "total sales in each year";
+                    $query = "SELECT year(o.date_time) as x, CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
+                                FROM orders o,payment p
+                                WHERE o.payment_id = p.payment_id
+                                AND o.date_time >= NOW() - INTERVAL 5 YEAR
+                                group by year(o.date_time)
+                                ORDER BY x";
+                break;
+                case "norange":
+                default:
+                    $query = "";
+            }
+            break;
+        default:
+        $query = "";
+        break;
+    }
+    if($statement = $connect->prepare($query)){
         $statement->execute();
         $result = $statement->get_result();
         $row_number = 0;
@@ -55,7 +130,7 @@
             ++$row_number;
         }
         
-        $statement->close();
+        $statement->close();  
     }else{
         die("Failed to prepare SQL statement.".$connect->error);
     }
