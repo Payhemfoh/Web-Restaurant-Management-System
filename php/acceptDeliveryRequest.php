@@ -43,6 +43,16 @@
                 }else{
                     die("Failed to prepare SQL statement.".$connect->error);
                 }
+
+                if($statement = $connect->prepare("UPDATE orders 
+                                                SET pickup_time=NOW() 
+                                                WHERE delivery_id=?")){
+                    $statement->bind_param("i",$deliveryId);
+                    $statement->execute();
+                    $statement->close();
+                }else{
+                    die("Failed to prepare SQL statement.".$connect->error);
+                }
             }
             $getStaffId->close();
         }else{

@@ -92,7 +92,7 @@
         "category_id" => " INT NOT NULL,",
         "menu_description" => " VARCHAR(200) NOT NULL,",
         "menu_price" => " FLOAT NOT NULL,",
-        "menu_picture" => " VARCHAR(50) NOT NULL,",
+        "menu_picture" => " VARCHAR(100) NOT NULL,",
         "FOREIGN KEY" => " (category_id) REFERENCES RMS_Database.menu_category(category_id)"
     ];
 
