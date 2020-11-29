@@ -42,7 +42,7 @@
             <div class="container justify-content-center row">
                 <button id="btn_eWallet" class="btn btn-primary col-lg">e-wallet</button><br>
                 <button id="btn_card" class="btn btn-primary col-lg">Credit/debit Card</button><br>
-                <button id="btn_cash" class="btn btn-primary col-lg"><br>
+                <button id="btn_cash" class="btn btn-primary col-lg">
                 <?php
                     echo $_COOKIE['service']==="delivery"? "Pay when arrived":"Counter Pay";
                 ?>
