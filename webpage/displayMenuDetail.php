@@ -42,7 +42,7 @@
                         
                         <div class='form-group'>
                             <label for='quantity'>Quantity:</label>
-                            <div class='input-group'>
+                            <div class='input-group justify-content-center'>
                                 <div class='input-group-prepend'>
                                     <button id='btnLess' class='btn btn-count btn-outline-primary'>&lt;</button>
                                 </div>

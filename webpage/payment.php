@@ -39,21 +39,30 @@
             </div>
 
             <label for="paymentMethod">Select Payment Method:</label><br>
-            <div class="container justify-content-center row">
-                <button id="btn_eWallet" class="btn btn-primary col-lg">e-wallet</button><br>
-                <button id="btn_card" class="btn btn-primary col-lg">Credit/debit Card</button><br>
-                <button id="btn_cash" class="btn btn-primary col-lg">
-                <?php
-                    echo $_COOKIE['service']==="delivery"? "Pay when arrived":"Counter Pay";
-                ?>
-                </button>
+            <div class="container row">
+                <div class='col text-center'>
+                    <input type='radio' value='e-wallet' class='payment_method' name='payment_method'> E-Wallet
+                </div>
+                <div class='col text-center'>
+                    <input type='radio' value='card' class='payment_method' name='payment_method'> Credit/Debit Card
+                </div>
+                <div class='col text-center'>
+                    <input type='radio' value='cash' class='payment_method' name='payment_method'> 
+                    <?php echo $_COOKIE['service']==="delivery"? "Pay when arrived":"Counter Pay"; ?>
+                </div>
             </div>
             <br><br>
-            
-            <div id="paymentBlock">
+            <hr>
+
+            <div id="methodBlock">
 
             </div>
+            <br><br>
+            <hr>
 
+            <div id='paymentBlock'>
+            </div>
+            <br><br>
             <?php
             if(!isset($_COOKIE['service']))
                 $service = "";
@@ -68,7 +77,7 @@
             printf("<input id='service' type='hidden' value='%s' />
             <input id='orderID' type='hidden' value='%d' />",$service,$orderId);
             
-            echo "<button id='complete-payment' class='btn btn-block btn-primaryLight btn-primary'>Complete Payment</button>";
+            echo "<button id='complete-payment' class='btn btn-block btn-primaryLight btn-primary' style='display:none;'>Complete Payment</button>";
             ?>
         </div>
         <br/>

@@ -73,10 +73,13 @@
                     
                 ?>
                 <br><h3 class="text-center">User Profile</h3><br>
-                <a href="../webpage/userOrderHistory.php" class="btn btn-block btn-primaryLight btn-primary">Order History</a><br>
-                <hr>
-                
                 <?php
+                if($sess_position==="customer"){
+                echo '<a href="../webpage/userOrderHistory.php" class="btn btn-block btn-primaryLight btn-primary">Order History</a><br><hr>';
+                }
+                
+                
+                
                 echo "
                 <div class='row'>
                     <div class='form-group col'>

@@ -178,7 +178,7 @@
                         $query = "SELECT date(o.date_time) as x,CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
                                     FROM orders o,payment p
                                     WHERE o.payment_id = p.payment_id
-                                    AND DATE(o.date_time) = $from 
+                                    AND o.date_time between $from and $to
                                     group by x
                                     ORDER BY x";
                     }else{
@@ -187,7 +187,7 @@
                                             CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
                                     FROM orders o,payment p
                                     WHERE o.payment_id = p.payment_id
-                                    AND o.date_time >= NOW() - INTERVAL 2 DAY
+                                    AND DATE(o.date_time) = $from
                                     group by x
                                     ORDER BY x";
                     }

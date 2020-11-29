@@ -3,6 +3,7 @@
     <head>
         <title>RMS | Homepage</title>
         <?php 
+            if(!empty($_COOKIE['orderId'])) header("location:../webpage/orderList.php");
             require("../php/sessionFragment.php");
             require("../php/pageFragment.php");
             printHeadInclude();

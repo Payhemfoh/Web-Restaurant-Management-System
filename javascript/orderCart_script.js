@@ -108,10 +108,13 @@ $(function () {
             data: {
                 username: username
             },
-            success: function (data) {
-                var form = $("<form action='../webpage/payment.php'></form>");
-                $("body").append(form);
-                form.trigger("submit");
+            success: function () {
+                $("#modal-title").text("Menu Information");
+                $(".modal-body").html("Your order had been sent to kitchen");
+                $(".modal-footer").html('<button id="modal-cancel" class="btn btn-primary btn-primaryLight btn-block" ' +
+                    'data-dismiss="modal">Return to Cart</button>');
+                $("#modal-cancel").on("click", function () { return location.reload(); });
+                $("#modal").modal();
             },
             error: errorModal
         });
