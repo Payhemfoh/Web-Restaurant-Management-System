@@ -223,9 +223,6 @@ function setEditButton() {
                     var phone = $("#phone").val().trim();
                     var email = $("#email").val().trim();
                     var username = $("#username").val().trim();
-                    var password = $("#password").val().trim();
-                    var newpassword = $("#newpassword").val().trim();
-                    var confirm_password = $("#confirm_password").val().trim();
                     var position = $("#position").val();
                     var valid = true;
                     //validation
@@ -302,55 +299,30 @@ function setEditButton() {
                     else {
                         validInput($("#username"), $("#username-feedback"));
                     }
-                    if (password === "") {
-                        inValidInput($("#password"), $("#password-feedback"), "Password should not be empty!");
-                        valid = false;
+                    if (valid) {
+                        $.ajax("../php/updateStaff_process.php", {
+                            method: "POST",
+                            dataType: "HTML",
+                            data: {
+                                fname: fname,
+                                lname: lname,
+                                gender: gender,
+                                birthday: birthday,
+                                phone: phone,
+                                email: email,
+                                username: username,
+                                position: position
+                            },
+                            success: function (data, status, xhr) {
+                                $("#modal-title").text("Modify Staff");
+                                $(".modal-body").html(data);
+                                $(".modal-footer").html("");
+                                $("#btnAgain").attr("data-dismiss", "modal");
+                                $("#btnAgain").on("click", function () { location.reload(); });
+                            },
+                            error: errorModal
+                        });
                     }
-                    else {
-                        validInput($("#password"), $("#password-feedback"));
-                    }
-                    if (confirm_password === "") {
-                        inValidInput($("#confirm_password"), $("#confirmPassword-feedback"), "Confirm Password should not be empty!");
-                        valid = false;
-                    }
-                    else {
-                        if (confirm_password === password) {
-                            validInput($("#confirm_password"), $("#confirmPassword-feedback"));
-                        }
-                        else if (password === "") {
-                            inValidInput($("#confirm_password"), $("#confirmPassword-feedback"), "Password is not filled!");
-                            valid = false;
-                        }
-                        else {
-                            inValidInput($("#confirm_password"), $("#confirmPassword-feedback"), "Password do not match the Confirm Password!");
-                            valid = false;
-                        }
-                    }
-                    $.ajax("../php/updateStaff_process.php", {
-                        method: "POST",
-                        dataType: "HTML",
-                        data: {
-                            fname: fname,
-                            lname: lname,
-                            gender: gender,
-                            birthday: birthday,
-                            phone: phone,
-                            email: email,
-                            username: username,
-                            password: password,
-                            newpassword: newpassword,
-                            confirm_password: confirm_password,
-                            position: position
-                        },
-                        success: function (data, status, xhr) {
-                            $("#modal-title").text("Modify Staff");
-                            $(".modal-body").html(data);
-                            $(".modal-footer").html("");
-                            $("#btnAgain").attr("data-dismiss", "modal");
-                            $("#btnAgain").on("click", function () { location.reload(); });
-                        },
-                        error: errorModal
-                    });
                 });
                 $("#modal").modal();
             },

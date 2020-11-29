@@ -1,13 +1,6 @@
 <?php
-    function passwordEncrypt(string $password):string{
-        return hash("sha256",$password."Welcome To Restaurant Management Module");
-    }
-
     //get post value from webpage
     $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirmPassword'];
-    $newPassword = $_POST['newpassword'];
     $email = $_POST['email'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];

@@ -230,9 +230,6 @@ function setEditButton() : void{
                     let phone = ($("#phone").val() as string).trim();
                     let email = ($("#email").val() as string).trim();
                     let username = ($("#username").val() as string).trim();
-                    let password = ($("#password").val() as string).trim();
-                    let newpassword = ($("#newpassword").val() as string).trim();
-                    let confirm_password = ($("#confirm_password").val() as string).trim();
                     let position = ($("#position").val() as number);
                     let valid = true;
 
@@ -279,7 +276,7 @@ function setEditButton() : void{
                         }else{
                             inValidInput($("#phone"),$("#phone-feedback"),"Phone No format is Invalid!!");
                             valid = false;
-            }
+                        }
                     }
                     if(email === ""){
                         inValidInput($("#email"),$("#email-feedback"),"Email should not be empty!");
@@ -301,54 +298,32 @@ function setEditButton() : void{
                     }else{
                         validInput($("#username"),$("#username-feedback"));
                     }
-                    if(password === ""){
-                        inValidInput($("#password"),$("#password-feedback"),"Password should not be empty!");
-                        valid = false;
-                    }else{
-                        validInput($("#password"),$("#password-feedback"));
-                    }
-                    if(confirm_password === ""){
-                        inValidInput($("#confirm_password"),$("#confirmPassword-feedback"),"Confirm Password should not be empty!");
-                        valid = false;
-                    }else{
-                        if(confirm_password === password){
-                            validInput($("#confirm_password"),$("#confirmPassword-feedback"));
-                        }else if(password === ""){
-                            inValidInput($("#confirm_password"),$("#confirmPassword-feedback"),"Password is not filled!");
-                            valid = false;
-                        }else{
-                            inValidInput($("#confirm_password"),$("#confirmPassword-feedback"),"Password do not match the Confirm Password!");
-                            valid = false;
-                        }
-                        
-                    }
 
-                    $.ajax("../php/updateStaff_process.php",{
-                        method:"POST",
-                        dataType:"HTML",
-                        data:{
-                            fname:fname,
-                            lname:lname,
-                            gender:gender,
-                            birthday:birthday,
-                            phone:phone,
-                            email:email,
-                            username:username,
-                            password:password,
-                            newpassword:newpassword,
-                            confirm_password:confirm_password,
-                            position:position
-                        },
-                        success:function(data,status,xhr){
-                            $("#modal-title").text("Modify Staff");
-                            $(".modal-body").html(data);
-                            $(".modal-footer").html("");
-                            $("#btnAgain").attr("data-dismiss","modal");
-                            $("#btnAgain").on("click",()=>{location.reload();});
-                        },
-                        error:errorModal
+                    if(valid){
+                        $.ajax("../php/updateStaff_process.php",{
+                            method:"POST",
+                            dataType:"HTML",
+                            data:{
+                                fname:fname,
+                                lname:lname,
+                                gender:gender,
+                                birthday:birthday,
+                                phone:phone,
+                                email:email,
+                                username:username,
+                                position:position
+                            },
+                            success:function(data,status,xhr){
+                                $("#modal-title").text("Modify Staff");
+                                $(".modal-body").html(data);
+                                $(".modal-footer").html("");
+                                $("#btnAgain").attr("data-dismiss","modal");
+                                $("#btnAgain").on("click",()=>{location.reload();});
+                            },
+                            error:errorModal
+                        });
+                    }
                     });
-                });
                 ($("#modal") as any).modal();
             },
             error:errorModal

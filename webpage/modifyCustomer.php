@@ -68,27 +68,6 @@
                         <input type = 'text' class='form-control' id = 'username' name = 'username' value='".$row['username']."'>
                         <div id='username-feedback'></div>
                     </div>
-
-                    <div class='form-group'>
-                        <label for = 'password'><b>Original Password:</b></label>
-                        <input type = 'password' class='form-control' id = 'password' name = 'password'>
-                        <input type='checkbox' id='showpassword'> Show Password<br>
-                        <div id='password-feedback'></div>
-                    </div>
-
-                    <div class='form-group'>
-                        <label for = 'password'><b>New Password:</b></label>
-                        <input type = 'password' class='form-control' id = 'newpassword' name = 'newpassword'>
-                        <input type='checkbox' id='shownewpassword'> Show Password<br>
-                        <div id='password-feedback'></div>
-                    </div>
-
-                    <div class='form-group'>
-                        <label for = 'confirm_password'><b>Confirm New Password:</b></label>
-                        <input type = 'password' class='form-control' id = 'confirm_password' name = 'confirm_password'>
-                        <input type='checkbox' id='showconfirmpassword'> Show Password<br>
-                        <div id='confirmPassword-feedback'></div>
-                    </div>
                 
                     <button id='modal-submit' class='btn btn-block btn-primaryLight btn-primary'>Modify</button>
                     <button id='modal-cancel' class='btn btn-block btn-primaryLight btn-primary'>Cancel</button>			

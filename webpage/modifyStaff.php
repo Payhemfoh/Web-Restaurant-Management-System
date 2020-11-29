@@ -70,27 +70,6 @@
                     </div>
 
                     <div class='form-group'>
-                        <label for = 'password'><b>Original Password:</b></label>
-                        <input type = 'password' class='form-control' id = 'password' name = 'password'>
-                        <input type='checkbox' id='showpassword'> Show Password<br>
-                        <div id='password-feedback'></div>
-                    </div>
-
-                    <div class='form-group'>
-                        <label for = 'password'><b>New Password:</b></label>
-                        <input type = 'password' class='form-control' id = 'newpassword' name = 'newpassword'>
-                        <input type='checkbox' id='shownewpassword'> Show Password<br>
-                        <div id='password-feedback'></div>
-                    </div>
-
-                    <div class='form-group'>
-                        <label for = 'confirm_password'><b>Confirm New Password:</b></label>
-                        <input type = 'password' class='form-control' id = 'confirm_password' name = 'confirm_password'>
-                        <input type='checkbox' id='showconfirmpassword'> Show Password<br>
-                        <div id='confirmPassword-feedback'></div>
-                    </div>
-
-                    <div class='form-group'>
                         <label for = 'position'><b>Position:</b></label>
                         <select id='position' name='position' class='form-control'>";
 

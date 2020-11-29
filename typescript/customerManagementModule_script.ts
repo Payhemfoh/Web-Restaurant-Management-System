@@ -223,9 +223,6 @@ function setEditButton() : void{
                     let phone = ($("#phone").val() as string).trim();
                     let email = ($("#email").val() as string).trim();
                     let username = ($("#username").val() as string).trim();
-                    let password = ($("#password").val() as string).trim();
-                    let newpassword = ($("#newpassword").val() as string).trim();
-                    let confirm_password = ($("#confirm_password").val() as string).trim();
                     let valid = true;
 
                     //validation
@@ -293,27 +290,6 @@ function setEditButton() : void{
                     }else{
                         validInput($("#username"),$("#username-feedback"));
                     }
-                    if(password === ""){
-                        inValidInput($("#password"),$("#password-feedback"),"Password should not be empty!");
-                        valid = false;
-                    }else{
-                        validInput($("#password"),$("#password-feedback"));
-                    }
-                    if(confirm_password === ""){
-                        inValidInput($("#confirm_password"),$("#confirmPassword-feedback"),"Confirm Password should not be empty!");
-                        valid = false;
-                    }else{
-                        if(confirm_password === password){
-                            validInput($("#confirm_password"),$("#confirmPassword-feedback"));
-                        }else if(password === ""){
-                            inValidInput($("#confirm_password"),$("#confirmPassword-feedback"),"Password is not filled!");
-                            valid = false;
-                        }else{
-                            inValidInput($("#confirm_password"),$("#confirmPassword-feedback"),"Password do not match the Confirm Password!");
-                            valid = false;
-                        }
-                        
-                    }
 
                     if(valid){
                         $.ajax("../php/updateCustomer_process.php",{
@@ -326,10 +302,7 @@ function setEditButton() : void{
                                 birthday:birthday,
                                 phone:phone,
                                 email:email,
-                                username:username,
-                                password:password,
-                                newpassword:newpassword,
-                                confirm_password:confirm_password
+                                username:username
                             },
                             success:function(data,status,xhr){
                                 $("#modal-title").text("Modify Customer");
