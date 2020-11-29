@@ -43,32 +43,70 @@
         case "order":
             switch($timeRange){
                 case "24hours":
-                    $data->datasets[0]->label = "total order in last 24 hours";
-                    $timeQuery = "AND o.date_time >= NOW() - INTERVAL 1 DAY";
-                break;
-                case "30days":
-                    $data->datasets[0]->label = "total order in last 30 days";
-                    $timeQuery = "AND o.date_time >= NOW() - INTERVAL 1 MONTH";
-                break;
-                case "12months":
-                    $data->datasets[0]->label = "total order in last 12 months";
-                    $timeQuery = "AND o.date_time >= NOW() - INTERVAL 1 YEAR";
-                break;
-                case "5years":
-                    $data->datasets[0]->label = "total order in last 5 years";
-                    $timeQuery = "AND o.date_time >= NOW() - INTERVAL 5 YEAR";
-                break;
-                case "norange":
-                default:
-                    $timeQuery = "";
-            }
-            $query = "SELECT m.menu_name as x,SUM(i.quantity) as y
+                    $query = "SELECT m.menu_name as x,SUM(i.quantity) as y
                         FROM order_item i,menu m, orders o
                         WHERE i.menu_id = m.menu_id 
                         AND i.order_id = o.order_id
-                        $timeQuery
+                        AND o.date_time >= NOW() - INTERVAL 1 DAY
                         GROUP BY m.menu_name
                         ORDER BY y DESC";
+                    $data->datasets[0]->label = "total order in last 24 hours";
+                break;
+                case "30days":
+                    $query = "SELECT m.menu_name as x,SUM(i.quantity) as y
+                        FROM order_item i,menu m, orders o
+                        WHERE i.menu_id = m.menu_id 
+                        AND i.order_id = o.order_id
+                        AND o.date_time >= NOW() - INTERVAL 1 MONTH
+                        GROUP BY m.menu_name
+                        ORDER BY y DESC";
+                    $data->datasets[0]->label = "total order in last 30 days";
+                break;
+                case "12months":
+                    $data->datasets[0]->label = "total order in last 12 months";
+                    $query = "SELECT m.menu_name as x,SUM(i.quantity) as y
+                        FROM order_item i,menu m, orders o
+                        WHERE i.menu_id = m.menu_id 
+                        AND i.order_id = o.order_id
+                        AND o.date_time >= NOW() - INTERVAL 1 YEAR
+                        GROUP BY m.menu_name
+                        ORDER BY y DESC";
+                break;
+                case "5years":
+                    $data->datasets[0]->label = "total order in last 5 years";
+                    $query = "SELECT m.menu_name as x,SUM(i.quantity) as y
+                        FROM order_item i,menu m, orders o
+                        WHERE i.menu_id = m.menu_id 
+                        AND i.order_id = o.order_id
+                        AND o.date_time >= NOW() - INTERVAL 5 YEAR
+                        GROUP BY m.menu_name
+                        ORDER BY y DESC";
+                break;
+                case "userDecide":
+                    $from = $_POST['from'];
+                    $to = $_POST['to'];
+                    if(empty($from) || empty($to))  die("No data provided.");
+                    $data->datasets[0]->label = "total order";
+                    $query = "SELECT m.menu_name as x,SUM(i.quantity) as y
+                        FROM order_item i,menu m, orders o
+                        WHERE i.menu_id = m.menu_id 
+                        AND i.order_id = o.order_id
+                        AND o.date_time BETWEEN $from AND $to
+                        GROUP BY m.menu_name
+                        ORDER BY y DESC";
+                break;
+                case "norange":
+                    $data->datasets[0]->label = "total order";
+                    $query = "SELECT m.menu_name as x,SUM(i.quantity) as y
+                        FROM order_item i,menu m, orders o
+                        WHERE i.menu_id = m.menu_id 
+                        AND i.order_id = o.order_id
+                        GROUP BY m.menu_name
+                        ORDER BY y DESC";
+                break;
+                default:
+                    $timeQuery = "";
+            }
             break;  
         case "sales":
             switch($timeRange){
@@ -110,7 +148,50 @@
                                 group by year(o.date_time)
                                 ORDER BY x";
                 break;
-                case "norange":
+                case "userDecide":
+                    $from = $_POST['from'];
+                    $to = $_POST['to'];
+                    if(empty($from) || empty($to))  die("No data provided.");
+
+                    $date1 = new DateTime($from);
+                    $date2 = new DateTime($to);
+                    $different = $date1->diff($date2);
+                    if($different->y > 1){
+                        $data->datasets[0]->label = "total sales in each year";
+                        $query = "SELECT year(o.date_time) as x, CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
+                                    FROM orders o,payment p
+                                    WHERE o.payment_id = p.payment_id
+                                    AND o.date_time between $from and $to
+                                    group by year(o.date_time)
+                                    ORDER BY x";
+                    }else if($different->m > 1){
+                        $data->datasets[0]->label = "total sales in each month";
+                        $query = "SELECT concat(month(o.date_time),'-',year(o.date_time)) as x, 
+                                            CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
+                                    FROM orders o,payment p
+                                    WHERE o.payment_id = p.payment_id
+                                    AND o.date_time between $from and $to
+                                    group by month(o.date_time)
+                                    ORDER BY x";
+                    }else if($different->d > 1){
+                        $data->datasets[0]->label = "total sales in each day";
+                        $query = "SELECT date(o.date_time) as x,CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
+                                    FROM orders o,payment p
+                                    WHERE o.payment_id = p.payment_id
+                                    AND DATE(o.date_time) = $from 
+                                    group by x
+                                    ORDER BY x";
+                    }else{
+                        $data->datasets[0]->label = "total sales in each hours";
+                        $query = "SELECT concat(date(o.date_time),' ',hour(o.date_time),':00:00') as x,
+                                            CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
+                                    FROM orders o,payment p
+                                    WHERE o.payment_id = p.payment_id
+                                    AND o.date_time >= NOW() - INTERVAL 2 DAY
+                                    group by x
+                                    ORDER BY x";
+                    }
+                    break;
                 default:
                     $query = "";
             }

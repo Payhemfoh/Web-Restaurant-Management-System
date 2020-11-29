@@ -17,6 +17,7 @@
         <div id="content" class="container bg-light col-md-9 rounded">
             <form>
                 <div class="form-group">
+                    <label for = "dataType">Data Type:</label><br>
                     <select id="dataType" class='form-control'>
                         <option value="sales">Sales</option>
                         <option value="order">Order Popularity</option>
@@ -24,16 +25,23 @@
                 </div>
 
                 <div class="form-group">
+                    <label for = "timeRange">Time Range:</label><br>
                     <select id="timeRange" class='form-control'>
                         <option value="24hours">Last 24 hours</option>
                         <option value="30days">Last 30 days</option>
                         <option value="12months">Last 12 months</option>
                         <option value="5years">Last 5 year</option>
-                        <option value="norange">No range</option>
+                        <option value="userDecide">Self Decide</option>
+                        <option value="norange">All data</option>
                     </select>
                 </div>
 
+                <div id="user_define">
+
+                </div>
+
                 <div class="form-group">
+                    <label for = "chartType">Chart Type:</label><br>
                     <select id="chartType" class='form-control'>
                         <option value="bar">bar</option>
                         <option value="line">line</option>
