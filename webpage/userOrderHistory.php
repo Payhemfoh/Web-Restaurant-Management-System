@@ -39,8 +39,13 @@
 
                     if($result == "customer_id")
                     {
-                        echo '<td>\"date_time"\</td>
-                            <td>\"order_type"\</td>';
+                        while ($result == "customer_id")
+                        {
+                            echo '<td>\"date_time"\</td>
+                            <td>\"order_type"\</td>
+                            </thread>
+                            </table>';
+                        }
                     }
             ?>
     </body>
