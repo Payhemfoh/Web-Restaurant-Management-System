@@ -87,7 +87,6 @@ $(function () {
             dataType: "html",
             data: { username: username },
             success: function (data) {
-                console.log(data);
                 var form = $("<form action='../webpage/payment.php'></form>");
                 $("body").append(form);
                 form.trigger("submit");
@@ -110,12 +109,9 @@ $(function () {
                 username: username
             },
             success: function (data) {
-                document.cookie = "orderList=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-                $("#modal-title").text("Menu Information");
-                $(".modal-body").html(data);
-                $(".modal-footer").html('<button id="modal-cancel" class="btn btn-primary btn-primaryLight btn-block" ' +
-                    'data-dismiss="modal">Return to Cart</button>');
-                $("#modal").modal();
+                var form = $("<form action='../webpage/payment.php'></form>");
+                $("body").append(form);
+                form.trigger("submit");
             },
             error: errorModal
         });
