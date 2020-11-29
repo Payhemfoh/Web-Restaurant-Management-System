@@ -29,8 +29,8 @@
             $result = $getStaffId->get_result();
             if($row = $result->fetch_array()){
                 $staffId = $row['staff_id'];
-                if($statement = $connect->prepare("UPDATE delivery 
-                                                SET staff_id=? 
+                if($statement = $connect->prepare("UPDATE delivery d,orders o
+                                                SET d.staff_id=?, o.overall_status = 'delivering' 
                                                 WHERE delivery_id=?")){
                     $statement->bind_param("ii",$staffId,$deliveryId);
                     $statement->execute();

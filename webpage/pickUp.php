@@ -53,8 +53,8 @@
                         </tr>',
                         $row["username"],
                         $row['phone_number'],
-                        $row["arrival_time"],
                         $row["date_time"],
+                        $row["arrival_time"],
                         $row["order_id"]);
                 }
                 echo "</table>";

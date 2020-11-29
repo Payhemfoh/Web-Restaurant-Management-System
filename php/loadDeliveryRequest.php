@@ -29,7 +29,7 @@
                                                     FROM delivery d, orders o, customer c
                                                     WHERE o.delivery_id = d.delivery_id
                                                     AND o.customer_id = c.customer_id
-                                                    AND o.overall_status = 'delivering'
+                                                    AND o.overall_status LIKE 'pickUp'
                                                     AND d.staff_id IS NULL")){
                     $statement->execute();
                     $result = $statement->get_result();
