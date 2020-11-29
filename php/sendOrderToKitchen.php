@@ -25,7 +25,6 @@
     }
 
     if($valid){
-        print_r($orderList);
         //database connection
         $connect = new mysqli("localhost","root","","rms_database");
 
