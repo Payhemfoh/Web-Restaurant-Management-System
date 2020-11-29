@@ -73,8 +73,8 @@
                     
                 ?>
                 <br><h3 class="text-center">User Profile</h3><br>
-                echo "<a href=\"../webpage/userOrderHistory.php\" class='btn btn-block btn-primaryLight btn-primary'>Order History</a><br>";
-                echo "<hr>";
+                <a href="../webpage/userOrderHistory.php" class="btn btn-block btn-primaryLight btn-primary">Order History</a><br>
+                <hr>
                 
                 <?php
                 echo "
