@@ -127,7 +127,7 @@
     ];
 
     $ORDERITEMTABLE = [
-        "stock_id" =>" INT NOT NULL,",
+        "item_id" =>" INT NOT NULL AUTO_INCREMENT PRIMARY KEY,",
         "menu_id" =>" INT NOT NULL,",
         "order_id" => " INT NOT NULL,",
         "order_status" => "ENUM('preparing','completed') NOT NULL,",
