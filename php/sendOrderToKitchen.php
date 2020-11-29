@@ -25,6 +25,7 @@
     }
 
     if($valid){
+        print_r($orderList);
         //database connection
         $connect = new mysqli("localhost","root","","rms_database");
 
@@ -56,7 +57,7 @@
                 setcookie("orderId",$orderId,time()+ (10 * 365 * 24 * 60 * 60),"/");
 
                 if($service === "dine_in"){
-                    $table_no = $_COOKIE['table_no'];
+                    $table_no = $_COOKIE['tableNo'];
                     $modify = $connect->prepare("UPDATE orders SET table_no=? WHERE order_id=?;");
                     $modify->bind_param("ii",$table_no,$orderId);
                     $modify->execute();
@@ -91,7 +92,7 @@
                 }
                 $insert->close();
             }else{
-                echo "Failed to insert record into table";
+                echo "Failed to insert record into table".$connect->error;
             }
             //clear the order item list
             setcookie("orderList","",time()-3600,"/");
