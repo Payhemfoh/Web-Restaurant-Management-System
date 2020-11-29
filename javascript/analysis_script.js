@@ -60,7 +60,6 @@ function generateGraph() {
     }
 }
 function printGraph(data) {
-    console.log(data);
     var canvas = (document.getElementById("graph").getContext("2d"));
     var chartType = $("#chartType").val();
     var dataset = data;

@@ -75,7 +75,6 @@ function generateGraph() : void {
 }
 
 function printGraph(data: any){
-    console.log(data);
     let canvas = ((document.getElementById("graph")! as HTMLCanvasElement).getContext("2d")) as CanvasRenderingContext2D;
     let chartType = $("#chartType").val() as string;
     let dataset = data;
