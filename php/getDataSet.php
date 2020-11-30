@@ -49,7 +49,8 @@
                         AND i.order_id = o.order_id
                         AND o.date_time >= NOW() - INTERVAL 1 DAY
                         GROUP BY m.menu_name
-                        ORDER BY y DESC";
+                        ORDER BY y DESC
+                        LIMIT 15";
                     $data->datasets[0]->label = "total order in last 24 hours";
                 break;
                 case "30days":
@@ -59,7 +60,8 @@
                         AND i.order_id = o.order_id
                         AND o.date_time >= NOW() - INTERVAL 1 MONTH
                         GROUP BY m.menu_name
-                        ORDER BY y DESC";
+                        ORDER BY y DESC
+                        LIMIT 15";
                     $data->datasets[0]->label = "total order in last 30 days";
                 break;
                 case "12months":
@@ -70,7 +72,8 @@
                         AND i.order_id = o.order_id
                         AND o.date_time >= NOW() - INTERVAL 1 YEAR
                         GROUP BY m.menu_name
-                        ORDER BY y DESC";
+                        ORDER BY y DESC
+                        LIMIT 15";
                 break;
                 case "5years":
                     $data->datasets[0]->label = "total order in last 5 years";
@@ -80,7 +83,8 @@
                         AND i.order_id = o.order_id
                         AND o.date_time >= NOW() - INTERVAL 5 YEAR
                         GROUP BY m.menu_name
-                        ORDER BY y DESC";
+                        ORDER BY y DESC
+                        LIMIT 15";
                 break;
                 case "userDecide":
                     $from = $_POST['from'];
@@ -93,7 +97,8 @@
                         AND i.order_id = o.order_id
                         AND o.date_time BETWEEN $from AND $to
                         GROUP BY m.menu_name
-                        ORDER BY y DESC";
+                        ORDER BY y DESC
+                        LIMIT 15";
                 break;
                 case "norange":
                     $data->datasets[0]->label = "total order";
@@ -102,7 +107,8 @@
                         WHERE i.menu_id = m.menu_id 
                         AND i.order_id = o.order_id
                         GROUP BY m.menu_name
-                        ORDER BY y DESC";
+                        ORDER BY y DESC
+                        LIMIT 15";
                 break;
                 default:
                     $timeQuery = "";
@@ -116,7 +122,7 @@
                                         CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
                                 FROM orders o,payment p
                                 WHERE o.payment_id = p.payment_id
-                                AND o.date_time >= NOW() - INTERVAL 2 DAY
+                                AND o.date_time >= NOW() - INTERVAL 1 DAY
                                 group by x
                                 ORDER BY x";
                 break;
