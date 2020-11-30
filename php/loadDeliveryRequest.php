@@ -12,7 +12,7 @@
         
         //check if staff already accept delivery quest
         if($statement = $connect->prepare("SELECT * 
-                                                FROM delivery d, orders o,staff s
+                                                FROM delivery d, orders o, staff s
                                                 WHERE o.delivery_id = d.delivery_id 
                                                 AND d.staff_id = s.staff_id
                                                 AND o.overall_status LIKE 'delivering'
@@ -49,12 +49,12 @@
 
                     $statement->close();
                 }else{
-                    die("Failed to prepare SQL statement.".$connect->error);
+                    die("Failed to prepare SQL statement 2.".$connect->error);
                 }
             }
             
         }else{
-            die("Failed to prepare SQL statement.".$connect->error);
+            die("Failed to prepare SQL statement 1.".$connect->error);
         }
     }else{
         echo "<p>Failed to update data! Click the button below to try again.</p><br>";

@@ -13,8 +13,8 @@
     }
 
     if($payment_method === "cash"){
-        if($statement = $connect->prepare("INSERT INTO payment(payment_id,staff_id,total_price)
-                                            VALUES (0,1,?)")){
+        if($statement = $connect->prepare("INSERT INTO payment(payment_id,total_price)
+                                            VALUES (0,?)")){
             $statement->bind_param("d",$totalPrice);
             $statement->execute();
             $paymentId = $statement->insert_id;
@@ -55,8 +55,8 @@
             die("Failed to prepare SQL statement.".$connect->error);
         }
     }else{
-        if($statement = $connect->prepare("INSERT INTO payment(payment_id,staff_id,date_time,total_price)
-                                            VALUES (0,1,now(),?)")){
+        if($statement = $connect->prepare("INSERT INTO payment(payment_id,date_time,total_price)
+                                            VALUES (0,now(),?)")){
             $statement->bind_param("d",$totalPrice);
             $statement->execute();
             $paymentId = $statement->insert_id;
