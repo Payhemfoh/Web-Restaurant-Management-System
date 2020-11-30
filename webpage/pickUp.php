@@ -43,13 +43,13 @@
                 while($row = $result->fetch_assoc())
                 {
                     printf( '<tr>
-                                <td>
-                                    <h4>Username :</h4><p> %s</p>
+                                <td style="border-bottom:2px solid gray;">
+                                    <h4 >Username :</h4><p> %s</p>
                                     <h4>Contact No :</h4><p> %s</p>
                                     <h4>Order date and time:</h4><p> %s</p>
                                     <h4>Expected Arrival time:</h4><p> %s</p>
                                 </td>
-                                <td>
+                                <td style="border-bottom:2px solid gray;">
                                     <div class="container row">
                                     <button class=\'btn btn-block btn-primaryLight btn-primary btn_delivered col align-self-center\' value=\'%d\'>
                                         Pick Up
