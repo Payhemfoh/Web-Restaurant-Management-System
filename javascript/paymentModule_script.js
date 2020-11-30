@@ -39,6 +39,7 @@ $(function () {
                                 "Please pay before exit the store." +
                                 "<br>Thank you</h4><br><br>");
                         }
+                        $("#complete-payment").css("display", "block");
                         break;
                 }
             }

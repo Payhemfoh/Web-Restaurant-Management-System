@@ -37,19 +37,25 @@
 
             if ($result->num_rows > 0) 
             {
-                echo '<table class="table table-hover" style="width:100%">';
+                echo '<table style="width:100%"><tbody>';
 
                 // output data of each row
                 while($row = $result->fetch_assoc())
                 {
-                    printf( '<tr><td>
-                            <h4>Username :</h4><p> %s</p>
-                            <h4>Contact No :</h4><p> %s</p>
-                            <h4>Order date and time:</h4><p> %s</p>
-                            <h4>Expected Arrival time:</h4><p> %s</p></td>
-                            <td><button class=\'btn btn-block btn-primaryLight btn-primary btn_delivered\' value=\'%d\'>
-                        Pick Up
-                        </button></td>
+                    printf( '<tr>
+                                <td>
+                                    <h4>Username :</h4><p> %s</p>
+                                    <h4>Contact No :</h4><p> %s</p>
+                                    <h4>Order date and time:</h4><p> %s</p>
+                                    <h4>Expected Arrival time:</h4><p> %s</p>
+                                </td>
+                                <td>
+                                    <div class="container row">
+                                    <button class=\'btn btn-block btn-primaryLight btn-primary btn_delivered col align-self-center\' value=\'%d\'>
+                                        Pick Up
+                                    </button>
+                                    </div>
+                                </td>
                         </tr>',
                         $row["username"],
                         $row['phone_number'],
@@ -57,7 +63,7 @@
                         $row["arrival_time"],
                         $row["order_id"]);
                 }
-                echo "</table>";
+                echo "</tbody></table>";
             }
             ?>
             </div>

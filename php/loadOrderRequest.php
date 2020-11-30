@@ -20,7 +20,7 @@
         echo "<table style='width:100%'>";
         while($row = $result->fetch_assoc()){
             if($lastorderId === -1) $lastorderId = $row['order_id'];
-            printf("<div class=\"order_item\"><tr>
+            printf("<tr><div class=\"order_item\">
                         <td ".( $row['order_id']!==$lastorderId ?"style='border-bottom:2px solid gray;'":'').">
                         <h3>Order :</h3><p> %s</p>
                         <h4>Quantity :</h4><p> %d</p>
@@ -40,6 +40,7 @@
                     </button></td>
                     </div></tr>
             ",$row['menu_picture'],$row['item_id']);
+            
             $lastorderId = $row['order_id'];
         }
         echo "<hr />";
