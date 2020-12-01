@@ -45,7 +45,7 @@
                         if($statement = $connect->prepare("SELECT c.username,c.phone_number, o.*, p.date_time as payment_time, p.total_price
                                                             FROM orders o, customer c, payment p
                                                             WHERE o.order_type='take_away'
-                                                            AND c.username LIKE '?'
+                                                            AND c.username LIKE ?
                                                             AND o.customer_id = c.customer_id
                                                             AND p.payment_id = o.payment_id
                                                             ORDER BY o.pickup_time;")){
