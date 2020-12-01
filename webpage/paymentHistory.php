@@ -49,7 +49,8 @@
                                                             AND o.customer_id = c.customer_id
                                                             AND p.payment_id = o.payment_id
                                                             ORDER BY o.pickup_time;")){
-                            $statement->execute($sess_username);
+                            $statement->bind_param("s",$sess_username);
+                            $statement->execute();
                             $result = $statement->get_result();
                             while($row = $result->fetch_assoc()){
                             printf( '<tr>
