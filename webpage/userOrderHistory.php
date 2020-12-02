@@ -49,10 +49,10 @@
                 while($row = $result->fetch_assoc())
                 {
                     printf('<tr>
-                                <td>Date & Time</td>
-                                <td>Order Type</td>
-                                <td>Total Price</td>
-                                <td>Order Status</td>
+                                <td>%s</td>
+                                <td>%s</td>
+                                <td>%.2f</td>
+                                <td>%s</td>
                                 <td>',$row['date_time'],$row['order_type'],$row['total_price'],$row['overall_status']);
                     $itemQuery = "SELECT * 
                             FROM order_item o,menu m
