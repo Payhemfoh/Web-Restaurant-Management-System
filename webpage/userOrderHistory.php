@@ -69,5 +69,8 @@
                 echo $connect->error;
             }
             ?>
+            
+        <?php printModal(); ?>
+        <?php printFooter();?>
     </body>
 </html>
