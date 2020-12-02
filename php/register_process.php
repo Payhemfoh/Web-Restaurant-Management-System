@@ -135,3 +135,4 @@
         echo "<p>Failed to register! Click the button below to try again.</p><br>";
         echo "<button id=\"btnAgain\" class=\"btn btn-block btn-lg btn-outline-primary\">Try Again</button>";
     }
+?>
