@@ -6,7 +6,8 @@
     $lname = $_POST['lname'];
     $gender = $_POST['gender'];
     $birthday = $_POST['birthday'];
-    $phoneNo = $_POST['phone'];
+    $phone = $_POST['phone'];
+    $customerId = $_POST['id'];
     $valid = true;
 
     //<---------------------Start Validation--------------------->
@@ -34,7 +35,7 @@
         $valid = false;
     }
     
-    if (empty($phoneNo))
+    if (empty($phone))
     {
         echo "<h3><font color = 'red'>Your phone number is empty.</font></h3>";
         $valid = false;
@@ -65,7 +66,7 @@
         $valid = false;
     }
     
-    if(!preg_match("/^[0-9]{3}-[0-9]{7}$/", $phoneNo))
+    if(!preg_match("/^[0-9]{3}-[0-9]{7}$/", $phone))
     {
         echo "<h3><font color = 'red'>Your phone number is invalid.</h3></font>";
         $valid = false;
@@ -101,14 +102,15 @@
                                             WHERE customer_id = ?
                                             ")){
             
-            $statement->bind_param("sssssssdd",
+            $statement->bind_param("sssssssd",
                                     $username,
                                     $email,
                                     $fname,
                                     $lname,
                                     $gender,
                                     $birthday,
-                                    $phone);
+                                    $phone,
+                                    $customerId);
 
             $statement->execute();
 

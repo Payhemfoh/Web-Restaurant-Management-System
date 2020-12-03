@@ -90,7 +90,7 @@
                         <div id='position-feedback'></div>
                     </div>
                 
-                    <button id='modal-submit' class='btn btn-block btn-primaryLight btn-primary'>Modify</button>
+                    <button id='modal-submit' class='btn btn-block btn-primaryLight btn-primary' value='".$row['staff_id']."'>Modify</button>
                     <button id='modal-cancel' class='btn btn-block btn-primaryLight btn-primary'>Cancel</button>			
                 </form>
             ";

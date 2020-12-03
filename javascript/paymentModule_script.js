@@ -33,10 +33,16 @@ $(function () {
                                 "Our staff will receive the payment when the order is arrived." +
                                 "<br>Thank you</h4><br><br>");
                         }
-                        else {
+                        else if (service === "dine_in") {
                             $("#paymentBlock").html("<h4>Your order id is " + orderId + ".<br>" +
                                 "The total price is RM" + price + "<br>" +
                                 "Please pay before exit the store." +
+                                "<br>Thank you</h4><br><br>");
+                        }
+                        else if (service === "take_away") {
+                            $("#paymentBlock").html("<h4>Your order id is " + orderId + ".<br>" +
+                                "The total price is RM" + price + "<br>" +
+                                "Please pay when you arrived our store." +
                                 "<br>Thank you</h4><br><br>");
                         }
                         $("#complete-payment").css("display", "block");

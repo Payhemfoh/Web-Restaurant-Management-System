@@ -8,6 +8,7 @@
     $gender = $_POST['gender'];
     $birthday = $_POST['birthday'];
     $phoneNo = $_POST['phone'];
+    $staff_id = $_POST['id'];
     $valid = true;
 
     //<---------------------Start Validation--------------------->
@@ -115,8 +116,9 @@
                                     $lname,
                                     $gender,
                                     $birthday,
-                                    $phone,
-                                    $position);
+                                    $phoneNo,
+                                    $position,
+                                    $staff_id);
 
             $statement->execute();
 

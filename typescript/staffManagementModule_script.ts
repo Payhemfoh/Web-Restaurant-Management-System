@@ -231,6 +231,7 @@ function setEditButton() : void{
                     let email = ($("#email").val() as string).trim();
                     let username = ($("#username").val() as string).trim();
                     let position = ($("#position").val() as number);
+                    let id = e.target.getAttribute("value");
                     let valid = true;
 
                     //validation
@@ -311,7 +312,8 @@ function setEditButton() : void{
                                 phone:phone,
                                 email:email,
                                 username:username,
-                                position:position
+                                position:position,
+                                id:id
                             },
                             success:function(data,status,xhr){
                                 $("#modal-title").text("Modify Staff");

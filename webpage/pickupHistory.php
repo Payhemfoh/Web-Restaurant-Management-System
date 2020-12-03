@@ -17,7 +17,7 @@
         <br>
             <div class="h2 text-center">Completed Pick Up History</div>
             <br>
-            <table id="table" class="table table-hover">
+            <table id="history_table" class="table table-hover">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Username</th>
@@ -44,7 +44,7 @@
                                                             WHERE o.order_type='take_away'
                                                             AND o.pickup_time is not null
                                                             AND o.customer_id = c.customer_id
-                                                            ORDER BY o.pickup_time;")){
+                                                            ORDER BY o.pickup_time desc;")){
                             $statement->execute();
                             $result = $statement->get_result();
                             while($row = $result->fetch_assoc()){
@@ -70,22 +70,29 @@
         <?php printModal(); ?>
         <?php printFooter(); ?>
         <script>
-            $(".btn_detail").on("click",function(){
-                let id = this.getAttribute("value");
+            $(()=>{
+                $("#history_table").DataTable({
+                    "order":[]
+                });
 
-                $.ajax("../php/showPickUpDetail.php",{
-                    method:"POST",
-                    dataType:"HTML",
-                    data:{id:id},
-                    success:(data) => {
-                        $("#modal-title").text("Pick Up Detail");
-                        $(".modal-body").html(data);
-                        $(".modal-footer").html("");
-                        $("#modal-cancel").attr("data-dismiss","modal");
-                        $("#modal").modal();
-                    }
-                }); // end callback
-            });//end on set listener
+                $(".btn_detail").on("click",function(){
+                    let id = this.getAttribute("value");
+
+                    $.ajax("../php/showPickUpDetail.php",{
+                        method:"POST",
+                        dataType:"HTML",
+                        data:{id:id},
+                        success:(data) => {
+                            $("#modal-title").text("Pick Up Detail");
+                            $(".modal-body").html(data);
+                            $(".modal-footer").html("");
+                            $("#modal-cancel").attr("data-dismiss","modal");
+                            $("#modal").modal();
+                        }
+                    }); // end callback
+                });//end on set listener
+            });
+            
         </script>
     </body>
 </html>

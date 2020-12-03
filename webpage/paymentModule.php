@@ -37,19 +37,19 @@
 
             if ($result->num_rows > 0) 
             {
-                echo '<table class="table table-hover" style="width:100%">';
+                echo '<table style="width:100%">';
 
                 // output data of each row
                 while($row = $result->fetch_assoc())
                 {
-                    printf( '<tr><td>
+                    printf( '<tr><td style=\'border-bottom:2px solid gray;\'>
                             <h4>Username :</h4><p> %s</p>
                             <h4>Contact No :</h4><p> %s</p>
                             <h4>Order date and time:</h4><p> %s</p>
                             <h4>Service Type:</h4><p> %s</p>
                             <h4>Total Price:</h4><p> %.2f</p></td>
-                            <td><button class=\'btn btn-block btn-primaryLight btn-primary btn_paid\' value=\'%d\'>
-                        Pick Up
+                            <td style=\'border-bottom:2px solid gray;\'><button class=\'btn btn-block btn-primaryLight btn-primary btn_paid\' value=\'%d\'>
+                        Complete Payment
                         </button></td>
                         </tr>',
                         $row["username"],
@@ -70,6 +70,7 @@
         <?php printFooter(); ?>
         <script>
             $(()=>{
+
                 $(".btn_paid").on("click",(e)=>{
                     e.preventDefault();
                     let orderId = e.target.getAttribute("value");

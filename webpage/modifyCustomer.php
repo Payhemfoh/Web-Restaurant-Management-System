@@ -35,11 +35,11 @@
                     <div class='form-group'>
                         <label for = 'gender'><b>Gender:</b></label>
                         <div class='form-check'>
-                            <input type = 'radio' class='form-check-input' id = 'gender_male' name = 'gender' value = 'male' checked>
+                            <input type = 'radio' class='form-check-input' id = 'gender_male' name = 'gender' value = 'male' ".($row['gender']==='M'?"checked":"").">
                             <label for = 'male' class='form-check-label'>Male</label>
                         </div>
                         <div class='form-check'>
-                            <input type = 'radio' class='form-check-input' id = 'gender_female' name = 'gender' value = 'female' checked>
+                            <input type = 'radio' class='form-check-input' id = 'gender_female' name = 'gender' value = 'female' ".($row['gender']==='F'?"checked":"").">
                             <label for = 'female' class='form-check-label'>Female</label>
                         </div>
                         <div id='gender-feedback'></div>
@@ -69,7 +69,7 @@
                         <div id='username-feedback'></div>
                     </div>
                 
-                    <button id='modal-submit' class='btn btn-block btn-primaryLight btn-primary'>Modify</button>
+                    <button id='modal-submit' class='btn btn-block btn-primaryLight btn-primary' value=".$row['customer_id'].">Modify</button>
                     <button id='modal-cancel' class='btn btn-block btn-primaryLight btn-primary'>Cancel</button>			
                 </form>
             ";

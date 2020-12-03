@@ -17,7 +17,7 @@
         <br>
             <div class="h2 text-center">Completed Pick Up History</div>
             <br>
-            <table id="table" class="table table-hover">
+            <table id="history_table" class="table table-hover">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Username</th>
@@ -47,7 +47,7 @@
                                                             AND o.customer_id = c.customer_id
                                                             AND o.delivery_id = d.delivery_id
                                                             AND d.staff_id = s.staff_id
-                                                            ORDER BY o.pickup_time;")){
+                                                            ORDER BY o.pickup_time desc;")){
                             $statement->execute();
                             $result = $statement->get_result();
                             while($row = $result->fetch_assoc()){
@@ -75,7 +75,12 @@
         <?php printModal(); ?>
         <?php printFooter(); ?>
         <script>
-            $(".btn_detail").on("click",function(){
+            $(()=>{
+                $("#history_table").DataTable({
+                    "order":[]
+                });
+
+                $(".btn_detail").on("click",function(){
                 let id = this.getAttribute("value");
 
                 $.ajax("../php/showDeliveryDetail.php",{
@@ -91,6 +96,7 @@
                     }
                 }); // end callback
             });//end on set listener
+            });
         </script>
     </body>
 </html>

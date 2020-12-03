@@ -223,6 +223,7 @@ function setEditButton() : void{
                     let phone = ($("#phone").val() as string).trim();
                     let email = ($("#email").val() as string).trim();
                     let username = ($("#username").val() as string).trim();
+                    let id = e.target.getAttribute("value");
                     let valid = true;
 
                     //validation
@@ -302,7 +303,8 @@ function setEditButton() : void{
                                 birthday:birthday,
                                 phone:phone,
                                 email:email,
-                                username:username
+                                username:username,
+                                id:id
                             },
                             success:function(data,status,xhr){
                                 $("#modal-title").text("Modify Customer");

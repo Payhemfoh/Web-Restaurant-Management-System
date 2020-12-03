@@ -58,6 +58,7 @@
 </div>
 
 <button id="btn_arrived" class="btn btn-block btn-primaryLight btn-primary">Arrived</button>
+<br>
 <script type="module" src='../javascript/gps_handle_staff.js'></script>
 <script type="module" src="../javascript/chatroom_staff.js"></script>
 

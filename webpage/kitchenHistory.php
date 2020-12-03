@@ -17,7 +17,7 @@
         <br>
             <div class="h2 text-center">Completed Order History</div>
             <br>
-            <table id="table" class="table table-hover">
+            <table id="history_table" class="table table-hover">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Username</th>
@@ -74,4 +74,11 @@
         <?php printModal(); ?>
         <?php printFooter(); ?>
     </body>
+    <script>
+        $(()=>{
+            $("#history_table").DataTable({
+                "order":[]
+            });
+        });
+    </script>
 </html>

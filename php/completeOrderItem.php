@@ -12,7 +12,8 @@
 
         $modify = $connect->prepare("UPDATE order_item i, orders o 
                                     SET i.order_status = 'completed',o.overall_status='preparing' 
-                                    WHERE i.item_id=?");
+                                    WHERE i.item_id=?
+                                    AND o.order_id = i.order_id");
         $modify->bind_param("i",$itemId);
         $modify->execute();
 
@@ -36,7 +37,7 @@
                     }
                 }
                 if($allComplete){
-                    $update = $connect->prepare("UPDATE orders SET overall_status = 'pick_up' WHERE order_id=?");
+                    $update = $connect->prepare("UPDATE orders SET overall_status = 'delivering' WHERE order_id=?");
                     $update->bind_param("i",$orderId);
                     $update->execute();
 

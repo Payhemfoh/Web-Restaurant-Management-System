@@ -31,7 +31,7 @@
                 $staffId = $row['staff_id'];
                 if($statement = $connect->prepare("UPDATE delivery d,orders o
                                                 SET d.staff_id=?, o.overall_status = 'delivering' 
-                                                WHERE delivery_id=?")){
+                                                WHERE o.delivery_id=?")){
                     $statement->bind_param("ii",$staffId,$deliveryId);
                     $statement->execute();
                     

@@ -158,6 +158,6 @@ function update():void{
       $("map").html("Geolocation is not supported by this browser.");
     }
     setTimeout(checkPoint,1000);
-    setTimeout(update,10000);
+    setTimeout(update,1000);
 }
 

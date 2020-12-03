@@ -34,7 +34,7 @@
                     AND o.payment_id = p.payment_id";
             $result = $connect->query($sql);
 
-            echo '<table class="table table-hover">
+            echo '<table id="history_table" class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">Date & Time</th>
@@ -73,4 +73,11 @@
         <?php printModal(); ?>
         <?php printFooter();?>
     </body>
+    <script>
+        $(()=>{
+            $("#history_table").DataTable({
+                "order":[]
+            });
+        });
+    </script>
 </html>

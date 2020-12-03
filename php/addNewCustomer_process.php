@@ -6,14 +6,14 @@
     //get post value from webpage
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    $confirm_password = $_POST['confirmPassword'];
     $email = $_POST['email'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $address = "";
     $gender = $_POST['gender'];
     $birthday = $_POST['birthday'];
-    $phoneNo = $_POST['phoneNo'];
+    $phoneNo = $_POST['phone'];
     $valid = true;
 
     //<---------------------Start Validation--------------------->
@@ -65,25 +65,25 @@
         $valid = false;
     }
     
-    if (empty($confirm_Password))
+    if (empty($confirm_password))
     {
         echo "<h3><font color = 'red'>Your confirm password is empty. This field is required.</font></h3>";
         $valid = false;
     }
 
     //advance checking
-    if($confirm_Password!==$password){
+    if($confirm_password!==$password){
         echo "<h3><font color = 'red'>Password not match with Confirm Password field.</font></h3>";
         $valid = false;
     }
     
-    if(!ctype_alpha($fname))
+    if(!ctype_alpha(str_replace(' ', '', $fname)))
     {
         echo "<h3><font color = 'red'>Your first name all must be alphabet.</font></h3>";
         $valid = false;
     }
     
-    if(!ctype_alpha($lname))
+    if(!ctype_alpha(str_replace(' ', '', $lname)))
     {
         echo "<h3><font color = 'red'>Your last name all must be alphabet.</font></h3>";
         $valid = false;
@@ -116,7 +116,7 @@
         //use parameterized query to prevent sql injection
         //insert data into stock table
         if($statement = $connect->prepare("INSERT INTO customer VALUES(0,?,?,?,?,?,?,?,?,?);")){
-            $statement->bind_param("dsssssssss",
+            $statement->bind_param("sssssssss",
                                     $username,
                                     $hashed,
                                     $email,
