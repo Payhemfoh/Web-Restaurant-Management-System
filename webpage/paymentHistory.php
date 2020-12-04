@@ -44,12 +44,10 @@
                         //insert data into stock table
                         if($statement = $connect->prepare("SELECT c.username,c.phone_number, o.*, p.date_time as payment_time, p.total_price
                                                             FROM orders o, customer c, payment p
-                                                            WHERE o.order_type='take_away'
-                                                            AND c.username LIKE ?
+                                                            WHERE p.date_time is not null 
                                                             AND o.customer_id = c.customer_id
                                                             AND p.payment_id = o.payment_id
-                                                            ORDER BY o.pickup_time;")){
-                            $statement->bind_param("s",$sess_username);
+                                                            ORDER BY p.date_time desc;")){
                             $statement->execute();
                             $result = $statement->get_result();
                             while($row = $result->fetch_assoc()){

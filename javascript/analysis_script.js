@@ -31,8 +31,8 @@ function generateGraph() {
     var dataType = $("#dataType").val();
     var timeRange = $("#timeRange").val();
     if (timeRange === 'userDecide') {
-        var from = $("#to").val();
-        var to = $("#from").val();
+        var from = $("#from").val();
+        var to = $("#to").val();
         $.ajax({
             url: "../php/getDataSet.php",
             method: "post",

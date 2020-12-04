@@ -27,11 +27,12 @@
                 die("Connection error : $connect->connect_errno : $connect->connect_error");
             }
 
-            $sql = "SELECT * 
+            $sql = "SELECT o.*,c.*,p.total_price
                     FROM orders o,customer c, payment p
                     WHERE o.customer_id = c.customer_id 
                     AND c.username LIKE '$sess_username'
-                    AND o.payment_id = p.payment_id";
+                    AND o.payment_id = p.payment_id
+                    ORDER BY o.date_time desc";
             $result = $connect->query($sql);
 
             echo '<table id="history_table" class="table table-hover">

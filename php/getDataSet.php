@@ -91,14 +91,26 @@
                     $to = $_POST['to'];
                     if(empty($from) || empty($to))  die("No data provided.");
                     $data->datasets[0]->label = "total order";
+                    
+                    if($from === $to){
+                        $query = "SELECT m.menu_name as x,SUM(i.quantity) as y
+                        FROM order_item i,menu m, orders o
+                        WHERE i.menu_id = m.menu_id 
+                        AND i.order_id = o.order_id
+                        AND date(o.date_time) = '$from'
+                        GROUP BY m.menu_name
+                        ORDER BY y DESC
+                        LIMIT 15";
+                    }else{
                     $query = "SELECT m.menu_name as x,SUM(i.quantity) as y
                         FROM order_item i,menu m, orders o
                         WHERE i.menu_id = m.menu_id 
                         AND i.order_id = o.order_id
-                        AND o.date_time BETWEEN $from AND $to
+                        AND o.date_time between '$from' and '$to'
                         GROUP BY m.menu_name
                         ORDER BY y DESC
                         LIMIT 15";
+                    }
                 break;
                 case "norange":
                     $data->datasets[0]->label = "total order";
@@ -167,7 +179,7 @@
                         $query = "SELECT year(o.date_time) as x, CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
                                     FROM orders o,payment p
                                     WHERE o.payment_id = p.payment_id
-                                    AND o.date_time between $from and $to
+                                    AND o.date_time between '$from' and '$to'
                                     group by year(o.date_time)
                                     ORDER BY x";
                     }else if($different->m > 1){
@@ -176,15 +188,15 @@
                                             CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
                                     FROM orders o,payment p
                                     WHERE o.payment_id = p.payment_id
-                                    AND o.date_time between $from and $to
+                                    AND o.date_time between '$from' and '$to'
                                     group by month(o.date_time)
                                     ORDER BY x";
-                    }else if($different->d > 1){
+                    }else if($different->d >= 1){
                         $data->datasets[0]->label = "total sales in each day";
                         $query = "SELECT date(o.date_time) as x,CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
                                     FROM orders o,payment p
                                     WHERE o.payment_id = p.payment_id
-                                    AND o.date_time between $from and $to
+                                    AND o.date_time between '$from' and '$to'
                                     group by x
                                     ORDER BY x";
                     }else{
@@ -193,7 +205,7 @@
                                             CAST(SUM(p.total_price) AS DECIMAL(20,2)) as y
                                     FROM orders o,payment p
                                     WHERE o.payment_id = p.payment_id
-                                    AND DATE(o.date_time) = $from
+                                    AND DATE(o.date_time) = '$from'
                                     group by x
                                     ORDER BY x";
                     }
@@ -223,7 +235,6 @@
     }else{
         die("Failed to prepare SQL statement.".$connect->error);
     }
-    
     echo json_encode($data);
     
     $connect->close(); 
